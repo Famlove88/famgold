@@ -163,7 +163,7 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
   <div class="hero">
     <div class="brand">
       <h1>🥇 FAM GOLD PRO</h1>
-      <span class="badge">v1.1</span>
+      <span class="badge">v1.2</span>
       <span class="chip" id="srcChip">المصدر: <b id="srcName">—</b></span>
       <span class="chip" id="clock" style="margin-inline-start:auto">⏳ <b id="countdown">—</b></span>
     </div>
@@ -178,6 +178,7 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
       <span class="chip">Funding <b class="num" id="fund">—</b></span>
       <span class="chip">O.I. <b class="num" id="oi">—</b></span>
       <span class="chip" id="healthChip">🩺 <b id="healthTxt">—</b></span>
+      <span class="chip bad" id="errChip" style="display:none;cursor:pointer" onclick="copyErrors()">🐞 <b id="errCount">0</b></span>
       <span class="chip">آخر تحديث <b class="num" id="lastUpd">—</b></span>
     </div>
     <div class="btns" style="margin-top:10px">
@@ -260,14 +261,14 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
     <div class="note">التنبيهات بتشتغل بس تكون الصفحة مفتوحة — البرنامج مستقل 100%: بلا سيرفر، بلا مفاتيح، بلا حسابات. بياناتك كلها محفوظة محلياً على جهازك.</div>
   </div>
 
-  <div class="footer">FAM GOLD PRO v1.1 — أداة تحليل فني تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
+  <div class="footer">FAM GOLD PRO v1.2 — أداة تحليل فني تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
   التداول بالرافعة خطر عالي. جرّب paper trading قبل أي مصاري حقيقية.</div>
 </div>
 <div id="toasts"></div>
 
 <script>
 /* =====================================================================
-   FAM GOLD PRO v1.0 — standalone single-file gold trade assistant
+   FAM GOLD PRO v1.2 — standalone single-file gold trade assistant
    Engine: top-down 4h (trend) / 1h (zone) / 15m (timing)
    Data: Binance Futures REST (fallback: PAXGUSDT spot) — no keys, no server
    ===================================================================== */
@@ -676,13 +677,35 @@ if(IS_BROWSER){ (function(){
 var state={ data:null, A:null, rec:null, price:null, chg:null, mark:null,
   funding:null, oi:null, prevOI:null, hi24:null, lo24:null,
   src:'—', health:{}, chartTF:'1h', busy:false, cd:0,
-  htf:{k1d:null,k1w:null,at:0,src:null,statsK:null,statsSrc:null}, weekly:null };
+  htf:{k1d:null,k1w:null,at:0,src:null,statsK:null,statsK1w:null,statsSrc:null},
+  htfBusy:false, weekly:null };
 
 var DEF={cap:1000,risk:1,lev:10,intv:30,alerts:true,sound:true,demo:false,sym:'XAUUSDT'};
 var settings=loadJSON('famgold_settings',DEF);
 Object.keys(DEF).forEach(function(k){ if(settings[k]===undefined)settings[k]=DEF[k]; });
 var journal=loadJSON('famgold_journal',[]);
 var alertLog=loadJSON('famgold_alerts',{});
+var manualEvents=loadJSON('famgold_events',[]);
+var errLog=loadJSON('famgold_errors',[]);
+
+/* ---------- error visibility: ولا خطأ بيضيع بصمت ---------- */
+function logErr(src,msg){
+  errLog.unshift({t:Date.now(),s:src,m:String(msg).slice(0,300)});
+  if(errLog.length>20)errLog.length=20;
+  saveJSON('famgold_errors',errLog);
+  try{ var c=el('errChip'); if(c){ c.style.display='inline-flex'; el('errCount').textContent=errLog.length; } }catch(e){}
+}
+function safe(name,fn){ try{ fn(); }catch(e){ logErr(name,(e&&e.message)||e); } }
+window.addEventListener('error',function(e){ logErr('window',(e&&e.message)||'error'); });
+window.addEventListener('unhandledrejection',function(e){
+  logErr('promise',(e&&e.reason&&e.reason.message)||(e&&e.reason)||'rejection'); });
+window.copyErrors=function(){
+  if(!errLog.length){ toast('ما في أخطاء مسجّلة 👌'); return; }
+  var txt=errLog.map(function(x){ return new Date(x.t).toLocaleString()+' ['+x.s+'] '+x.m; }).join('\n');
+  fallbackCopy(txt); toast('📋 انسخت الأخطاء — ابعتن لي عالمحادثة');
+};
+window.clearErrors=function(){ errLog=[]; saveJSON('famgold_errors',errLog);
+  var c=el('errChip'); if(c)c.style.display='none'; safe('health',renderHealth); };
 
 function loadJSON(k,d){ try{ var v=store.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
 function saveJSON(k,v){ try{ store.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -768,15 +791,23 @@ function refresh(){
     state.cd=settings.intv; el('lastUpd').textContent=nowStr(); };
 
   if(settings.demo){
-    var sets=demoSet(Math.floor(Date.now()/60000),1);
+    var sd=Math.floor(Date.now()/60000);
+    var sets=demoSet(sd,1);
     applyData({sets:sets,t24:null,prem:null,oi:null,health:{'وضع تجريبي':{ok:true,ms:0}},src:'🧪 بيانات تجريبية'});
+    state.htf={k1d:demoKlines(sd+3,420,1440,4080,1),k1w:demoKlines(sd+4,180,10080,4000,1),
+      at:Date.now(),src:'🧪 تجريبي',statsK:null,statsK1w:null,statsSrc:null};
+    safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly);
     done(); return;
   }
+  function afterMain(){
+    ensureHTF().then(function(){
+      safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly); safe('health',renderHealth); });
+  }
   fetchPrimary((settings.sym||'XAUUSDT').toUpperCase().trim())
-    .then(function(d){ applyData(d); done(); })
+    .then(function(d){ applyData(d); afterMain(); done(); })
     .catch(function(){
       fetchFallback()
-        .then(function(d){ applyData(d); toast('⚠️ Binance Futures ما ردّ — كمّلنا على PAXG سبوت'); done(); })
+        .then(function(d){ applyData(d); afterMain(); toast('⚠️ Binance Futures ما ردّ — كمّلنا على PAXG سبوت'); done(); })
         .catch(function(){ state.health={'الشبكة':{ok:false,err:'كل المصادر فشلت'}};
           renderHealth(); toast('❌ ما قدرت وصل للبيانات — جرّب وضع تجريبي أو شيّك النت'); done(); });
     });
@@ -798,8 +829,8 @@ function applyData(d){
   if(state.funding!==null&&Math.abs(state.funding)>=0.03){
     state.rec.warnings.push('⚠️ Funding '+fmt(state.funding,4)+'% — '+(state.funding>0?'الـlongs مزدحمين':'الـshorts مزدحمين')+'، انتبه من squeeze.');
   }
-  journalEngine();
-  alertsEngine();
+  safe('journal-engine',journalEngine);
+  safe('alerts',alertsEngine);
   renderAll();
 }
 
@@ -817,6 +848,173 @@ function alertsEngine(){
     if(pB.dir==='short' && cc.c<pB.trigger)
       notify('كسر هبوطي ✅','شمعة الساعة سكّرت تحت '+fmt(pB.trigger)+' — خطة B صارت فعّالة','brk_'+cc.t,1);
   }
+}
+
+/* ---------- weekly outlook (1D + 1W) ---------- */
+function htfFetch(base,sym,tag){
+  var H={};
+  function mk(name,p){ return p.then(function(r){ H[name]={ok:true,ms:r.ms}; return r.j; })
+    .catch(function(e){ H[name]={ok:false,err:String(e&&e.message||e)}; throw e; }); }
+  var p1=mk('شموع 1D'+(tag||''),fJSON(base+'klines?symbol='+sym+'&interval=1d&limit=600',20000));
+  var p2=mk('شموع 1W'+(tag||''),fJSON(base+'klines?symbol='+sym+'&interval=1w&limit=200',20000));
+  return Promise.all([p1,p2]).then(function(v){
+    return {k1d:parseK(v[0]),k1w:parseK(v[1]),H:H,src:sym}; });
+}
+function ensureHTF(){
+  if(settings.demo) return Promise.resolve();
+  if(state.htf&&state.htf.k1d&&(Date.now()-state.htf.at<10*60000)) return Promise.resolve();
+  var sym=(settings.sym||'XAUUSDT').toUpperCase().trim();
+  var useSpot=state.src&&state.src.indexOf('PAXG')>-1;
+  state.htfBusy=true; safe('weekly-render',renderWeekly);
+  var first=useSpot? htfFetch('https://api.binance.com/api/v3/','PAXGUSDT')
+                   : htfFetch('https://fapi.binance.com/fapi/v1/',sym);
+  return first.catch(function(){ return htfFetch('https://api.binance.com/api/v3/','PAXGUSDT',' (بديل)'); })
+  .then(function(r){
+    state.htf={k1d:r.k1d,k1w:r.k1w,at:Date.now(),src:r.src,statsK:null,statsK1w:null,statsSrc:null};
+    Object.assign(state.health,r.H);
+    /* عقد XAUUSDT جديد وتاريخو قصير؟ منجيب PAXG (نفس الذهب، تاريخ أطول) */
+    if(r.k1d.length<300 && r.src.indexOf('PAXG')===-1){
+      return htfFetch('https://api.binance.com/api/v3/','PAXGUSDT',' للعيّنة').then(function(r2){
+        state.htf.statsK=r2.k1d; state.htf.statsK1w=r2.k1w; state.htf.statsSrc='PAXG (تاريخ أطول)';
+        Object.assign(state.health,r2.H);
+      }).catch(function(){});
+    }
+  })
+  .catch(function(){
+    state.htf={k1d:null,k1w:null,at:Date.now(),src:null,statsK:null,statsK1w:null,statsSrc:null};
+    state.health['شموع 1D']={ok:false,err:'فشل الجلب — شبكة أو حجب'};
+  })
+  .then(function(){ state.htfBusy=false; });
+}
+window.retryHTF=function(){
+  state.htf={k1d:null,k1w:null,at:0,src:null,statsK:null,statsK1w:null,statsSrc:null};
+  state.weekly=null;
+  ensureHTF().then(function(){
+    safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly); safe('health',renderHealth); });
+};
+function allEvents(){
+  var a=manualEvents.slice();
+  genAutoNFP(3).forEach(function(e){
+    if(!a.some(function(x){return x.d===e.d;})) a.push(e); });
+  a.sort(function(x,y){return x.d<y.d?-1:1;});
+  return a;
+}
+function upcomingEvents(days){
+  var now=Date.now();
+  return allEvents().filter(function(e){
+    var t=new Date(e.d+'T12:00:00').getTime();
+    return t>=now-43200000 && t<=now+days*86400000; });
+}
+function computeWeekly(){
+  var k1d=state.htf.k1d, k1w=state.htf.k1w, altSrc=null, altW=false;
+  /* تاريخ العقد قصير؟ منقرا اليومي/الأسبوعي من PAXG — نفس سعر الذهب */
+  if((!k1d||k1d.length<130)&&state.htf.statsK&&state.htf.statsK.length>=130){
+    k1d=state.htf.statsK; k1w=state.htf.statsK1w||k1w; altSrc=state.htf.statsSrc||'PAXG';
+  }
+  if(!altSrc&&(!k1w||k1w.length<40)&&state.htf.statsK1w&&state.htf.statsK1w.length>=40){
+    k1w=state.htf.statsK1w; altW=true;
+  }
+  if(!k1d||k1d.length<120){ state.weekly=null; return; }
+  var a1d=analyzeTF('1d',k1d.slice(-260));
+  var a1w=(k1w&&k1w.length>=40)?analyzeTF('1w',k1w):null;
+  var statsK=state.htf.statsK||k1d;
+  var st=horizonStats(statsK);
+  var evs=upcomingEvents(5);
+  var s1=a1d.score, s2=a1w?a1w.score:0;
+  var dir=(s1>=22&&s2>=-10)?'long':((s1<=-22&&s2<=10)?'short':'neutral');
+  var strong = dir!=='neutral' && st && st.n>=30 && evs.length===0 &&
+    ((dir==='long'&&st.up7>=68)||(dir==='short'&&st.up7<=32)) &&
+    (a1w? (sign(s2)===sign(s1)||s2===0) : true);
+  var level=strong?'قوية ✅':(dir!=='neutral'?'ميل عادي':'انتظار ⚠️');
+  var b3=(a1d.atr||0)*Math.sqrt(3);
+  var b7=a1w?(a1w.atr||0):(a1d.atr||0)*Math.sqrt(7);
+  state.weekly={dir:dir,level:level,strong:strong,s1:s1,s2:a1w?s2:null,
+    shortW:!a1w, st:st, evs:evs, e25d:r2(a1d.e25), e99d:r2(a1d.e99),
+    b3:b3,b7:b7, statsSrc:state.htf.statsSrc, statsN:statsK.length, src:state.htf.src,
+    altSrc:altSrc, altW:altW};
+}
+window.addEvent=function(){
+  var d=el('evDate').value, n=(el('evName').value||'').trim();
+  if(!d||!n){ toast('حط التاريخ والاسم'); return; }
+  manualEvents.push({d:d,n:n});
+  saveJSON('famgold_events',manualEvents);
+  computeWeekly(); renderWeekly(); toast('📅 انضاف الحدث');
+};
+window.delEvent=function(d,n){
+  manualEvents=manualEvents.filter(function(e){return !(e.d===d&&e.n===n);});
+  saveJSON('famgold_events',manualEvents);
+  computeWeekly(); renderWeekly();
+};
+function renderWeekly(){
+  var c=el('weeklyCard'); if(!c) return;
+  var w=state.weekly;
+  var pd=el('evDate')?el('evDate').value:'', pn=el('evName')?el('evName').value:'';
+  if(!w){
+    if(state.htfBusy){
+      c.innerHTML='<div class="empty">⏳ عم جيب بيانات اليومي والأسبوعي… عالموبايل ممكن ياخد 10–20 ثانية</div>';
+      return;
+    }
+    var eh='';
+    Object.keys(state.health||{}).forEach(function(nm){
+      if(nm.indexOf('1D')>-1||nm.indexOf('1W')>-1){ var s=state.health[nm];
+        if(s&&!s.ok) eh+='<div class="kv"><span class="k">'+nm+'</span><span class="v dn num" style="direction:ltr">'+(s.err||'فشل')+'</span></div>'; } });
+    c.innerHTML='<div class="empty">ما وصلت بيانات اليومي/الأسبوعي بعد.</div>'+eh+
+      '<div class="btns"><button class="btn ghost" onclick="retryHTF()">🔄 جرّب الجلب هلّق</button></div>'+
+      '<div class="note">إذا ضلّت هيك: شيّك 🩺 صحة البيانات تحت. وإذا ظهر 🐞 بأعلى الصفحة، كبسة عليه بتنسخ الأخطاء — ابعتن لي.</div>';
+    return;
+  }
+  var cls=w.dir==='long'?'long':(w.dir==='short'?'short':'wait');
+  var word=w.dir==='long'?'صاعدة 🟢':(w.dir==='short'?'هابطة 🔴':'مش محسومة ⚠️');
+  var h='';
+  h+='<div class="verdict '+cls+'"><div style="flex:1"><div class="big">النظرة لأسبوع: '+word+'</div>'+
+     '<div class="sub">التقييم: <b>'+w.level+'</b>'+(w.strong?' — كل الشروط مجتمعة':'')+'</div></div></div>';
+  h+='<div class="tfrow">';
+  h+='<div class="tfchip '+(w.s1>=22?'pos':(w.s1<=-22?'neg':'neu'))+'"><div class="t">1D يومي</div><div class="s num">'+(w.s1>0?'+':'')+w.s1+'</div></div>';
+  h+='<div class="tfchip '+(w.s2===null?'neu':(w.s2>=22?'pos':(w.s2<=-22?'neg':'neu')))+'"><div class="t">1W أسبوعي</div><div class="s num">'+(w.s2===null?'تاريخ قصير':(w.s2>0?'+':'')+w.s2)+'</div></div>';
+  h+='<div class="tfchip neu"><div class="t">عيّنة الإحصاء</div><div class="s num">'+(w.st?w.st.n:0)+' حالة</div></div>';
+  h+='</div>';
+  if(w.altSrc) h+='<div class="note">ℹ️ القراءة من <b>'+w.altSrc+'</b> لأن تاريخ عقد XAUUSDT لسا قصير — سعر الذهب نفسو.</div>';
+  else if(w.altW) h+='<div class="note">ℹ️ قراءة 1W من PAXG (تاريخ العقد الأسبوعي قصير).</div>';
+  if(w.st&&w.st.n>0){
+    h+='<div class="plan"><div class="head"><span class="tag g">📊 التاريخ بيحكي</span> أيام مشابهة لوضعية اليوم</div>';
+    h+='<div class="kv"><span class="k">بعد 3 أيام كان السعر أعلى</span><span class="v num '+(w.st.up3>=50?'up':'dn')+'">'+w.st.up3+'%</span></div>';
+    h+='<div class="kv"><span class="k">بعد 7 أيام كان السعر أعلى</span><span class="v num '+(w.st.up7>=50?'up':'dn')+'">'+w.st.up7+'%</span></div>';
+    h+='<div class="kv"><span class="k">متوسط حركة 7 أيام</span><span class="v num '+(w.st.avg7>=0?'up':'dn')+'">'+(w.st.avg7>=0?'+':'')+fmt(w.st.avg7,2)+'%</span></div>';
+    h+='<div class="note">العيّنة: '+(w.st.n)+' حالة من '+(w.statsSrc?w.statsSrc:(w.src||'نفس الرمز'))+
+       (w.st.n<30?' — <span class="wt">عيّنة صغيرة، خفف الثقة</span>':'')+'.</div></div>';
+  } else {
+    h+='<div class="warn">ما لقيت حالات تاريخية كافية بنفس الوضعية — الإحصاء مش متوفر هالمرة.</div>';
+  }
+  h+='<div class="plan"><div class="head"><span class="tag a">🧭 شروط البقاء</span> متى الميل بيضل قائم؟</div><div class="note">';
+  if(w.dir==='long') h+='الميل الصاعد قائم <b>طالما اليومي بيسكّر فوق '+fmt(w.e25d)+'</b> (EMA25). إغلاق يومي تحت <b>'+fmt(w.e99d)+'</b> (EMA99) بيقلب الصورة الكبيرة.';
+  else if(w.dir==='short') h+='الميل الهابط قائم <b>طالما اليومي بيسكّر تحت '+fmt(w.e25d)+'</b> (EMA25). إغلاق يومي فوق <b>'+fmt(w.e99d)+'</b> (EMA99) بيقلب الصورة الكبيرة.';
+  else h+='استنى اليومي يحسم: إغلاق فوق <b>'+fmt(w.e25d)+'</b> بيرجّح الصعود، وتحت <b>'+fmt(w.e99d)+'</b> بيرجّح الهبوط.';
+  h+='</div></div>';
+  var P=state.price||0;
+  h+='<div class="plan"><div class="head"><span class="tag g">📏 المدى المتوقع</span> حركة طبيعية (إحصائياً)</div>';
+  h+='<div class="kv"><span class="k">خلال 3 أيام</span><span class="v num">'+fmt(P-w.b3)+' ← '+fmt(P+w.b3)+' (±'+fmt(w.b3,0)+'$)</span></div>';
+  h+='<div class="kv"><span class="k">خلال أسبوع</span><span class="v num">'+fmt(P-w.b7)+' ← '+fmt(P+w.b7)+' (±'+fmt(w.b7,0)+'$)</span></div></div>';
+  if(state.rec&&state.rec.verdict!=='wait'&&w.dir!=='neutral'&&state.rec.dir!==w.dir)
+    h+='<div class="warn">⚠️ التوصية القصيرة ('+(state.rec.dir==='long'?'Long':'Short')+') عكس النظرة الأسبوعية — إذا بدك تدخل، خفف الحجم وخود أهداف قريبة.</div>';
+  if(w.evs.length){
+    h+='<div class="warn">📰 في حدث قوي خلال 5 أيام: '+w.evs.map(function(e){return e.n+' ('+e.d+')';}).join(' · ')+
+       ' — التوقع الأسبوعي بيضعف قبل الأحداث، والإشارة ما بتنعتبر «قوية».</div>';
+  }
+  h+='<div class="plan"><div class="head"><span class="tag a">📅 رزنامة الأحداث</span> قابلة للتعديل</div>';
+  var list=allEvents().filter(function(e){ var t=new Date(e.d+'T12:00:00').getTime();
+    return t>=Date.now()-43200000 && t<=Date.now()+40*86400000; });
+  if(list.length){ list.forEach(function(e){
+    h+='<div class="kv"><span class="k num">'+e.d+(e.auto?' 🤖':'')+'</span><span class="v">'+e.n+
+       (e.auto?'':' <button class="btn ghost small" onclick="delEvent(\''+e.d+'\',\''+e.n.replace(/'/g,'')+'\')">🗑️</button>')+'</span></div>'; });
+  } else h+='<div class="empty">ما في أحداث قادمة مسجّلة</div>';
+  h+='<div class="grid2" style="margin-top:8px"><div class="field"><div class="lb">التاريخ</div><input type="date" id="evDate"></div>'+
+     '<div class="field"><div class="lb">الاسم</div><input type="text" id="evName" placeholder="FOMC / CPI ..."></div></div>'+
+     '<button class="btn ghost small" onclick="addEvent()">➕ ضيف حدث</button>'+
+     '<div class="note">NFP بينضاف لحالو (أول جمعة بالشهر، تقريبي). ضيف FOMC وCPI يدوياً من رزنامة investing.com لأن تواريخن بتتغير.</div></div>';
+  h+='<div class="note">⚠️ هيدا <b>ميل إحصائي مش ضمانة</b> — حتى 70% يعني 30% بتروح عكس. خبر قوي واحد بيلغي كل التحليل. إدارة المخاطرة هي الحماية الوحيدة.</div>';
+  c.innerHTML=h;
+  if(el('evDate'))el('evDate').value=pd;
+  if(el('evName'))el('evName').value=pn;
 }
 
 /* ---------- journal ---------- */
@@ -871,8 +1069,11 @@ function journalEngine(){
 }
 
 /* ---------- renderers ---------- */
-function renderAll(){ renderHero(); renderRec(); renderTFTable(); renderLevels();
-  drawChart(); renderCalc(); renderJournal(); renderHealth(); }
+function renderAll(){
+  safe('hero',renderHero); safe('rec',renderRec); safe('tf-table',renderTFTable);
+  safe('levels',renderLevels); safe('chart',drawChart); safe('calc',renderCalc);
+  safe('journal',renderJournal); safe('health',renderHealth); safe('weekly',renderWeekly);
+}
 
 function renderHero(){
   el('px').textContent=fmt(state.price);
@@ -1136,6 +1337,13 @@ function renderHealth(){
   names.forEach(function(nm){ var s=H[nm];
     h+='<div class="hrow"><span><span class="dot '+(s.ok?'ok':'bad')+'"></span>'+nm+'</span>'+
       '<span class="num muted">'+(s.ok?((s.ms||0)+'ms ✅'):('❌ '+(s.err||'فشل')))+'</span></div>'; });
+  if(errLog.length){
+    h+='<div class="note" style="color:var(--red);font-weight:800;margin-top:8px">🐞 آخر أخطاء مسجّلة:</div>';
+    errLog.slice(0,3).forEach(function(e2){
+      h+='<div class="hrow"><span>'+e2.s+'</span><span class="num muted" style="direction:ltr;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+e2.m+'</span></div>'; });
+    h+='<div class="btns"><button class="btn ghost small" onclick="copyErrors()">📋 انسخ الأخطاء</button>'+
+       '<button class="btn ghost small" onclick="clearErrors()">🗑️ امسحن</button></div>';
+  }
   h+='<div class="note">المصدر الحالي: <b>'+state.src+'</b> — البرنامج بيستعمل REST بس (بلا WebSocket)، فبيشتغل حتى لو الـstream محجوب عندك.</div>';
   el('healthCard').innerHTML=h;
 }
@@ -1155,6 +1363,10 @@ window.copyRec=function(){
     'شرط: '+fmt(b.trigger)+' | SL: '+fmt(b.sl),
     'TP: '+b.tps.map(function(t){return fmt(t);}).join(' / '),'',
     'الإبطال: '+rec.inv.text,'⏱ '+nowStr()+' — مش نصيحة مالية'];
+  if(state.weekly){ var ww=state.weekly;
+    lines.splice(lines.length-1,0,'',
+      '📅 النظرة الأسبوعية: '+(ww.dir==='long'?'صاعدة':(ww.dir==='short'?'هابطة':'مش محسومة'))+' · '+ww.level+
+      (ww.st&&ww.st.n?' · نسبة الصعود تاريخياً بعد 7 أيام: '+ww.st.up7+'% (عيّنة '+ww.st.n+')':'')); }
   var txt=lines.join('\n');
   function ok(){ toast('📋 انتسخت التوصية — ابعتها عالواتساب'); }
   if(navigator.clipboard&&navigator.clipboard.writeText)
@@ -1200,7 +1412,8 @@ function bindSettings(){
   el('ckDemo').checked=!!settings.demo;
 }
 function hookSettings(){
-  function upd(){ settings.cap=+el('inCap').value||DEF.cap;
+  function upd(){ var prevSym=settings.sym;
+    settings.cap=+el('inCap').value||DEF.cap;
     settings.risk=clamp(+el('inRisk').value||DEF.risk,0.1,10);
     settings.lev=clamp(+el('inLev').value||DEF.lev,1,50);
     settings.intv=clamp(+el('inIntv').value||DEF.intv,10,300);
@@ -1208,7 +1421,9 @@ function hookSettings(){
     settings.alerts=el('ckAlerts').checked; settings.sound=el('ckSound').checked;
     var wasDemo=settings.demo; settings.demo=el('ckDemo').checked;
     saveJSON('famgold_settings',settings); renderCalc();
-    if(wasDemo!==settings.demo) refresh(); }
+    if(wasDemo!==settings.demo||prevSym!==settings.sym){
+      state.htf={k1d:null,k1w:null,at:0,src:null,statsK:null,statsK1w:null,statsSrc:null};
+      state.weekly=null; refresh(); } }
   ['inCap','inRisk','inLev','inIntv','inSym'].forEach(function(id){ el(id).addEventListener('change',upd); });
   ['ckAlerts','ckSound','ckDemo'].forEach(function(id){ el(id).addEventListener('change',upd); });
 }
@@ -1222,6 +1437,7 @@ function tick(){
 /* ---------- init ---------- */
 function init(){
   bindSettings(); hookSettings();
+  if(errLog.length){ el('errChip').style.display='inline-flex'; el('errCount').textContent=errLog.length; }
   window.addEventListener('resize',function(){ drawChart(); });
   if(location.search.indexOf('selftest=1')>-1){
     var t=__famgold_test();
