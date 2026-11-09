@@ -54,6 +54,7 @@ a{color:var(--gold)}
 .sec.amber{background:linear-gradient(90deg,#8a5a00,#d98f06)}
 .sec.red{background:linear-gradient(90deg,#7e1f2e,#d13a4e)}
 .sec.slate{background:linear-gradient(90deg,#303a4c,#50607a)}
+.sec.indigo{background:linear-gradient(90deg,#2b2e7e,#4b50c8)}
 
 /* ===== Cards ===== */
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px}
@@ -162,7 +163,7 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
   <div class="hero">
     <div class="brand">
       <h1>🥇 FAM GOLD PRO</h1>
-      <span class="badge">v1.0</span>
+      <span class="badge">v1.1</span>
       <span class="chip" id="srcChip">المصدر: <b id="srcName">—</b></span>
       <span class="chip" id="clock" style="margin-inline-start:auto">⏳ <b id="countdown">—</b></span>
     </div>
@@ -188,6 +189,10 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
   <!-- ===== RECOMMENDATION ===== -->
   <div class="sec gold">🥇 التوصية الحيّة <small>4h اتجاه · 1h منطقة · 15m توقيت</small></div>
   <div class="card" id="recCard"><div class="empty">اضغط «حدّث وحلّل» لأول قراءة…</div></div>
+
+  <!-- ===== WEEKLY OUTLOOK ===== -->
+  <div class="sec indigo">📅 النظرة الأسبوعية <small>ميل 3–7 أيام · 1D + 1W + إحصاء تاريخي</small></div>
+  <div class="card" id="weeklyCard"><div class="empty">بانتظار بيانات اليومي والأسبوعي…</div></div>
 
   <!-- ===== TF ANALYSIS ===== -->
   <div class="sec blue">📊 قراءة الفريمات <small>EMA · RSI · KDJ · بنية</small></div>
@@ -255,7 +260,7 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
     <div class="note">التنبيهات بتشتغل بس تكون الصفحة مفتوحة — البرنامج مستقل 100%: بلا سيرفر، بلا مفاتيح، بلا حسابات. بياناتك كلها محفوظة محلياً على جهازك.</div>
   </div>
 
-  <div class="footer">FAM GOLD PRO v1.0 — أداة تحليل فني تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
+  <div class="footer">FAM GOLD PRO v1.1 — أداة تحليل فني تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
   التداول بالرافعة خطر عالي. جرّب paper trading قبل أي مصاري حقيقية.</div>
 </div>
 <div id="toasts"></div>
@@ -574,6 +579,43 @@ function demoSet(seed,drift){
            h4 :demoKlines(seed+2,220,240,4080,drift) };
 }
 
+/* ---------- weekly-outlook engine (pure) ---------- */
+function sigOf(e7,e25,e99,c,r){
+  var align=(e7>e25&&e25>e99)?2:((e7<e25&&e25<e99)?0:1);
+  var ab=c>e99?1:0;
+  var rz=(r===null||r===undefined)?1:(r>60?2:(r<40?0:1));
+  return align*6+ab*3+rz;
+}
+/* يفتّش بالتاريخ عن كل الأيام اللي كانت بنفس وضعية اليوم، ويقيس شو صار بعد 3 و7 أيام */
+function horizonStats(k){
+  var n=k.length; if(n<140) return null;
+  var c=k.map(function(x){return x.c;});
+  var e7a=ema(c,7),e25a=ema(c,25),e99a=ema(c,99),ra=rsi(c,6);
+  var li=n-1;
+  var sigNow=sigOf(e7a[li],e25a[li],e99a[li],c[li],ra[li]);
+  var m3=0,u3=0,m7=0,u7=0,sum7=0;
+  for(var i=110;i<n-8;i++){
+    if(sigOf(e7a[i],e25a[i],e99a[i],c[i],ra[i])!==sigNow) continue;
+    m3++; if(c[i+3]>c[i])u3++;
+    m7++; if(c[i+7]>c[i])u7++;
+    sum7+=(c[i+7]-c[i])/c[i]*100;
+  }
+  if(!m7) return {sig:sigNow,n:0};
+  return {sig:sigNow,n:m7,up3:Math.round(u3/Math.max(1,m3)*100),up7:Math.round(u7/m7*100),avg7:sum7/m7};
+}
+/* NFP = أول جمعة بالشهر (تقريبي) — بينولّد لحالو */
+function genAutoNFP(count){
+  count=count||3; var out=[], d=new Date(), m=d.getMonth(), y=d.getFullYear(), guard=0;
+  while(out.length<count && guard<14){
+    guard++;
+    var f=new Date(y,m,1); var add=(5-f.getDay()+7)%7; f.setDate(1+add);
+    if(f.getTime()>Date.now()-43200000)
+      out.push({d:f.getFullYear()+'-'+('0'+(f.getMonth()+1)).slice(-2)+'-'+('0'+f.getDate()).slice(-2),n:'NFP (تقريبي)',auto:true});
+    m++; if(m>11){m=0;y++;}
+  }
+  return out;
+}
+
 /* ---------- self test (pure, no DOM) ---------- */
 function __famgold_test(){
   var res={pass:true,checks:[]};
@@ -612,6 +654,15 @@ function __famgold_test(){
     var rd=buildRec(analyzeAll3(dn),analyzeAll3(dn)['1h'].px);
     ok('السوق الصاعد ميلو Long', ru.dir==='long');
     ok('السوق الهابط ميلو Short', rd.dir==='short');
+    var kd=demoKlines(99,420,1440,4000,1);
+    var hs=horizonStats(kd);
+    ok('إحصاء الأفق بيرجع نتيجة', !!hs&&hs.n>0&&isFinite(hs.up7));
+    ok('سوق صاعد → نسبة 7 أيام فوق 50%', hs.up7>50);
+    var kdn=demoKlines(77,420,1440,4000,-1);
+    var hsn=horizonStats(kdn);
+    ok('سوق هابط → نسبة 7 أيام تحت 50%', !!hsn&&hsn.n>0&&hsn.up7<50);
+    var nf=genAutoNFP(3);
+    ok('NFP أوتوماتيك = 3 تواريخ يوم جمعة', nf.length===3&&nf.every(function(e){return new Date(e.d+'T12:00:00').getDay()===5;}));
   }catch(e){ res.pass=false; res.checks.push('❌ خطأ: '+(e&&e.message?e.message:e)); }
   return res;
 }
@@ -624,7 +675,8 @@ if(IS_BROWSER){ (function(){
 
 var state={ data:null, A:null, rec:null, price:null, chg:null, mark:null,
   funding:null, oi:null, prevOI:null, hi24:null, lo24:null,
-  src:'—', health:{}, chartTF:'1h', busy:false, cd:0 };
+  src:'—', health:{}, chartTF:'1h', busy:false, cd:0,
+  htf:{k1d:null,k1w:null,at:0,src:null,statsK:null,statsSrc:null}, weekly:null };
 
 var DEF={cap:1000,risk:1,lev:10,intv:30,alerts:true,sound:true,demo:false,sym:'XAUUSDT'};
 var settings=loadJSON('famgold_settings',DEF);
