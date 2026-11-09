@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e14">
+<title>FAM GOLD PRO — توصيات الذهب XAUUSDT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e14; --card:#101722; --card2:#0d1420; --line:#1d2a3c;
+  --gold:#f0b90b; --gold2:#ffd54d; --green:#0ecb81; --red:#f6465d;
+  --amber:#f0a500; --blue:#4da3ff; --purple:#a78bfa; --teal:#2dd4bf;
+  --txt:#eaf0f7; --muted:#8ea0b5;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);
+  font-family:'Cairo',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;font-size:15px}
+.wrap{max-width:780px;margin:0 auto;padding:10px 10px 90px}
+.num{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+a{color:var(--gold)}
+
+/* ===== Header ===== */
+.hero{background:linear-gradient(135deg,#1a1405 0%,#141a26 55%,#0d1420 100%);
+  border:1px solid #2a3144;border-radius:18px;padding:14px 14px 12px;margin-bottom:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.brand{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand h1{margin:0;font-size:20px;font-weight:900;
+  background:linear-gradient(90deg,var(--gold),#ffe08a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{font-size:11px;font-weight:800;color:#0a0e14;background:linear-gradient(90deg,var(--gold),var(--gold2));
+  border-radius:999px;padding:2px 10px}
+.pricebox{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:6px}
+.price{font-size:34px;font-weight:900;letter-spacing:.5px}
+.chg{font-size:15px;font-weight:800}
+.up{color:var(--green)} .dn{color:var(--red)} .wt{color:var(--amber)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chip{background:#0c1320;border:1px solid var(--line);border-radius:999px;padding:3px 10px;
+  font-size:11.5px;color:var(--muted);font-weight:700;display:inline-flex;gap:5px;align-items:center}
+.chip b{color:var(--txt)}
+.chip.ok b{color:var(--green)} .chip.bad b{color:var(--red)}
+
+/* ===== Section headings (عناوين عريضة ملوّنة) ===== */
+.sec{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:900;color:#fff;
+  padding:10px 14px;border-radius:12px;margin:16px 0 10px;
+  box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.sec small{font-weight:600;font-size:11px;opacity:.85;margin-inline-start:auto}
+.sec.gold{background:linear-gradient(90deg,#8a6b06,#c99e09)}
+.sec.blue{background:linear-gradient(90deg,#15457e,#2f6fc4)}
+.sec.purple{background:linear-gradient(90deg,#4c3a8f,#7c5fd3)}
+.sec.teal{background:linear-gradient(90deg,#0e5e55,#17a394)}
+.sec.green{background:linear-gradient(90deg,#0b6b47,#0ecb81)}
+.sec.amber{background:linear-gradient(90deg,#8a5a00,#d98f06)}
+.sec.red{background:linear-gradient(90deg,#7e1f2e,#d13a4e)}
+.sec.slate{background:linear-gradient(90deg,#303a4c,#50607a)}
+
+/* ===== Cards ===== */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px}
+.card h3{margin:0 0 8px;font-size:14px;font-weight:800;color:var(--gold2)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kv{display:flex;justify-content:space-between;gap:8px;padding:5px 2px;border-bottom:1px dashed #1b2638;font-size:13.5px}
+.kv:last-child{border-bottom:0}
+.kv .k{color:var(--muted);font-weight:700}
+.kv .v{font-weight:800}
+
+/* verdict banner */
+.verdict{border-radius:14px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:10px;border:1px solid}
+.verdict.long{background:rgba(14,203,129,.10);border-color:rgba(14,203,129,.45)}
+.verdict.short{background:rgba(246,70,93,.10);border-color:rgba(246,70,93,.45)}
+.verdict.wait{background:rgba(240,165,0,.10);border-color:rgba(240,165,0,.45)}
+.verdict .big{font-size:18px;font-weight:900}
+.verdict .sub{font-size:12px;color:var(--muted);font-weight:700;margin-top:2px}
+.ring{--p:50;--c:var(--gold);width:64px;height:64px;border-radius:50%;flex:0 0 auto;
+  background:conic-gradient(var(--c) calc(var(--p)*1%), #1c2638 0);
+  display:flex;align-items:center;justify-content:center}
+.ring>div{width:50px;height:50px;border-radius:50%;background:var(--card);
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px}
+
+.tfrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tfchip{flex:1;min-width:100px;text-align:center;border-radius:12px;padding:7px 6px;border:1px solid var(--line);background:var(--card2)}
+.tfchip .t{font-size:11px;color:var(--muted);font-weight:800}
+.tfchip .s{font-size:13.5px;font-weight:900;margin-top:2px}
+.tfchip.pos{border-color:rgba(14,203,129,.5)} .tfchip.neg{border-color:rgba(246,70,93,.5)} .tfchip.neu{border-color:rgba(240,165,0,.5)}
+
+.plan{border:1px solid var(--line);border-radius:14px;padding:10px;margin-top:8px;background:var(--card2)}
+.plan .head{display:flex;align-items:center;gap:8px;font-weight:900;font-size:14px;margin-bottom:6px}
+.tag{font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 8px}
+.tag.g{background:rgba(14,203,129,.15);color:var(--green)}
+.tag.r{background:rgba(246,70,93,.15);color:var(--red)}
+.tag.a{background:rgba(240,165,0,.15);color:var(--amber)}
+.lvls{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:6px;margin-top:4px}
+.lvl{background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:6px 8px;text-align:center}
+.lvl .k{font-size:10.5px;color:var(--muted);font-weight:800}
+.lvl .v{font-size:14px;font-weight:900;margin-top:1px}
+.lvl.sl .v{color:var(--red)} .lvl.tp .v{color:var(--green)} .lvl.en .v{color:var(--gold2)} .lvl.tr .v{color:var(--blue)}
+.note{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.7}
+.rr{font-size:12px;font-weight:800;margin-top:6px}
+
+ul.reasons{margin:6px 0 0;padding:0 18px 0 0;line-height:1.9;font-size:13px}
+ul.reasons li{margin-bottom:2px}
+.warn{background:rgba(240,165,0,.08);border:1px solid rgba(240,165,0,.35);border-radius:12px;padding:8px 10px;font-size:12.5px;margin-top:8px;line-height:1.8}
+
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;padding:10px 14px;font-weight:900;font-size:13.5px;cursor:pointer;
+  font-family:inherit;color:#0a0e14;background:linear-gradient(90deg,var(--gold),var(--gold2));flex:1;min-width:120px}
+.btn.green{background:linear-gradient(90deg,#0a9d64,var(--green));color:#04120c}
+.btn.red{background:linear-gradient(90deg,#c22f44,var(--red));color:#fff}
+.btn.ghost{background:#0c1320;color:var(--txt);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{flex:0 0 auto;padding:7px 11px;font-size:12px;min-width:0}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{padding:6px 4px;text-align:center;border-bottom:1px solid #16233a}
+th{color:var(--muted);font-weight:800;font-size:11px}
+td:first-child,th:first-child{text-align:right}
+
+canvas{width:100%;height:340px;display:block;direction:ltr;border-radius:12px;background:#0b1118}
+.ctools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+.seg{display:flex;background:#0c1320;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-weight:800;font-size:12.5px;padding:6px 12px;cursor:pointer}
+.seg button.on{background:var(--gold);color:#0a0e14}
+label.ck{font-size:12px;color:var(--muted);font-weight:700;display:inline-flex;gap:4px;align-items:center}
+
+input[type=number],input[type=text]{width:100%;background:#0b1220;border:1px solid var(--line);border-radius:10px;
+  color:var(--txt);font-family:inherit;font-weight:800;font-size:14px;padding:8px 10px;direction:ltr;text-align:center}
+.field{margin-bottom:8px}
+.field .lb{font-size:11.5px;color:var(--muted);font-weight:800;margin-bottom:3px}
+input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
+.switchrow{display:flex;justify-content:space-between;align-items:center;padding:8px 2px;border-bottom:1px dashed #1b2638;font-size:13.5px;font-weight:700}
+.switchrow:last-child{border-bottom:0}
+
+.jrow{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin-bottom:8px;background:var(--card2);font-size:12.5px}
+.jrow .top{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:4px}
+.pill{font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 8px;background:#0c1320;border:1px solid var(--line)}
+.pill.win{color:var(--green);border-color:rgba(14,203,129,.4)}
+.pill.loss{color:var(--red);border-color:rgba(246,70,93,.4)}
+.pill.open{color:var(--blue);border-color:rgba(77,163,255,.4)}
+.pill.pend{color:var(--amber);border-color:rgba(240,165,0,.4)}
+
+.hrow{display:flex;justify-content:space-between;align-items:center;padding:6px 2px;border-bottom:1px dashed #1b2638;font-size:13px}
+.hrow:last-child{border-bottom:0}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-inline-end:6px}
+.dot.ok{background:var(--green)} .dot.bad{background:var(--red)} .dot.off{background:#44506a}
+
+#toasts{position:fixed;bottom:14px;left:10px;right:10px;z-index:60;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.toast{background:#101a2b;border:1px solid var(--gold);border-radius:12px;padding:9px 12px;font-size:12.5px;font-weight:700;
+  box-shadow:0 6px 20px rgba(0,0,0,.5);max-width:780px;margin:0 auto;width:100%}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin-bottom:8px}
+.stat{background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:7px;text-align:center}
+.stat .k{font-size:10px;color:var(--muted);font-weight:800}
+.stat .v{font-size:15px;font-weight:900;margin-top:1px}
+.footer{color:var(--muted);font-size:11px;text-align:center;line-height:1.8;margin-top:14px}
+.muted{color:var(--muted)}
+.empty{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div class="brand">
+      <h1>🥇 FAM GOLD PRO</h1>
+      <span class="badge">v1.0</span>
+      <span class="chip" id="srcChip">المصدر: <b id="srcName">—</b></span>
+      <span class="chip" id="clock" style="margin-inline-start:auto">⏳ <b id="countdown">—</b></span>
+    </div>
+    <div class="pricebox">
+      <div class="price num" id="px">—</div>
+      <div class="chg num" id="chg">—</div>
+      <div class="chip">Mark <b class="num" id="mark">—</b></div>
+    </div>
+    <div class="chips">
+      <span class="chip">24h أعلى <b class="num" id="hi24">—</b></span>
+      <span class="chip">24h أدنى <b class="num" id="lo24">—</b></span>
+      <span class="chip">Funding <b class="num" id="fund">—</b></span>
+      <span class="chip">O.I. <b class="num" id="oi">—</b></span>
+      <span class="chip" id="healthChip">🩺 <b id="healthTxt">—</b></span>
+      <span class="chip">آخر تحديث <b class="num" id="lastUpd">—</b></span>
+    </div>
+    <div class="btns" style="margin-top:10px">
+      <button class="btn" id="btnRefresh" onclick="refreshNow()">🎯 حدّث وحلّل هلّق</button>
+      <button class="btn ghost small" onclick="copyRec()">📋 نسخ التوصية</button>
+    </div>
+  </div>
+
+  <!-- ===== RECOMMENDATION ===== -->
+  <div class="sec gold">🥇 التوصية الحيّة <small>4h اتجاه · 1h منطقة · 15m توقيت</small></div>
+  <div class="card" id="recCard"><div class="empty">اضغط «حدّث وحلّل» لأول قراءة…</div></div>
+
+  <!-- ===== TF ANALYSIS ===== -->
+  <div class="sec blue">📊 قراءة الفريمات <small>EMA · RSI · KDJ · بنية</small></div>
+  <div class="card"><div style="overflow-x:auto"><table id="tfTable">
+    <thead><tr><th>المؤشر</th><th>4h</th><th>1h</th><th>15m</th></tr></thead>
+    <tbody><tr><td colspan="4" class="empty">بانتظار البيانات…</td></tr></tbody>
+  </table></div></div>
+
+  <!-- ===== LEVELS ===== -->
+  <div class="sec purple">🧱 المستويات (دعم / مقاومة) <small>من القمم والقيعان</small></div>
+  <div class="card" id="levelsCard"><div class="empty">بانتظار البيانات…</div></div>
+
+  <!-- ===== CHART ===== -->
+  <div class="sec teal">📈 الشارت <small>شموع + EMA + الخطة</small></div>
+  <div class="card">
+    <div class="ctools">
+      <div class="seg" id="tfSeg">
+        <button data-tf="15m" onclick="setChartTF('15m')">15m</button>
+        <button data-tf="1h" class="on" onclick="setChartTF('1h')">1h</button>
+        <button data-tf="4h" onclick="setChartTF('4h')">4h</button>
+      </div>
+      <label class="ck"><input type="checkbox" id="ckZones" checked onchange="drawChart()"> المستويات</label>
+      <label class="ck"><input type="checkbox" id="ckPlan" checked onchange="drawChart()"> الخطة</label>
+    </div>
+    <canvas id="chart"></canvas>
+  </div>
+
+  <!-- ===== CALC ===== -->
+  <div class="sec green">🧮 حاسبة المخاطرة <small>حجم الصفقة حسب رأس مالك</small></div>
+  <div class="card">
+    <div class="grid2">
+      <div class="field"><div class="lb">رأس المال (USDT)</div><input type="number" id="inCap" min="10" step="10"></div>
+      <div class="field"><div class="lb">المخاطرة بالصفقة (%)</div><input type="number" id="inRisk" min="0.1" max="10" step="0.1"></div>
+      <div class="field"><div class="lb">الرافعة (x)</div><input type="number" id="inLev" min="1" max="50" step="1"></div>
+      <div class="field"><div class="lb">فاصل التحديث (ثانية)</div><input type="number" id="inIntv" min="10" max="300" step="5"></div>
+    </div>
+    <div id="calcOut" class="note">عبّي الأرقام وبتنحسب تلقائياً مع كل توصية.</div>
+  </div>
+
+  <!-- ===== JOURNAL ===== -->
+  <div class="sec amber">📒 سجل التوصيات <small>متابعة تلقائية تقريبية (شموع 15m)</small></div>
+  <div class="card">
+    <div class="stats" id="jStats"></div>
+    <div id="jList"><div class="empty">ما في توصيات محفوظة بعد. احفظ خطة من بطاقة التوصية.</div></div>
+  </div>
+
+  <!-- ===== HEALTH ===== -->
+  <div class="sec red">🩺 صحة البيانات <small>كل مصدر وحالتو</small></div>
+  <div class="card" id="healthCard"><div class="empty">بانتظار أول تحديث…</div></div>
+
+  <!-- ===== SETTINGS ===== -->
+  <div class="sec slate">⚙️ الإعدادات</div>
+  <div class="card">
+    <div class="field"><div class="lb">الرمز (Binance Futures)</div><input type="text" id="inSym" value="XAUUSDT"></div>
+    <div class="switchrow"><span>🔔 التنبيهات (منطقة دخول / اختراق / SL / TP)</span><input type="checkbox" id="ckAlerts" checked></div>
+    <div class="switchrow"><span>🔊 صوت مع التنبيه</span><input type="checkbox" id="ckSound" checked></div>
+    <div class="switchrow"><span>🧪 وضع تجريبي (بيانات وهمية للفحص)</span><input type="checkbox" id="ckDemo"></div>
+    <div class="btns">
+      <button class="btn ghost" onclick="askNotifPerm()">🔔 تفعيل إشعارات المتصفح</button>
+      <button class="btn ghost" onclick="exportBackup()">💾 نسخة احتياطية</button>
+      <button class="btn ghost" onclick="document.getElementById('impFile').click()">📥 استرجاع نسخة</button>
+      <button class="btn red" id="btnWipe" onclick="wipeAll()">🗑️ مسح كل البيانات</button>
+    </div>
+    <input type="file" id="impFile" accept="application/json" style="display:none" onchange="importBackup(this)">
+    <div class="note">التنبيهات بتشتغل بس تكون الصفحة مفتوحة — البرنامج مستقل 100%: بلا سيرفر، بلا مفاتيح، بلا حسابات. بياناتك كلها محفوظة محلياً على جهازك.</div>
+  </div>
+
+  <div class="footer">FAM GOLD PRO v1.0 — أداة تحليل فني تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
+  التداول بالرافعة خطر عالي. جرّب paper trading قبل أي مصاري حقيقية.</div>
+</div>
+<div id="toasts"></div>
+
+<script>
+/* =====================================================================
+   FAM GOLD PRO v1.0 — standalone single-file gold trade assistant
+   Engine: top-down 4h (trend) / 1h (zone) / 15m (timing)
+   Data: Binance Futures REST (fallback: PAXGUSDT spot) — no keys, no server
+   ===================================================================== */
+'use strict';
+
+/* ---------- env guards ---------- */
+var IS_BROWSER = (typeof document !== 'undefined');
+var store = (typeof localStorage !== 'undefined') ? localStorage :
+  { _m:{}, getItem:function(k){return this._m[k]!==undefined?this._m[k]:null;},
+    setItem:function(k,v){this._m[k]=String(v);}, removeItem:function(k){delete this._m[k];} };
+
+/* ---------- utils ---------- */
+function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+function fmt(n,d){ if(n===null||n===undefined||!isFinite(n)) return '—';
+  if(d===undefined) d=2;
+  return Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function fmtK(n){ if(!isFinite(n))return '—'; if(Math.abs(n)>=1e6)return fmt(n/1e6,2)+'M';
+  if(Math.abs(n)>=1e3)return fmt(n/1e3,1)+'K'; return fmt(n,1); }
+function sign(x){ return x>0?1:(x<0?-1:0); }
+function nowStr(){ var d=new Date(); return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+':'+('0'+d.getSeconds()).slice(-2); }
+function lcg(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ---------- indicators (pure) ---------- */
+function ema(vals,p){ var k=2/(p+1), e=vals[0], out=[e];
+  for(var i=1;i<vals.length;i++){ e=vals[i]*k+e*(1-k); out.push(e); } return out; }
+
+function rsi(closes,p){ p=p||6; var out=new Array(closes.length).fill(null);
+  if(closes.length<=p) return out;
+  var g=0,l=0,i,d;
+  for(i=1;i<=p;i++){ d=closes[i]-closes[i-1]; if(d>=0)g+=d; else l-=d; }
+  g/=p; l/=p; out[p]= l===0?100:100-100/(1+g/l);
+  for(i=p+1;i<closes.length;i++){ d=closes[i]-closes[i-1];
+    g=(g*(p-1)+(d>0?d:0))/p; l=(l*(p-1)+(d<0?-d:0))/p;
+    out[i]= l===0?100:100-100/(1+g/l); }
+  return out; }
+
+function kdj(c,h,l,n){ n=n||9; var K=[],D=[],J=[],k=50,d=50;
+  for(var i=0;i<c.length;i++){ var a=Math.max(0,i-n+1),hh=-Infinity,ll=Infinity;
+    for(var j=a;j<=i;j++){ if(h[j]>hh)hh=h[j]; if(l[j]<ll)ll=l[j]; }
+    var rsv = (hh===ll)?50:(c[i]-ll)/(hh-ll)*100;
+    k=(2*k+rsv)/3; d=(2*d+k)/3; K.push(k); D.push(d); J.push(3*k-2*d); }
+  return {K:K,D:D,J:J}; }
+
+function atr(h,l,c,p){ p=p||14; var n=c.length, out=new Array(n).fill(null);
+  if(n<p+1) return out;
+  var tr=[h[0]-l[0]];
+  for(var i=1;i<n;i++) tr.push(Math.max(h[i]-l[i],Math.abs(h[i]-c[i-1]),Math.abs(l[i]-c[i-1])));
+  var a=0; for(i=0;i<p;i++) a+=tr[i]; a/=p; out[p-1]=a;
+  for(i=p;i<n;i++){ a=(a*(p-1)+tr[i])/p; out[i]=a; }
+  return out; }
+
+function swings(h,l,k){ k=k||2; var sh=[],sl=[];
+  for(var i=k;i<h.length-k;i++){ var isH=true,isL=true;
+    for(var j=1;j<=k;j++){
+      if(!(h[i]>h[i-j]) || !(h[i]>=h[i+j])) isH=false;
+      if(!(l[i]<l[i-j]) || !(l[i]<=l[i+j])) isL=false; }
+    if(isH) sh.push({i:i,p:h[i]}); if(isL) sl.push({i:i,p:l[i]}); }
+  return {sh:sh,sl:sl}; }
+
+function structureOf(sw){ var sh=sw.sh, sl=sw.sl;
+  if(sh.length<2||sl.length<2) return 0;
+  var hh=sh[sh.length-1].p>sh[sh.length-2].p, hl=sl[sl.length-1].p>sl[sl.length-2].p;
+  if(hh&&hl) return 1; if(!hh&&!hl) return -1; return 0; }
+
+function clusterLevels(sw,atrV,lastIdx,lookback){
+  lookback=lookback||140;
+  var pts=[];
+  sw.sh.forEach(function(s){ if(lastIdx-s.i<=lookback) pts.push({p:s.p}); });
+  sw.sl.forEach(function(s){ if(lastIdx-s.i<=lookback) pts.push({p:s.p}); });
+  pts.sort(function(a,b){return a.p-b.p;});
+  var tol=(atrV||1)*0.3, zones=[];
+  pts.forEach(function(pt){ var z=zones[zones.length-1];
+    if(z && pt.p-z.hi<=tol){ z.hi=Math.max(z.hi,pt.p); z.lo=Math.min(z.lo,pt.p); z.n++; }
+    else zones.push({lo:pt.p,hi:pt.p,n:1}); });
+  zones.forEach(function(z){ z.mid=(z.lo+z.hi)/2; });
+  return zones; }
+
+function detectSweep(k,sw,maxAgo){ maxAgo=maxAgo||18;
+  var n=k.length, res={bull:null,bear:null};
+  // bull: a recent candle pierced below an older swing-low then CLOSED back above it
+  for(var s=sw.sl.length-1;s>=0;s--){ var lowP=sw.sl[s].p, li=sw.sl[s].i;
+    for(var i=Math.max(li+1,n-maxAgo);i<n;i++){
+      if(k[i].l<lowP && k[i].c>lowP){ res.bull={p:lowP,ago:n-1-i}; break; } }
+    if(res.bull) break; }
+  for(var s2=sw.sh.length-1;s2>=0;s2--){ var hiP=sw.sh[s2].p, hi2=sw.sh[s2].i;
+    for(var i2=Math.max(hi2+1,n-maxAgo);i2<n;i2++){
+      if(k[i2].h>hiP && k[i2].c<hiP){ res.bear={p:hiP,ago:n-1-i2}; break; } }
+    if(res.bear) break; }
+  return res; }
+
+function detectRange(k,atrV,bars){ bars=bars||24;
+  if(k.length<bars+2||!atrV) return null;
+  var hi=-Infinity,lo=Infinity;
+  for(var i=k.length-1-bars;i<k.length-1;i++){ if(k[i].h>hi)hi=k[i].h; if(k[i].l<lo)lo=k[i].l; }
+  if((hi-lo)<atrV*3.4) return {hi:hi,lo:lo};
+  return null; }
+
+/* ---------- per-timeframe analysis ---------- */
+function analyzeTF(tf,k){
+  var c=k.map(function(x){return x.c;}), h=k.map(function(x){return x.h;}), l=k.map(function(x){return x.l;});
+  var n=c.length, last=n-1, closed=n-2;
+  var e7a=ema(c,7), e25a=ema(c,25), e99a=ema(c,99);
+  var r=rsi(c,6), kd=kdj(c,h,l,9), at=atr(h,l,c,14);
+  var sw=swings(h.slice(0,last),l.slice(0,last),2); // exclude forming candle
+  var atrV=at[closed]||at[last]||((h[last]-l[last])||1);
+  var zones=clusterLevels(sw,atrV,last,140);
+  var px=c[last];
+  var nearR=null,nearS=null;
+  zones.forEach(function(z){
+    if(z.lo>px && (!nearR||z.lo<nearR.lo)) nearR=z;
+    if(z.hi<px && (!nearS||z.hi>nearS.hi)) nearS=z; });
+  var struct=structureOf(sw);
+  var sweep=detectSweep(k,sw,18);
+  var range=detectRange(k,atrV,24);
+  var e7=e7a[last],e25=e25a[last],e99=e99a[last];
+  var slope99=e99a[last]-(e99a[last-4]!==undefined?e99a[last-4]:e99a[0]);
+  var K=kd.K[last],D=kd.D[last],J=kd.J[last],R=r[last];
+  var cc=k[closed]; // last closed candle
+  var ccr=cc.h-cc.l||1;
+  var rejTop=((cc.h-Math.max(cc.o,cc.c))/ccr)>0.55 && cc.c<(cc.l+ccr*0.5);
+  var rejBot=((Math.min(cc.o,cc.c)-cc.l)/ccr)>0.55 && cc.c>(cc.l+ccr*0.5);
+  var ob=(R!==null&&R>70)||J>100, os=(R!==null&&R<30)||J<0;
+
+  var s=0;
+  var bullAlign=e7>e25&&e25>e99, bearAlign=e7<e25&&e25<e99;
+  s+= bullAlign?28 : bearAlign?-28 : (e7>e25?10:-10);
+  s+= px>e99?12:-12;
+  s+= 20*struct;
+  s+= (K>D)?8:-8;
+  s+= slope99>0?6:-6;
+  if(sweep.bull&&sweep.bull.ago<=18) s+=16;
+  if(sweep.bear&&sweep.bear.ago<=18) s-=16;
+  if(rejTop) s-=5; if(rejBot) s+=5;
+  s=clamp(Math.round(s),-100,100);
+
+  return { tf:tf,k:k,px:px,e7:e7,e25:e25,e99:e99,e7a:e7a,e25a:e25a,e99a:e99a,
+    slope99:slope99,rsi:R,K:K,D:D,J:J,atr:atrV,struct:struct,sweep:sweep,
+    zones:zones,nearR:nearR,nearS:nearS,range:range,ob:ob,os:os,
+    rejTop:rejTop,rejBot:rejBot,score:s };
+}
+
+function analyzeAll3(sets){
+  return { '4h':analyzeTF('4h',sets.h4), '1h':analyzeTF('1h',sets.h1), '15m':analyzeTF('15m',sets.m15) };
+}
+
+/* ---------- recommendation builder ---------- */
+function mergedLevels(A){
+  var out=[];
+  A['1h'].zones.forEach(function(z){ out.push({lo:z.lo,hi:z.hi,mid:z.mid,n:z.n,tf:'1h'}); });
+  A['4h'].zones.forEach(function(z){ out.push({lo:z.lo,hi:z.hi,mid:z.mid,n:z.n+1,tf:'4h'}); });
+  out.sort(function(a,b){return a.mid-b.mid;});
+  return out;
+}
+function pickAbove(levels,from,minGap){
+  var res=[]; for(var i=0;i<levels.length;i++){ var z=levels[i];
+    if(z.lo>from+(minGap||0)){ if(!res.length||z.lo-res[res.length-1].hi>(minGap||0)) res.push(z); } }
+  return res;
+}
+function pickBelow(levels,from,minGap){
+  var res=[]; for(var i=levels.length-1;i>=0;i--){ var z=levels[i];
+    if(z.hi<from-(minGap||0)){ if(!res.length||res[res.length-1].lo-z.hi>(minGap||0)) res.push(z); } }
+  return res;
+}
+function r2(x){ return Math.round(x*100)/100; }
+
+function buildRec(A,price){
+  var t4=A['4h'],t1=A['1h'],t15=A['15m'];
+  var overall=0.5*t4.score+0.3*t1.score+0.2*t15.score;
+  var conflict = Math.abs(t4.score)>15 && Math.abs(t1.score)>15 && sign(t4.score)!==sign(t1.score);
+  var lean = overall>=22?'long':(overall<=-22?'short':'wait');
+  var verdict = (lean!=='wait'&&!conflict)?lean:'wait';
+  var leanDir = overall>=0?'long':'short';
+  var dir = verdict==='wait'?leanDir:verdict;
+  var atr1=t1.atr||1;
+  var L=mergedLevels(A);
+  var reasons=[],warnings=[];
+  var planA=null,planB=null,inv=null,locked=false;
+
+  if(dir==='long'){
+    var zLo=Math.min(t1.e7,t1.e25)-0.15*atr1, zHi=Math.max(t1.e7,t1.e25)+0.15*atr1;
+    var entry=r2((zLo+zHi)/2), sl=r2(zLo-0.9*atr1);
+    var ups=pickAbove(L,entry+0.5*atr1,0.3*atr1);
+    var maxH1=-Infinity; t1.k.slice(-60).forEach(function(x){ if(x.h>maxH1)maxH1=x.h; });
+    var maxH4=-Infinity; t4.k.slice(-70).forEach(function(x){ if(x.h>maxH4)maxH4=x.h; });
+    var R1=ups[0]||null;
+    var tp1=R1?r2(R1.lo):r2(Math.min(maxH1,entry+1.4*atr1));
+    if(tp1-entry<0.7*atr1) tp1=r2(entry+1.4*atr1);
+    var tp2=ups[1]?r2(ups[1].lo):r2(entry+2*(entry-sl));
+    if(tp2<=tp1+0.5*atr1) tp2=r2(tp1+Math.max(0.9*atr1,(entry-sl)));
+    var tp3=t4.range?r2(t4.range.hi):r2(Math.max(maxH4,tp2+1.2*atr1));
+    if(tp3<=tp2+0.5*atr1) tp3=r2(tp2+1.5*atr1);
+    var rr2v=(tp2-entry)/(entry-sl);
+    planA={type:'limit',dir:'long',zone:[r2(zLo),r2(zHi)],entry:entry,sl:sl,tps:[tp1,tp2,tp3],
+      rr2:rr2v, inZone:(price>=zLo&&price<=zHi),
+      note: price>zHi? 'السعر فوق المنطقة — حط limit واستنى الرجعة.'
+           : (price>=zLo? 'السعر جوّا منطقة الدخول هلّق.' : 'السعر تحت المنطقة — انتبه، لازم يرجع يثبت فوقها.')};
+    var trig=R1?r2(R1.hi+0.2*atr1):r2(tp1+0.2*atr1);
+    var slB=r2(trig-1.3*atr1);
+    var upsB=pickAbove(L,trig+0.4*atr1,0.3*atr1);
+    var tb1=upsB[0]?r2(upsB[0].lo):r2(trig+1.2*atr1);
+    if(tb1-trig<0.6*atr1) tb1=r2(trig+1.2*atr1);
+    var tb2=upsB[1]?r2(upsB[1].lo):r2(trig+2*(trig-slB));
+    if(tb2<=tb1+0.4*atr1) tb2=r2(tb1+Math.max(0.8*atr1,(trig-slB)));
+    var tb3=r2(Math.max(tp3,tb2+1.2*atr1));
+    planB={type:'breakout',dir:'long',trigger:trig,sl:slB,tps:[tb1,tb2,tb3],
+      rr2:(tb2-trig)/(trig-slB),
+      note:'بس بعد إغلاق شمعة ساعة فوق '+fmt(trig)+' — مش قبل.'};
+    inv={level:r2(Math.min(t1.e99,zLo-0.3*atr1)),big:r2(t4.e99),
+      text:'إغلاق ساعة تحت '+fmt(r2(Math.min(t1.e99,zLo-0.3*atr1)))+' بيلغي السيناريو. إغلاق 4 ساعات تحت '+fmt(r2(t4.e99))+' بيقلب الاتجاه الكبير.'};
+    locked = t15.ob && t1.nearR && (t1.nearR.lo-price)<0.6*atr1;
+  } else {
+    var zHi2=Math.max(t1.e7,t1.e25)+0.15*atr1, zLo2=Math.min(t1.e7,t1.e25)-0.15*atr1;
+    var entryS=r2((zHi2+zLo2)/2), slS=r2(zHi2+0.9*atr1);
+    var dns=pickBelow(L,entryS-0.5*atr1,0.3*atr1);
+    var minL1=Infinity; t1.k.slice(-60).forEach(function(x){ if(x.l<minL1)minL1=x.l; });
+    var minL4=Infinity; t4.k.slice(-70).forEach(function(x){ if(x.l<minL4)minL4=x.l; });
+    var S1=dns[0]||null;
+    var sp1=S1?r2(S1.hi):r2(Math.max(minL1,entryS-1.4*atr1));
+    if(entryS-sp1<0.7*atr1) sp1=r2(entryS-1.4*atr1);
+    var sp2=dns[1]?r2(dns[1].hi):r2(entryS-2*(slS-entryS));
+    if(sp2>=sp1-0.5*atr1) sp2=r2(sp1-Math.max(0.9*atr1,(slS-entryS)));
+    var sp3=t4.range?r2(t4.range.lo):r2(Math.min(minL4,sp2-1.2*atr1));
+    if(sp3>=sp2-0.5*atr1) sp3=r2(sp2-1.5*atr1);
+    planA={type:'limit',dir:'short',zone:[r2(zLo2),r2(zHi2)],entry:entryS,sl:slS,tps:[sp1,sp2,sp3],
+      rr2:(entryS-sp2)/(slS-entryS), inZone:(price>=zLo2&&price<=zHi2),
+      note: price<zLo2? 'السعر تحت المنطقة — حط limit واستنى الارتداد لفوق.'
+           : (price<=zHi2? 'السعر جوّا منطقة الدخول هلّق.' : 'السعر فوق المنطقة — انتبه.')};
+    var trigS=S1?r2(S1.lo-0.2*atr1):r2(sp1-0.2*atr1);
+    var slBS=r2(trigS+1.3*atr1);
+    var dnsB=pickBelow(L,trigS-0.4*atr1,0.3*atr1);
+    var sb1=dnsB[0]?r2(dnsB[0].hi):r2(trigS-1.2*atr1);
+    if(trigS-sb1<0.6*atr1) sb1=r2(trigS-1.2*atr1);
+    var sb2=dnsB[1]?r2(dnsB[1].hi):r2(trigS-2*(slBS-trigS));
+    if(sb2>=sb1-0.4*atr1) sb2=r2(sb1-Math.max(0.8*atr1,(slBS-trigS)));
+    var sb3=r2(Math.min(sp3,sb2-1.2*atr1));
+    planB={type:'breakout',dir:'short',trigger:trigS,sl:slBS,tps:[sb1,sb2,sb3],
+      rr2:(trigS-sb2)/(slBS-trigS),
+      note:'بس بعد إغلاق شمعة ساعة تحت '+fmt(trigS)+' — مش قبل.'};
+    inv={level:r2(Math.max(t1.e99,zHi2+0.3*atr1)),big:r2(t4.e99),
+      text:'إغلاق ساعة فوق '+fmt(r2(Math.max(t1.e99,zHi2+0.3*atr1)))+' بيلغي السيناريو. إغلاق 4 ساعات فوق '+fmt(r2(t4.e99))+' بيقلب الاتجاه الكبير.'};
+    locked = t15.os && t1.nearS && (price-t1.nearS.hi)<0.6*atr1;
+  }
+
+  /* ----- reasons (Arabic, with real numbers) ----- */
+  function tfWord(a){ return a.score>=22?'صاعد':(a.score<=-22?'هابط':'محايد/تجميع'); }
+  reasons.push('4h: '+tfWord(t4)+' — '+(t4.e7>t4.e25&&t4.e25>t4.e99?'ترتيب الـEMAs صعودي (7>25>99)':(t4.e7<t4.e25&&t4.e25<t4.e99?'ترتيب الـEMAs هبوطي':'الـEMAs متداخلين'))+' والسعر '+(t4.px>t4.e99?'فوق':'تحت')+' الـEMA99 ('+fmt(t4.e99)+').');
+  if(t4.range) reasons.push('4h: السوق عم يجمّع بـrange بين '+fmt(t4.range.lo)+' و'+fmt(t4.range.hi)+'.');
+  if(t4.struct===1) reasons.push('4h: البنية HH/HL — قمم وقيعان أعلى.');
+  if(t4.struct===-1) reasons.push('4h: البنية LH/LL — قمم وقيعان أدنى.');
+  reasons.push('1h: '+tfWord(t1)+' — السعر '+(t1.px>t1.e25?'فوق':'تحت')+' الـEMA25 ('+fmt(t1.e25)+')'+(t1.K>t1.D?'، وKDJ عامل تقاطع صعودي':'، وKDJ تقاطع هبوطي')+'.');
+  if(t1.sweep.bull&&t1.sweep.bull.ago<=18) reasons.push('1h: صار Sweep عند '+fmt(t1.sweep.bull.p)+' ورجع السعر سكّر فوقو — سحب سيولة وارتداد، إشارة صعودية.');
+  if(t1.sweep.bear&&t1.sweep.bear.ago<=18) reasons.push('1h: صار Sweep فوق '+fmt(t1.sweep.bear.p)+' ورجع سكّر تحتو — إشارة هبوطية.');
+  reasons.push('15m: RSI(6) = '+fmt(t15.rsi,1)+(t15.ob?' — تشبّع شرائي، التوقيت مش مثالي لدخول ماركت.':(t15.os?' — تشبّع بيعي.':' — طبيعي.')));
+  if(t15.rejTop) reasons.push('15m: آخر شمعة مسكّرة فيها فتيلة رفض من فوق.');
+  if(t15.rejBot) reasons.push('15m: آخر شمعة مسكّرة فيها فتيلة رفض من تحت (دفاع عن الدعم).');
+  if(t1.nearR) reasons.push('أقرب مقاومة: '+fmt(t1.nearR.lo)+' – '+fmt(t1.nearR.hi)+'.');
+  if(t1.nearS) reasons.push('أقرب دعم: '+fmt(t1.nearS.lo)+' – '+fmt(t1.nearS.hi)+'.');
+
+  if(conflict) warnings.push('⚠️ تعارض بين 4h و1h — هيدا سبب الـ«انتظار». استنى الفريمين يتفقوا أو اشتغل بالخطط الشرطية بس.');
+  if(locked) warnings.push('🔒 دخول ماركت هلّق مقفول: السعر لازق بمستوى والفريم الصغير متشبّع. اشتغل limit (خطة A) أو استنى الاختراق (خطة B).');
+  if(t15.ob&&dir==='long') warnings.push('⚠️ 15m متشبّع شرائياً — لا تلحق السعر.');
+  if(t15.os&&dir==='short') warnings.push('⚠️ 15m متشبّع بيعياً — لا تلحق النزلة.');
+
+  var score=clamp(Math.round(52+overall*0.45),5,95);
+  if(planA&&planA.rr2>=2) score+=5;
+  if(locked) score-=8;
+  if(conflict) score-=10;
+  score=clamp(score,5,95);
+  var gate = verdict!=='wait' && score>=70 && planA && planA.rr2>=1.8;
+  var gateWhy=[];
+  if(verdict==='wait') gateWhy.push('الحكم: انتظار');
+  if(score<70) gateWhy.push('Score أقل من 70');
+  if(planA&&planA.rr2<1.8) gateWhy.push('R:R على TP2 أقل من 1.8');
+
+  return { verdict:verdict, dir:dir, overall:Math.round(overall), score:score,
+    gate:gate, gateWhy:gateWhy, conflict:conflict, locked:locked,
+    planA:planA, planB:planB, inv:inv, reasons:reasons, warnings:warnings,
+    tf:{h4:t4.score,h1:t1.score,m15:t15.score},
+    flags:{ob15:t15.ob,os15:t15.os} };
+}
+
+/* ---------- position sizing ---------- */
+function sizing(cap,riskPct,lev,entry,sl){
+  var riskAmt=cap*riskPct/100, dist=Math.abs(entry-sl);
+  if(!(dist>0)) return null;
+  var qty=riskAmt/dist, notional=qty*entry, margin=notional/(lev||1);
+  return {riskAmt:riskAmt,qty:qty,notional:notional,margin:margin,warn:margin>cap};
+}
+
+/* ---------- demo data (seeded) ---------- */
+function demoKlines(seed,n,tfMin,base,drift){
+  var rnd=lcg(seed), k=[], px=base, t=Date.now()-n*tfMin*60000;
+  for(var i=0;i<n;i++){
+    var vol=base*0.0012*(0.6+rnd());
+    var dr=drift*base*0.00035*(0.5+rnd());
+    var o=px, c=o+dr+(rnd()-0.5)*vol;
+    if(rnd()<0.08) c=o-dr*2-(rnd())*vol;           // occasional counter-move
+    var h=Math.max(o,c)+rnd()*vol*0.6, l=Math.min(o,c)-rnd()*vol*0.6;
+    if(rnd()<0.05&&drift>0){ l=Math.min(o,c)-vol*1.8; c=Math.max(c,o); } // sweep wick
+    if(rnd()<0.05&&drift<0){ h=Math.max(o,c)+vol*1.8; c=Math.min(c,o); }
+    k.push({t:t+i*tfMin*60000,o:r2(o),h:r2(h),l:r2(l),c:r2(c),v:Math.round(50+rnd()*400)});
+    px=c;
+  }
+  return k;
+}
+function demoSet(seed,drift){
+  return { m15:demoKlines(seed,220,15,4080,drift),
+           h1 :demoKlines(seed+1,220,60,4080,drift),
+           h4 :demoKlines(seed+2,220,240,4080,drift) };
+}
+
+/* ---------- self test (pure, no DOM) ---------- */
+function __famgold_test(){
+  var res={pass:true,checks:[]};
+  function ok(name,c){ res.checks.push((c?'✅ ':'❌ ')+name); if(!c)res.pass=false; }
+  try{
+    var flat=[]; for(var i=0;i<60;i++)flat.push(100);
+    ok('EMA على سعر ثابت = السعر', Math.abs(ema(flat,7)[59]-100)<1e-9);
+    var inc=[]; for(i=0;i<40;i++)inc.push(i+1);
+    ok('RSI على صعود متواصل ≈ 100', rsi(inc,6)[39]>99);
+    var a=atr(inc.map(function(x){return x+1;}),inc.map(function(x){return x-1;}),inc,14);
+    ok('ATR موجب', a[39]>0);
+    ['up','down','flat'].forEach(function(mode,mi){
+      var drift=mode==='up'?1:(mode==='down'?-1:0.02);
+      var sets=demoSet(40+mi*11,drift);
+      var A=analyzeAll3(sets);
+      var price=A['1h'].px;
+      var rec=buildRec(A,price);
+      ok(mode+': توصية موجودة', !!rec&&!!rec.planA&&!!rec.planB);
+      var p=rec.planA;
+      if(p.dir==='long'){
+        ok(mode+': ترتيب Long سليم SL<دخول<TP1<TP2<TP3',
+          p.sl<p.entry&&p.entry<p.tps[0]&&p.tps[0]<p.tps[1]&&p.tps[1]<p.tps[2]);
+        ok(mode+': اختراق B فوق الدخول', rec.planB.trigger>p.entry&&rec.planB.sl<rec.planB.trigger);
+      } else {
+        ok(mode+': ترتيب Short سليم TP3<TP2<TP1<دخول<SL',
+          p.sl>p.entry&&p.entry>p.tps[0]&&p.tps[0]>p.tps[1]&&p.tps[1]>p.tps[2]);
+        ok(mode+': اختراق B تحت الدخول', rec.planB.trigger<p.entry&&rec.planB.sl>rec.planB.trigger);
+      }
+      ok(mode+': R:R رقم منطقي', isFinite(p.rr2)&&p.rr2>0);
+      ok(mode+': في أسباب مكتوبة', rec.reasons.length>=4);
+      var sz=sizing(1000,1,10,p.entry,p.sl);
+      ok(mode+': حساب الحجم شغال', !!sz&&sz.qty>0&&isFinite(sz.margin));
+    });
+    var up=demoSet(40,1), dn=demoSet(51,-1);
+    var ru=buildRec(analyzeAll3(up),analyzeAll3(up)['1h'].px);
+    var rd=buildRec(analyzeAll3(dn),analyzeAll3(dn)['1h'].px);
+    ok('السوق الصاعد ميلو Long', ru.dir==='long');
+    ok('السوق الهابط ميلو Short', rd.dir==='short');
+  }catch(e){ res.pass=false; res.checks.push('❌ خطأ: '+(e&&e.message?e.message:e)); }
+  return res;
+}
+if(typeof globalThis!=='undefined') globalThis.__famgold_test=__famgold_test;
+
+/* =====================================================================
+   UI / APP  (browser only)
+   ===================================================================== */
+if(IS_BROWSER){ (function(){
+
+var state={ data:null, A:null, rec:null, price:null, chg:null, mark:null,
+  funding:null, oi:null, prevOI:null, hi24:null, lo24:null,
+  src:'—', health:{}, chartTF:'1h', busy:false, cd:0 };
+
+var DEF={cap:1000,risk:1,lev:10,intv:30,alerts:true,sound:true,demo:false,sym:'XAUUSDT'};
+var settings=loadJSON('famgold_settings',DEF);
+Object.keys(DEF).forEach(function(k){ if(settings[k]===undefined)settings[k]=DEF[k]; });
+var journal=loadJSON('famgold_journal',[]);
+var alertLog=loadJSON('famgold_alerts',{});
+
+function loadJSON(k,d){ try{ var v=store.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+function saveJSON(k,v){ try{ store.setItem(k,JSON.stringify(v)); }catch(e){} }
+function el(id){ return document.getElementById(id); }
+
+/* ---------- toasts & notify ---------- */
+function toast(msg){ var t=document.createElement('div'); t.className='toast'; t.textContent=msg;
+  el('toasts').appendChild(t); setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity .5s'; },5200);
+  setTimeout(function(){ t.remove(); },5900); }
+function beep(){ if(!settings.sound) return;
+  try{ var AC=window.AudioContext||window.webkitAudioContext; var ctx=beep._c||(beep._c=new AC());
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.frequency.value=880; o.connect(g); g.connect(ctx.destination);
+    g.gain.setValueAtTime(0.12,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.5);
+    o.start(); o.stop(ctx.currentTime+0.5);
+  }catch(e){} }
+function notify(title,body,key,throttleMin){
+  if(!settings.alerts) return;
+  if(key){ var last=alertLog[key]||0;
+    if(Date.now()-last < (throttleMin||45)*60000) return;
+    alertLog[key]=Date.now(); saveJSON('famgold_alerts',alertLog); }
+  toast('🔔 '+title+' — '+body); beep();
+  try{ if(typeof Notification!=='undefined'&&Notification.permission==='granted')
+    new Notification(title,{body:body}); }catch(e){}
+}
+window.askNotifPerm=function(){
+  if(typeof Notification==='undefined'){ toast('المتصفح ما بيدعم الإشعارات'); return; }
+  Notification.requestPermission().then(function(p){
+    toast(p==='granted'?'✅ الإشعارات مفعّلة':'❌ ما انقبل الإذن'); });
+};
+
+/* ---------- fetch ---------- */
+function fJSON(url,ms){ ms=ms||9000;
+  var ctl=new AbortController(); var to=setTimeout(function(){ctl.abort();},ms);
+  var t0=Date.now();
+  return fetch(url,{signal:ctl.signal}).then(function(r){
+    clearTimeout(to);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json().then(function(j){ return {j:j,ms:Date.now()-t0}; });
+  }).catch(function(e){ clearTimeout(to); throw e; });
+}
+function parseK(raw){ return raw.map(function(r){
+  return {t:+r[0],o:+r[1],h:+r[2],l:+r[3],c:+r[4],v:+r[5]}; }); }
+
+function fetchPrimary(sym){
+  var F='https://fapi.binance.com/fapi/v1/';
+  var H={};
+  function mark(name,p){ return p.then(function(r){ H[name]={ok:true,ms:r.ms}; return r.j; })
+    .catch(function(e){ H[name]={ok:false,err:String(e&&e.message||e)}; throw e; }); }
+  var pk4=mark('شموع 4h',fJSON(F+'klines?symbol='+sym+'&interval=4h&limit=220'));
+  var pk1=mark('شموع 1h',fJSON(F+'klines?symbol='+sym+'&interval=1h&limit=220'));
+  var pk15=mark('شموع 15m',fJSON(F+'klines?symbol='+sym+'&interval=15m&limit=220'));
+  var pt=mark('تيكر 24h',fJSON(F+'ticker/24hr?symbol='+sym));
+  var pp=fJSON(F+'premiumIndex?symbol='+sym).then(function(r){ H['Mark/Funding']={ok:true,ms:r.ms}; return r.j; })
+        .catch(function(e){ H['Mark/Funding']={ok:false,err:String(e&&e.message||e)}; return null; });
+  var po=fJSON(F+'openInterest?symbol='+sym).then(function(r){ H['O.I.']={ok:true,ms:r.ms}; return r.j; })
+        .catch(function(e){ H['O.I.']={ok:false,err:String(e&&e.message||e)}; return null; });
+  return Promise.all([pk4,pk1,pk15,pt,pp,po]).then(function(v){
+    return { sets:{h4:parseK(v[0]),h1:parseK(v[1]),m15:parseK(v[2])},
+      t24:v[3], prem:v[4], oi:v[5], health:H, src:'Binance Futures · '+sym };
+  });
+}
+function fetchFallback(){
+  var S='https://api.binance.com/api/v3/', sym='PAXGUSDT', H={};
+  function mark(name,p){ return p.then(function(r){ H[name]={ok:true,ms:r.ms}; return r.j; })
+    .catch(function(e){ H[name]={ok:false,err:String(e&&e.message||e)}; throw e; }); }
+  var pk4=mark('شموع 4h',fJSON(S+'klines?symbol='+sym+'&interval=4h&limit=220'));
+  var pk1=mark('شموع 1h',fJSON(S+'klines?symbol='+sym+'&interval=1h&limit=220'));
+  var pk15=mark('شموع 15m',fJSON(S+'klines?symbol='+sym+'&interval=15m&limit=220'));
+  var pt=mark('تيكر 24h',fJSON(S+'ticker/24hr?symbol='+sym));
+  return Promise.all([pk4,pk1,pk15,pt]).then(function(v){
+    return { sets:{h4:parseK(v[0]),h1:parseK(v[1]),m15:parseK(v[2])},
+      t24:v[3], prem:null, oi:null, health:H, src:'بديل: PAXG سبوت' };
+  });
+}
+
+/* ---------- refresh pipeline ---------- */
+function refresh(){
+  if(state.busy) return; state.busy=true;
+  el('btnRefresh').disabled=true;
+  var done=function(){ state.busy=false; el('btnRefresh').disabled=false;
+    state.cd=settings.intv; el('lastUpd').textContent=nowStr(); };
+
+  if(settings.demo){
+    var sets=demoSet(Math.floor(Date.now()/60000),1);
+    applyData({sets:sets,t24:null,prem:null,oi:null,health:{'وضع تجريبي':{ok:true,ms:0}},src:'🧪 بيانات تجريبية'});
+    done(); return;
+  }
+  fetchPrimary((settings.sym||'XAUUSDT').toUpperCase().trim())
+    .then(function(d){ applyData(d); done(); })
+    .catch(function(){
+      fetchFallback()
+        .then(function(d){ applyData(d); toast('⚠️ Binance Futures ما ردّ — كمّلنا على PAXG سبوت'); done(); })
+        .catch(function(){ state.health={'الشبكة':{ok:false,err:'كل المصادر فشلت'}};
+          renderHealth(); toast('❌ ما قدرت وصل للبيانات — جرّب وضع تجريبي أو شيّك النت'); done(); });
+    });
+}
+window.refreshNow=function(){ refresh(); };
+
+function applyData(d){
+  state.data=d.sets; state.src=d.src; state.health=d.health;
+  var A=analyzeAll3(d.sets); state.A=A;
+  var px=A['1h'].k[A['1h'].k.length-1].c;
+  if(d.t24){ px=+d.t24.lastPrice||px; state.chg=+d.t24.priceChangePercent;
+    state.hi24=+d.t24.highPrice; state.lo24=+d.t24.lowPrice; }
+  else { state.chg=null; state.hi24=null; state.lo24=null; }
+  state.price=px;
+  state.mark=d.prem? +d.prem.markPrice : null;
+  state.funding=d.prem? +d.prem.lastFundingRate*100 : null;
+  if(d.oi){ state.prevOI=state.oi; state.oi=+d.oi.openInterest; } else { state.oi=null; }
+  state.rec=buildRec(A,px);
+  if(state.funding!==null&&Math.abs(state.funding)>=0.03){
+    state.rec.warnings.push('⚠️ Funding '+fmt(state.funding,4)+'% — '+(state.funding>0?'الـlongs مزدحمين':'الـshorts مزدحمين')+'، انتبه من squeeze.');
+  }
+  journalEngine();
+  alertsEngine();
+  renderAll();
+}
+
+/* ---------- alerts ---------- */
+function alertsEngine(){
+  var rec=state.rec, P=state.price; if(!rec||!P) return;
+  var pA=rec.planA;
+  if(pA && rec.verdict!=='wait' && P>=pA.zone[0] && P<=pA.zone[1]){
+    notify('منطقة الدخول','السعر ('+fmt(P)+') جوّا منطقة '+(pA.dir==='long'?'الشراء':'البيع')+' '+fmt(pA.zone[0])+'–'+fmt(pA.zone[1]),'zone_'+pA.dir,45);
+  }
+  var k1=state.data.h1, cc=k1[k1.length-2], pB=rec.planB;
+  if(pB){
+    if(pB.dir==='long' && cc.c>pB.trigger)
+      notify('اختراق صعودي ✅','شمعة الساعة سكّرت فوق '+fmt(pB.trigger)+' — خطة B صارت فعّالة','brk_'+cc.t,1);
+    if(pB.dir==='short' && cc.c<pB.trigger)
+      notify('كسر هبوطي ✅','شمعة الساعة سكّرت تحت '+fmt(pB.trigger)+' — خطة B صارت فعّالة','brk_'+cc.t,1);
+  }
+}
+
+/* ---------- journal ---------- */
+window.saveRec=function(which){
+  var rec=state.rec; if(!rec){ toast('ما في توصية بعد'); return; }
+  var p=which==='B'?rec.planB:rec.planA; if(!p){ toast('الخطة مش موجودة'); return; }
+  var entry=which==='B'?p.trigger:p.entry;
+  journal.unshift({ id:Date.now(), created:Date.now(), sym:settings.sym,
+    dir:p.dir, plan:which, entry:entry, sl:p.sl, tps:p.tps.slice(),
+    filled:which!=='B'?false:false, status:'pending', hits:[], lastT:Date.now(), resultR:null,
+    note:(which==='B'?'اختراق':'limit')+' · score '+rec.score });
+  if(journal.length>60) journal.pop();
+  saveJSON('famgold_journal',journal);
+  renderJournal(); toast('💾 انحفظت خطة '+which+' بالسجل — المتابعة تلقائية');
+};
+window.delRec=function(id){
+  journal=journal.filter(function(x){return x.id!==id;});
+  saveJSON('famgold_journal',journal); renderJournal();
+};
+function journalEngine(){
+  if(!state.data) return;
+  var k15=state.data.m15; var changed=false;
+  journal.forEach(function(tr){
+    if(tr.status==='sl'||tr.status==='tp3'||tr.status==='closed') return;
+    for(var i=0;i<k15.length-1;i++){ var c=k15[i];
+      if(c.t<=tr.lastT) continue;
+      var L=tr.dir==='long';
+      if(!tr.filled){
+        var touch = L? (c.l<=tr.entry) : (c.h>=tr.entry);
+        if(tr.plan==='B') touch = L? (c.c>tr.entry) : (c.c<tr.entry); // breakout fills on close through
+        if(touch){ tr.filled=true; tr.status='open'; changed=true;
+          notify('تفعّلت الصفقة','دخول '+(L?'Long':'Short')+' عند '+fmt(tr.entry),'fill_'+tr.id,1); }
+      }
+      if(tr.filled){
+        var hitSL = L? (c.l<=tr.sl) : (c.h>=tr.sl);
+        if(hitSL){ tr.status='sl'; tr.resultR=-1; changed=true;
+          notify('🛑 ضرب الستوب','صفقة '+(L?'Long':'Short')+' سكّرت على SL '+fmt(tr.sl),'sl_'+tr.id,1); break; }
+        for(var tpi=tr.hits.length;tpi<tr.tps.length;tpi++){
+          var hitTP = L? (c.h>=tr.tps[tpi]) : (c.l<=tr.tps[tpi]);
+          if(hitTP){ tr.hits.push(tpi+1); changed=true;
+            var R=Math.abs(tr.tps[tpi]-tr.entry)/Math.abs(tr.entry-tr.sl);
+            notify('🎯 TP'+(tpi+1)+' ✅','وصل '+fmt(tr.tps[tpi])+' ('+fmt(R,1)+'R)','tp_'+tr.id+'_'+tpi,1);
+            if(tpi===tr.tps.length-1){ tr.status='tp3'; tr.resultR=R; }
+          } else break;
+        }
+      }
+      tr.lastT=c.t;
+    }
+    if(tr.status==='pending'&&!tr.filled) tr.lastT=k15[k15.length-2].t;
+  });
+  if(changed) saveJSON('famgold_journal',journal);
+}
+
+/* ---------- renderers ---------- */
+function renderAll(){ renderHero(); renderRec(); renderTFTable(); renderLevels();
+  drawChart(); renderCalc(); renderJournal(); renderHealth(); }
+
+function renderHero(){
+  el('px').textContent=fmt(state.price);
+  var ch=el('chg');
+  if(state.chg!==null&&state.chg!==undefined&&isFinite(state.chg)){
+    ch.textContent=(state.chg>=0?'+':'')+fmt(state.chg,2)+'%';
+    ch.className='chg num '+(state.chg>=0?'up':'dn');
+  } else { ch.textContent='—'; ch.className='chg num'; }
+  el('mark').textContent=state.mark?fmt(state.mark):'—';
+  el('hi24').textContent=state.hi24?fmt(state.hi24):'—';
+  el('lo24').textContent=state.lo24?fmt(state.lo24):'—';
+  el('fund').textContent=state.funding!==null&&isFinite(state.funding)?fmt(state.funding,4)+'%':'—';
+  var oiTxt='—';
+  if(state.oi!==null&&isFinite(state.oi)){ oiTxt=fmtK(state.oi);
+    if(state.prevOI&&isFinite(state.prevOI)){ var d=state.oi-state.prevOI;
+      oiTxt+=' ('+(d>=0?'+':'')+fmtK(d)+')'; } }
+  el('oi').textContent=oiTxt;
+  el('srcName').textContent=state.src;
+  var okAll=true,names=Object.keys(state.health);
+  names.forEach(function(n){ if(!state.health[n].ok) okAll=false; });
+  el('healthTxt').textContent= names.length? (okAll?'تمام':'في مشكلة') : '—';
+  el('healthChip').className='chip '+(names.length?(okAll?'ok':'bad'):'');
+}
+
+function vWord(v){ return v==='long'?'صاعد — فرصة Long':(v==='short'?'هابط — فرصة Short':'انتظار ⏳'); }
+function planHTML(p,label,tagCls,extra){
+  if(!p) return '';
+  var L=p.dir==='long';
+  var head='<div class="head"><span class="tag '+tagCls+'">'+label+'</span> '+
+    (p.type==='limit'?(L?'Long من منطقة الرجعة':'Short من منطقة الارتداد'):'بعد '+(L?'الاختراق':'الكسر'))+'</div>';
+  var lv='<div class="lvls">';
+  if(p.type==='limit'){
+    lv+='<div class="lvl en"><div class="k">منطقة الدخول</div><div class="v num">'+fmt(p.zone[0])+'–'+fmt(p.zone[1])+'</div></div>';
+    lv+='<div class="lvl en"><div class="k">دخول (وسط)</div><div class="v num">'+fmt(p.entry)+'</div></div>';
+  } else {
+    lv+='<div class="lvl tr"><div class="k">شرط التفعيل</div><div class="v num">'+fmt(p.trigger)+'</div></div>';
+  }
+  lv+='<div class="lvl sl"><div class="k">Stop Loss</div><div class="v num">'+fmt(p.sl)+'</div></div>';
+  for(var i=0;i<p.tps.length;i++)
+    lv+='<div class="lvl tp"><div class="k">TP'+(i+1)+'</div><div class="v num">'+fmt(p.tps[i])+'</div></div>';
+  lv+='</div>';
+  var rr='<div class="rr">R:R على TP2 ≈ <span class="num">1:'+fmt(p.rr2,1)+'</span>'+
+    (p.rr2>=2?' <span class="up">ممتاز ✅</span>':(p.rr2>=1.5?' <span class="wt">مقبول</span>':' <span class="dn">ضعيف ⚠️</span>'))+'</div>';
+  var sz=sizing(settings.cap,settings.risk,settings.lev,(p.type==='limit'?p.entry:p.trigger),p.sl);
+  var szTxt=sz?'<div class="note">💰 بحسب إعداداتك: مخاطرة <b class="num">'+fmt(sz.riskAmt)+'</b> USDT → حجم <b class="num">'+fmt(sz.qty,3)+'</b> أونصة · هامش مطلوب <b class="num">'+fmt(sz.margin)+'</b> USDT'+(sz.warn?' <span class="dn">⚠️ الهامش أكبر من رأس المال — نزّل الحجم أو علّي الرافعة</span>':'')+'</div>':'';
+  return '<div class="plan">'+head+lv+rr+'<div class="note">'+p.note+'</div>'+szTxt+(extra||'')+'</div>';
+}
+
+function renderRec(){
+  var rec=state.rec; if(!rec){ return; }
+  var cls=rec.verdict, col = cls==='long'?'var(--green)':(cls==='short'?'var(--red)':'var(--amber)');
+  var html='';
+  html+='<div class="verdict '+cls+'">'+
+    '<div class="ring" style="--p:'+rec.score+';--c:'+col+'"><div class="num">'+rec.score+'</div></div>'+
+    '<div><div class="big">'+vWord(rec.verdict)+'</div>'+
+    '<div class="sub">قوة الاتجاه: <span class="num">'+rec.overall+'</span> / 100± · '+
+    (rec.gate?'🚪 <b style="color:var(--green)">بتمرق من بوابة الجودة</b>':'🚪 ما بتمرق: '+rec.gateWhy.join(' · '))+'</div></div></div>';
+
+  html+='<div class="tfrow">';
+  [['4h',rec.tf.h4],['1h',rec.tf.h1],['15m',rec.tf.m15]].forEach(function(x){
+    var s=x[1], c2=s>=22?'pos':(s<=-22?'neg':'neu');
+    var w=s>=22?'صاعد ✅':(s<=-22?'هابط 🔻':'محايد ⚠️');
+    html+='<div class="tfchip '+c2+'"><div class="t">'+x[0]+'</div><div class="s">'+w+' <span class="num muted" style="font-size:11px">('+s+')</span></div></div>';
+  });
+  html+='</div>';
+
+  var condTag = rec.verdict==='wait'?' — شرطية':'';
+  html+=planHTML(rec.planA,'خطة A'+condTag, rec.planA.dir==='long'?'g':'r');
+  html+=planHTML(rec.planB,'خطة B'+condTag,'a');
+
+  if(rec.inv) html+='<div class="plan"><div class="head"><span class="tag r">الإبطال</span> متى منغيّر رأينا؟</div><div class="note">'+rec.inv.text+'</div></div>';
+
+  html+='<div class="plan"><div class="head"><span class="tag g">ليش؟</span> أسباب القراءة</div><ul class="reasons">';
+  rec.reasons.forEach(function(r){ html+='<li>'+r+'</li>'; });
+  html+='</ul></div>';
+  rec.warnings.forEach(function(w){ html+='<div class="warn">'+w+'</div>'; });
+
+  html+='<div class="btns">'+
+    '<button class="btn green" onclick="saveRec(\'A\')">💾 احفظ خطة A بالسجل</button>'+
+    '<button class="btn ghost" onclick="saveRec(\'B\')">💾 احفظ خطة B</button></div>';
+  el('recCard').innerHTML=html;
+}
+
+function renderTFTable(){
+  var A=state.A; if(!A) return;
+  function row(name,f,d){ return '<tr><td>'+name+'</td><td class="num">'+f(A['4h'],d)+'</td><td class="num">'+f(A['1h'],d)+'</td><td class="num">'+f(A['15m'],d)+'</td></tr>'; }
+  var h='';
+  h+=row('السعر',function(a){return fmt(a.px);});
+  h+=row('EMA7',function(a){return fmt(a.e7);});
+  h+=row('EMA25',function(a){return fmt(a.e25);});
+  h+=row('EMA99',function(a){return fmt(a.e99);});
+  h+=row('RSI(6)',function(a){return a.rsi===null?'—':fmt(a.rsi,1);});
+  h+=row('KDJ (J)',function(a){return fmt(a.J,1);});
+  h+=row('ATR',function(a){return fmt(a.atr,1);});
+  h+=row('البنية',function(a){return a.struct===1?'HH/HL ✅':(a.struct===-1?'LH/LL 🔻':'Range ↔️');});
+  h+=row('Sweep',function(a){ if(a.sweep.bull&&a.sweep.bull.ago<=18)return '🟢 '+fmt(a.sweep.bull.p);
+    if(a.sweep.bear&&a.sweep.bear.ago<=18)return '🔴 '+fmt(a.sweep.bear.p); return '—'; });
+  h+=row('التقييم',function(a){ var s=a.score; return (s>0?'+':'')+s; });
+  el('tfTable').querySelector('tbody').innerHTML=h;
+}
+
+function renderLevels(){
+  var A=state.A; if(!A) return;
+  var L=mergedLevels(A), px=state.price;
+  var above=L.filter(function(z){return z.lo>px;}).slice(0,4);
+  var below=L.filter(function(z){return z.hi<px;}).slice(-4).reverse();
+  var h='<div class="grid2"><div><h3>🔺 مقاومات</h3>';
+  if(!above.length) h+='<div class="empty">ما في مقاومات قريبة</div>';
+  above.forEach(function(z){ h+='<div class="kv"><span class="k">'+z.tf+' · قوة '+z.n+'</span><span class="v num dn">'+fmt(z.lo)+(z.hi>z.lo?' – '+fmt(z.hi):'')+'</span></div>'; });
+  h+='</div><div><h3>🔻 دعوم</h3>';
+  if(!below.length) h+='<div class="empty">ما في دعوم قريبة</div>';
+  below.forEach(function(z){ h+='<div class="kv"><span class="k">'+z.tf+' · قوة '+z.n+'</span><span class="v num up">'+fmt(z.lo)+(z.hi>z.lo?' – '+fmt(z.hi):'')+'</span></div>'; });
+  h+='</div></div>';
+  if(A['4h'].range) h+='<div class="note">↔️ Range عالـ4h: <b class="num">'+fmt(A['4h'].range.lo)+' – '+fmt(A['4h'].range.hi)+'</b></div>';
+  el('levelsCard').innerHTML=h;
+}
+
+/* ---------- chart ---------- */
+window.setChartTF=function(tf){ state.chartTF=tf;
+  document.querySelectorAll('#tfSeg button').forEach(function(b){
+    b.classList.toggle('on',b.getAttribute('data-tf')===tf); });
+  drawChart(); };
+
+window.drawChart=function(){
+  var A=state.A; var cv=el('chart'); if(!cv) return;
+  var key=state.chartTF;
+  var a=A?A[key]:null;
+  var dpr=window.devicePixelRatio||1, W=cv.clientWidth||340, H=340;
+  cv.width=W*dpr; cv.height=H*dpr;
+  var x=cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0);
+  x.clearRect(0,0,W,H);
+  x.font='10px Cairo, sans-serif';
+  if(!a){ x.fillStyle='#55657f'; x.textAlign='center'; x.fillText('بانتظار البيانات…',W/2,H/2); return; }
+  var N=Math.min(a.k.length, key==='4h'?110:96), ks=a.k.slice(-N);
+  var padL=6,padR=58,padT=10,padB=20, pw=W-padL-padR, ph=H-padT-padB;
+  var mn=Infinity,mx=-Infinity;
+  ks.forEach(function(c){ if(c.h>mx)mx=c.h; if(c.l<mn)mn=c.l; });
+  var rec=state.rec, showPlan=el('ckPlan').checked&&rec&&key!=='4h';
+  if(showPlan){ var p=rec.planA;
+    mn=Math.min(mn,p.sl); mx=Math.max(mx,p.tps[p.tps.length-1]); }
+  var span=(mx-mn)||1; mn-=span*0.04; mx+=span*0.04; span=mx-mn;
+  function Y(v){ return padT+ph*(1-(v-mn)/span); }
+  function X(i){ return padL+pw*(i+0.5)/N; }
+
+  // grid + y labels
+  x.strokeStyle='#16233a'; x.fillStyle='#7c8aa0'; x.textAlign='left';
+  for(var g=0;g<=4;g++){ var vy=mn+span*g/4, yy=Y(vy);
+    x.beginPath(); x.moveTo(padL,yy); x.lineTo(W-padR,yy); x.stroke();
+    x.fillText(fmt(vy),W-padR+4,yy+3); }
+
+  // zones
+  if(el('ckZones').checked){
+    a.zones.forEach(function(z){ if(z.hi<mn||z.lo>mx) return;
+      x.fillStyle='rgba(240,185,11,0.07)';
+      var y1=Y(Math.min(z.hi,mx)), y2=Y(Math.max(z.lo,mn));
+      x.fillRect(padL,y1,pw,Math.max(2,y2-y1)); });
+  }
+
+  // candles
+  var cw=Math.max(1.5,pw/N*0.62);
+  ks.forEach(function(c,i){ var cx=X(i);
+    var up=c.c>=c.o; x.strokeStyle=up?'#0ecb81':'#f6465d'; x.fillStyle=up?'#0ecb81':'#f6465d';
+    x.beginPath(); x.moveTo(cx,Y(c.h)); x.lineTo(cx,Y(c.l)); x.stroke();
+    var y1=Y(Math.max(c.o,c.c)), y2=Y(Math.min(c.o,c.c));
+    x.fillRect(cx-cw/2,y1,cw,Math.max(1,y2-y1)); });
+
+  // EMA lines (Binance colors: 7 yellow, 25 pink, 99 purple)
+  function line(arr,col){ x.strokeStyle=col; x.lineWidth=1.4; x.beginPath();
+    var off=a.k.length-N;
+    for(var i=0;i<N;i++){ var v=arr[off+i]; if(v===undefined)continue;
+      var vv=clamp(v,mn,mx);
+      if(i===0)x.moveTo(X(i),Y(vv)); else x.lineTo(X(i),Y(vv)); }
+    x.stroke(); x.lineWidth=1; }
+  line(a.e7a,'#f0b90b'); line(a.e25a,'#ff4d9d'); line(a.e99a,'#a78bfa');
+
+  // plan lines
+  function hline(v,col,label,dash){ if(v<mn||v>mx) return;
+    x.strokeStyle=col; x.setLineDash(dash||[5,4]); x.beginPath();
+    x.moveTo(padL,Y(v)); x.lineTo(W-padR,Y(v)); x.stroke(); x.setLineDash([]);
+    x.fillStyle=col; x.textAlign='left';
+    x.fillRect(W-padR+2,Y(v)-7,padR-4,13);
+    x.fillStyle='#0a0e14'; x.fillText(label+' '+fmt(v),W-padR+4,Y(v)+3); x.fillStyle=col; }
+  if(showPlan){
+    var p2=rec.planA;
+    x.fillStyle='rgba(240,185,11,0.10)';
+    x.fillRect(padL,Y(p2.zone[1]),pw,Math.max(2,Y(p2.zone[0])-Y(p2.zone[1])));
+    hline(p2.entry,'#f0b90b','IN');
+    hline(p2.sl,'#f6465d','SL');
+    p2.tps.forEach(function(tp,i){ hline(tp,'#0ecb81','TP'+(i+1)); });
+    if(rec.planB) hline(rec.planB.trigger,'#4da3ff','BRK');
+  }
+  // last price
+  var lp=ks[ks.length-1].c;
+  x.strokeStyle='#eaf0f7'; x.setLineDash([2,3]); x.beginPath();
+  x.moveTo(padL,Y(lp)); x.lineTo(W-padR,Y(lp)); x.stroke(); x.setLineDash([]);
+
+  // x labels
+  x.fillStyle='#7c8aa0'; x.textAlign='center';
+  for(var q=0;q<4;q++){ var idx=Math.floor(N*q/4), c3=ks[Math.min(idx,N-1)];
+    var d=new Date(c3.t);
+    var lbl=(key==='4h')?(('0'+(d.getMonth()+1)).slice(-2)+'/'+('0'+d.getDate()).slice(-2))
+      :(('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2));
+    x.fillText(lbl,X(idx),H-6); }
+};
+
+/* ---------- calc ---------- */
+function renderCalc(){
+  var rec=state.rec, h='';
+  var cap=settings.cap, risk=settings.risk, lev=settings.lev;
+  if(!rec){ el('calcOut').innerHTML='عبّي الأرقام وبتنحسب تلقائياً مع كل توصية.'; return; }
+  [['A',rec.planA],['B',rec.planB]].forEach(function(pp){
+    var p=pp[1]; if(!p)return;
+    var e=p.type==='limit'?p.entry:p.trigger;
+    var sz=sizing(cap,risk,lev,e,p.sl); if(!sz)return;
+    h+='<div class="kv"><span class="k">خطة '+pp[0]+' ('+(p.dir==='long'?'Long':'Short')+')</span>'+
+      '<span class="v num">'+fmt(sz.qty,3)+' oz · هامش '+fmt(sz.margin)+' · مخاطرة '+fmt(sz.riskAmt)+'</span></div>';
+  });
+  h+='<div class="note">القاعدة: مخاطرة '+fmt(risk,1)+'% من '+fmt(cap)+' USDT، رافعة '+lev+'x. لا تزيد المخاطرة عن 1–2%.</div>';
+  el('calcOut').innerHTML=h;
+}
+
+/* ---------- journal render ---------- */
+function stWord(tr){
+  if(tr.status==='pending') return ['بانتظار التفعيل','pend'];
+  if(tr.status==='open') return ['مفتوحة'+(tr.hits.length?' · TP'+tr.hits[tr.hits.length-1]+' ✅':''),'open'];
+  if(tr.status==='sl') return ['وقف خسارة','loss'];
+  if(tr.status==='tp3') return ['كل الأهداف ✅','win'];
+  return [tr.status,'pend'];
+}
+function renderJournal(){
+  var n=0,w=0,l=0,sumR=0;
+  journal.forEach(function(t){ if(t.status==='sl'){n++;l++;sumR+=-1;}
+    if(t.status==='tp3'){n++;w++;sumR+=(t.resultR||2);}
+    if(t.status==='open'&&t.hits.length){/* partial */} });
+  var st='<div class="stat"><div class="k">صفقات مقفولة</div><div class="v num">'+n+'</div></div>'+
+    '<div class="stat"><div class="k">رابحة</div><div class="v num up">'+w+'</div></div>'+
+    '<div class="stat"><div class="k">خاسرة</div><div class="v num dn">'+l+'</div></div>'+
+    '<div class="stat"><div class="k">محصلة R</div><div class="v num '+(sumR>=0?'up':'dn')+'">'+(sumR>=0?'+':'')+fmt(sumR,1)+'</div></div>';
+  el('jStats').innerHTML=st;
+  if(!journal.length){ el('jList').innerHTML='<div class="empty">ما في توصيات محفوظة بعد. احفظ خطة من بطاقة التوصية.</div>'; return; }
+  var h='';
+  journal.forEach(function(tr){
+    var sw=stWord(tr), d=new Date(tr.created);
+    h+='<div class="jrow"><div class="top">'+
+      '<span>'+(tr.dir==='long'?'🟢 Long':'🔴 Short')+' · خطة '+tr.plan+' <span class="muted" style="font-weight:600;font-size:10.5px">'+
+      ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+'</span></span>'+
+      '<span class="pill '+sw[1]+'">'+sw[0]+'</span></div>'+
+      '<div class="num" style="direction:ltr;text-align:left">IN '+fmt(tr.entry)+' · SL '+fmt(tr.sl)+' · TP '+tr.tps.map(function(t){return fmt(t);}).join(' / ')+'</div>'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">'+
+      '<span class="muted" style="font-size:10.5px">'+tr.note+'</span>'+
+      '<button class="btn ghost small" onclick="delRec('+tr.id+')">🗑️</button></div></div>';
+  });
+  el('jList').innerHTML=h;
+}
+
+/* ---------- health ---------- */
+function renderHealth(){
+  var H=state.health||{}, names=Object.keys(H);
+  if(!names.length){ el('healthCard').innerHTML='<div class="empty">بانتظار أول تحديث…</div>'; return; }
+  var h='';
+  names.forEach(function(nm){ var s=H[nm];
+    h+='<div class="hrow"><span><span class="dot '+(s.ok?'ok':'bad')+'"></span>'+nm+'</span>'+
+      '<span class="num muted">'+(s.ok?((s.ms||0)+'ms ✅'):('❌ '+(s.err||'فشل')))+'</span></div>'; });
+  h+='<div class="note">المصدر الحالي: <b>'+state.src+'</b> — البرنامج بيستعمل REST بس (بلا WebSocket)، فبيشتغل حتى لو الـstream محجوب عندك.</div>';
+  el('healthCard').innerHTML=h;
+}
+
+/* ---------- copy ---------- */
+window.copyRec=function(){
+  var rec=state.rec; if(!rec){ toast('ما في توصية بعد'); return; }
+  var p=rec.planA,b=rec.planB;
+  var lines=['🥇 FAM GOLD — '+settings.sym,
+    'الحكم: '+vWord(rec.verdict)+' (Score '+rec.score+'/100)',
+    'السعر: '+fmt(state.price),'',
+    'خطة A ('+(p.dir==='long'?'Long':'Short')+' limit):',
+    'منطقة: '+fmt(p.zone[0])+' – '+fmt(p.zone[1]),
+    'دخول: '+fmt(p.entry)+' | SL: '+fmt(p.sl),
+    'TP: '+p.tps.map(function(t){return fmt(t);}).join(' / ')+' | R:R≈1:'+fmt(p.rr2,1),'',
+    'خطة B (بعد '+(b.dir==='long'?'اختراق':'كسر')+'):',
+    'شرط: '+fmt(b.trigger)+' | SL: '+fmt(b.sl),
+    'TP: '+b.tps.map(function(t){return fmt(t);}).join(' / '),'',
+    'الإبطال: '+rec.inv.text,'⏱ '+nowStr()+' — مش نصيحة مالية'];
+  var txt=lines.join('\n');
+  function ok(){ toast('📋 انتسخت التوصية — ابعتها عالواتساب'); }
+  if(navigator.clipboard&&navigator.clipboard.writeText)
+    navigator.clipboard.writeText(txt).then(ok,function(){ fallbackCopy(txt); ok(); });
+  else { fallbackCopy(txt); ok(); }
+};
+function fallbackCopy(t){ var ta=document.createElement('textarea'); ta.value=t;
+  document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); }
+
+/* ---------- backup ---------- */
+window.exportBackup=function(){
+  var data={v:1,settings:settings,journal:journal,ts:Date.now()};
+  var blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='famgold_backup.json'; a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);},2000);
+  toast('💾 نزّلت النسخة الاحتياطية');
+};
+window.importBackup=function(inp){
+  var f=inp.files&&inp.files[0]; if(!f)return;
+  var rd=new FileReader();
+  rd.onload=function(){ try{ var d=JSON.parse(rd.result);
+      if(d.settings){ settings=d.settings; saveJSON('famgold_settings',settings); }
+      if(d.journal){ journal=d.journal; saveJSON('famgold_journal',journal); }
+      toast('✅ رجعت البيانات'); bindSettings(); renderJournal();
+    }catch(e){ toast('❌ الملف مش صالح'); } inp.value=''; };
+  rd.readAsText(f);
+};
+window.wipeAll=function(){
+  var b=el('btnWipe');
+  if(b.getAttribute('data-arm')!=='1'){ b.setAttribute('data-arm','1');
+    b.textContent='متأكد؟ اضغط مرة تانية'; setTimeout(function(){ b.setAttribute('data-arm','0'); b.textContent='🗑️ مسح كل البيانات'; },4000); return; }
+  store.removeItem('famgold_settings'); store.removeItem('famgold_journal'); store.removeItem('famgold_alerts');
+  location.reload();
+};
+
+/* ---------- settings binding ---------- */
+function bindSettings(){
+  el('inCap').value=settings.cap; el('inRisk').value=settings.risk;
+  el('inLev').value=settings.lev; el('inIntv').value=settings.intv;
+  el('inSym').value=settings.sym;
+  el('ckAlerts').checked=!!settings.alerts; el('ckSound').checked=!!settings.sound;
+  el('ckDemo').checked=!!settings.demo;
+}
+function hookSettings(){
+  function upd(){ settings.cap=+el('inCap').value||DEF.cap;
+    settings.risk=clamp(+el('inRisk').value||DEF.risk,0.1,10);
+    settings.lev=clamp(+el('inLev').value||DEF.lev,1,50);
+    settings.intv=clamp(+el('inIntv').value||DEF.intv,10,300);
+    settings.sym=(el('inSym').value||'XAUUSDT').toUpperCase().trim();
+    settings.alerts=el('ckAlerts').checked; settings.sound=el('ckSound').checked;
+    var wasDemo=settings.demo; settings.demo=el('ckDemo').checked;
+    saveJSON('famgold_settings',settings); renderCalc();
+    if(wasDemo!==settings.demo) refresh(); }
+  ['inCap','inRisk','inLev','inIntv','inSym'].forEach(function(id){ el(id).addEventListener('change',upd); });
+  ['ckAlerts','ckSound','ckDemo'].forEach(function(id){ el(id).addEventListener('change',upd); });
+}
+
+/* ---------- loop ---------- */
+function tick(){
+  if(state.cd>0){ state.cd--; el('countdown').textContent=state.cd+'s'; }
+  else if(!state.busy){ el('countdown').textContent='…'; refresh(); }
+}
+
+/* ---------- init ---------- */
+function init(){
+  bindSettings(); hookSettings();
+  window.addEventListener('resize',function(){ drawChart(); });
+  if(location.search.indexOf('selftest=1')>-1){
+    var t=__famgold_test();
+    toast((t.pass?'🧪 self-test ✅ ':'🧪 self-test ❌ ')+t.checks.length+' فحص');
+    console.log(t.checks.join('\n'));
+  }
+  renderJournal();
+  refresh();
+  setInterval(tick,1000);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
+else init();
+
+})(); } /* end IS_BROWSER */
+</script>
+</body>
+</html>
