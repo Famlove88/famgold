@@ -160,6 +160,37 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
 .footer{color:var(--muted);font-size:11px;text-align:center;line-height:1.8;margin-top:14px}
 .muted{color:var(--muted)}
 .empty{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0}
+
+/* ===== v1.4: trend · lab · knowledge ===== */
+.sec.orange{background:linear-gradient(90deg,#9a3412,#ea7a1a)}
+.sec.pink{background:linear-gradient(90deg,#8a1a55,#d6408f)}
+.sec.olive{background:linear-gradient(90deg,#4a5a12,#8ea31f)}
+.hgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:6px;direction:ltr}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:6px;direction:ltr}
+.hcell{background:#0b1220;border:1px solid var(--line);border-radius:8px;padding:4px 2px;text-align:center;
+  font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.hcell .hh{color:var(--muted);font-size:9.5px;font-weight:700}
+.hcell.p{border-color:rgba(14,203,129,.55);color:var(--green)}
+.hcell.n{border-color:rgba(246,70,93,.55);color:var(--red)}
+.hcell.z{color:#9fb0c6}
+.pick{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pick button{border:1px solid var(--line);background:#0c1320;color:var(--muted);font-family:inherit;font-weight:800;
+  font-size:11.5px;border-radius:999px;padding:5px 11px;cursor:pointer}
+.pick button.on{background:var(--gold);color:#0a0e14;border-color:var(--gold)}
+table.mini{font-size:11.5px}
+table.mini th,table.mini td{padding:5px 3px}
+details.kb{border:1px solid var(--line);border-radius:12px;background:var(--card2);margin-bottom:6px;padding:0 10px}
+details.kb summary{cursor:pointer;font-weight:800;font-size:13px;padding:9px 0;list-style:none;line-height:1.6}
+details.kb summary::-webkit-details-marker{display:none}
+details.kb summary::before{content:'＋ ';color:var(--gold);font-weight:900}
+details.kb[open] summary::before{content:'－ '}
+details.kb .kbb{font-size:12.5px;line-height:1.9;color:#c9d4e2;padding:0 0 10px}
+details.kb .kbb a{font-size:11.5px;font-weight:700;display:inline-block;margin-inline-end:10px;direction:ltr;unicode-bidi:isolate}
+.lrow{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:2px}
+.lrow>div{text-align:center;background:#0b1220;border:1px solid var(--line);border-radius:8px;padding:3px 2px}
+.lrow .k{font-size:9.5px;color:var(--muted);font-weight:800}
+.lrow .v{font-size:12.5px;font-weight:900}
+.lrow .v.pos{color:var(--green)} .lrow .v.neg{color:var(--red)}
 </style>
 </head>
 <body>
@@ -169,7 +200,7 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
   <div class="hero">
     <div class="brand">
       <h1>🥇 FAM GOLD PRO</h1>
-      <span class="badge">v1.3</span>
+      <span class="badge">v1.4</span>
       <span class="chip" id="srcChip">المصدر: <b id="srcName">—</b></span>
       <span class="chip" id="clock" style="margin-inline-start:auto">⏳ <b id="countdown">—</b></span>
     </div>
@@ -195,8 +226,12 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
     </div>
   </div>
 
+  <!-- ===== TREND SIGNAL (v1.4) ===== -->
+  <div class="sec orange">🧭 إشارة الاتجاه <small>يومي · قواعد منشورة · قرار واحد باليوم</small></div>
+  <div class="card" id="trendCard"><div class="empty">بانتظار الشموع اليومية…</div></div>
+
   <!-- ===== RECOMMENDATION ===== -->
-  <div class="sec gold">🥇 التوصية الحيّة <small>4h اتجاه · 1h منطقة · 15m توقيت</small></div>
+  <div class="sec gold">⚡ التوصية الحيّة القصيرة <small>4h · 1h · 15m — تجريبية، الحكم للفحص 🧪</small></div>
   <div class="card" id="recCard"><div class="empty">اضغط «حدّث وحلّل» لأول قراءة…</div></div>
 
   <!-- ===== WEEKLY OUTLOOK ===== -->
@@ -253,6 +288,78 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
   <div class="sec cyan">🧪 الفحص التاريخي (Backtest) <small>نفس المحرك على الماضي · بلا نظر للمستقبل</small></div>
   <div class="card" id="btCard"><div class="empty">…</div></div>
 
+  <!-- ===== LAB (v1.4) ===== -->
+  <div class="sec pink">🔬 المختبر <small>10 قواعد كلاسيكية · أطول تاريخ متوفر · بعد الرسوم والتمويل</small></div>
+  <div class="card" id="labCard"><div class="empty">…</div></div>
+
+  <!-- ===== KNOWLEDGE (v1.4) ===== -->
+  <div class="sec olive">📚 الأساس العلمي <small>شو بتقول الأبحاث — مع المصادر</small></div>
+  <div class="card" id="kbCard">
+    <details class="kb"><summary>1 · أغلب المضاربين اليوميين بيخسروا</summary><div class="kbb">
+      دراسة تابعت كل اللي جرّبوا المضاربة اليومية بعقود البورصة البرازيلية: حوالي 97% من اللي كمّلوا أكتر من 300 يوم خسروا، وحوالي 1% بس طلّعوا أكتر من الحد الأدنى للأجور. وهيئة الأسواق الأوروبية لقت إنو 74–89% من حسابات الأفراد بعقود الـCFD خاسرة.<br>
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3423101" target="_blank" rel="noopener">Day Trading for a Living? (SSRN)</a>
+      <a href="https://www.esma.europa.eu/node/84933" target="_blank" rel="noopener">ESMA</a></div></details>
+    <details class="kb"><summary>2 · الباك-تست بيكذب إذا جرّبت كتير</summary><div class="kbb">
+      كل ما جرّبت إعدادات أكتر، أسهل تلاقي وحدة «ربحانة» بالصدفة. مقارنة على 888 استراتيجية حقيقية لقت إنو أرقام الباك-تست تقريباً ما بتتنبّأ بالأداء الفعلي بعدها. لهيك الباحثين بيطلبوا t-stat فوق 3 بدل 2 — وهيدا اللي المختبر بيطبّقو، مع قواعد قليلة محدّدة سلفاً.<br>
+      <a href="https://papers.ssrn.com/abstract=2326253" target="_blank" rel="noopener">Probability of Backtest Overfitting</a>
+      <a href="https://quantpedia.com/?p=673" target="_blank" rel="noopener">Quantopian: 888 algos</a>
+      <a href="https://econpapers.repec.org/RePEc:oup:rfinst:v:29:y:2016:i:1:p:5-68." target="_blank" rel="noopener">Harvey–Liu–Zhu</a></div></details>
+    <details class="kb"><summary>3 · الأفضلية الموثّقة أكتر شي: تتبّع الاتجاه البطيء</summary><div class="kbb">
+      «زخم السلاسل الزمنية» — السوق اللي طالع آخر سنة بيميل يكمّل — انلقى بـ58 عقد آجل، وعلى قرن كامل بـ67 سوق، وحتى على قرنين من البيانات. وهيدا الأسلوب اللي صناديق العقود الآجلة (CTA) بتشتغل فيه.<br>
+      <a href="https://fairmodel.econ.yale.edu/ec439/jpde.pdf" target="_blank" rel="noopener">Time Series Momentum</a>
+      <a href="https://oxfordstrat.com/coasdfASD32/uploads/2016/03/A-Century-of-Evidence-on-Trend-Following-Investing.pdf" target="_blank" rel="noopener">AQR: A Century of Evidence</a>
+      <a href="https://arxiv.org/pdf/1404.3274" target="_blank" rel="noopener">Two Centuries (arXiv)</a>
+      <a href="https://climateinstitute.edhec.edu/publications/momentum-strategies-futures-markets-and-trend-following-funds" target="_blank" rel="noopener">EDHEC: CTAs</a></div></details>
+    <details class="kb"><summary>4 · بس على سوق واحد الأفضلية أضعف</summary><div class="kbb">
+      قوة هالأسلوب جاية من التنويع: بدراسة الـ58 عقد، المحفظة المنوّعة هي اللي عطت نسبة Sharpe فوق 1 — على سوق واحد منطقي تتوقّع أقل بكتير وبفترات خسارة أطول. وبالذهب تحديداً: فحص لأكتر من 4,000 قاعدة توقيت (1990–2015) لقى إنو بس عدد محدود من القواعد الفنية صمد بعد تصحيح أثر الصدفة. وفي دراسات على السلع بتلاقي أفضلية ودراسات بتنفيها — الموضوع مش محسوم، ولهيك المختبر بيفحص على بياناتك.<br>
+      <a href="https://fairmodel.econ.yale.edu/ec439/jpde.pdf" target="_blank" rel="noopener">Time Series Momentum</a>
+      <a href="https://quantpedia.com/an-extensive-test-of-market-timing-strategies-in-the-gold-market/" target="_blank" rel="noopener">Gold market timing</a>
+      <a href="https://core.ac.uk/display/6348868" target="_blank" rel="noopener">Szakmary et al.</a>
+      <a href="https://www.cxoadvisory.com/technical-trading/does-technical-trading-work-with-commodity-futures/" target="_blank" rel="noopener">Marshall et al. (ضد)</a></div></details>
+    <details class="kb"><summary>5 · نسبة ربح 30–40% طبيعية بهالأسلوب</summary><div class="kbb">
+      تتبّع الاتجاه بيخسر أغلب صفقاتو خسارات صغيرة، وبيعوّضها بصفقات قليلة كبيرة — وهالشكل من الأرباح بيجي غالباً مع نسبة Sharpe أقل. يعني سلاسل خسارة ورا بعض جزء من اللعبة، والمختبر بيحسبلك قديش ممكن تطول قبل ما تبلّش.<br>
+      <a href="https://medium.com/@laurentbernut/regardless-of-the-asset-class-there-are-only-two-types-of-investment-strategies-ed6c0094e253" target="_blank" rel="noopener">Two types of strategies</a>
+      <a href="https://www.advisorperspectives.com/commentaries/2025/05/07/trend-followings-tricky-tradeoffs" target="_blank" rel="noopener">Trend Following's Tricky Tradeoffs</a></div></details>
+    <details class="kb"><summary>6 · قواعد التحليل الفني القصيرة ما بتصمد قدام التكاليف</summary><div class="kbb">
+      الدراسات على قواعد التداول الفنية داخل اليوم بتلاقي إنو أي ربح نظري بيختفي بعد الرسوم والسبريد. وهيدا اللي قسم 🧪 بيقيسو مباشرة على المحرك القصير (4h/1h/15m) — صدّق أرقامو مش إحساسك.<br>
+      <a href="https://cxoadvisory.com/technical-trading/technical-analysis-anathema-to-the-academic-world" target="_blank" rel="noopener">CXO: technical analysis</a>
+      <a href="https://text.www2.warwick.ac.uk/fac/soc/wbs/subjects/finance/research/wpaperseries/1999/99-89.pdf" target="_blank" rel="noopener">Warwick WP 99-89</a></div></details>
+    <details class="kb"><summary>7 · اقطع الخسارة واترك الربح يركض</summary><div class="kbb">
+      تحليل لصفقات حقيقية عند وسيط فوركس: المتداولين كانوا «صح» بأكتر من نص صفقاتن (59% باليورو/دولار) ومع هيك خسروا — لأن متوسط الخسارة (127 نقطة) كان تقريباً ضعف متوسط الربح (65 نقطة). لهيك إشارة الاتجاه ما فيها هدف ربح، بس فيها ستوب.<br>
+      <a href="https://mavericktrading.com/wp-content/uploads/2022/11/fxcm-traits-of-successful-traders-guide.pdf" target="_blank" rel="noopener">FXCM: Traits of Successful Traders</a>
+      <a href="https://moneyshow.com/articles/currency-29494" target="_blank" rel="noopener">DailyFX summary</a>
+      <a href="https://dailyspeculations.com/wordpress/?p=14247" target="_blank" rel="noopener">Kaminski &amp; Lo: stops</a></div></details>
+    <details class="kb"><summary>8 · حجم الصفقة والرافعة أهم من نقطة الدخول</summary><div class="kbb">
+      معادلة Kelly بتبيّن إنو المخاطرة الزايدة بتفلّس حتى اللي عندو أفضلية حقيقية؛ المحترفين بيخاطروا بجزء صغير منها. ودراسة على قرار تحديد الرافعة للأفراد بسوق الفوركس الأميركي (2010) لقت إنو خساير أصحاب الرافعة العالية خفّت حوالي 40%. لهيك البرنامج بيعرض «الرافعة الفعلية» وبيقترح نسبة مخاطرة من أسوأ تراجع محتمل.<br>
+      <a href="https://www.stat.berkeley.edu/~aldous/157/Papers/Good_Bad_Kelly.pdf" target="_blank" rel="noopener">Good &amp; Bad Properties of Kelly</a>
+      <a href="https://papers.ssrn.com/abstract=3095136" target="_blank" rel="noopener">Leverage limits (SSRN)</a>
+      <a href="https://quantpedia.com/the-impact-of-volatility-targeting-on-equities-bonds-commodities-and-currencies" target="_blank" rel="noopener">Volatility targeting</a></div></details>
+    <details class="kb"><summary>9 · التمويل (Funding) تكلفة مخفية للصفقات الطويلة</summary><div class="kbb">
+      العقد الدائم بيدفع أو بيقبض تمويل كل كم ساعة (بعقود المعادن على Binance كل 4 ساعات بحسب المواصفات — والمختبر بيتأكد من السجل الفعلي). صفقة اتجاه بتضل أسابيع ممكن تدفع تمويل أكتر من الرسوم بأضعاف، فالمختبر بيقرا التمويل الفعلي وبيخصمو. وبالويك-إند مؤشر السعر مجمّد والعقد شغّال — حركة هالوقت مش سوق حقيقي.<br>
+      <a href="https://stablecoininsider.org/binance-tradfi-perpetual-contracts/" target="_blank" rel="noopener">Binance TradFi perps</a>
+      <a href="https://vozeso.com/guides/funding-rate-on-equity-perps/" target="_blank" rel="noopener">Funding guide</a>
+      <a href="https://www.bitmex.com/blog/2026q1-derivatives-report" target="_blank" rel="noopener">BitMEX Q1-2026</a></div></details>
+    <details class="kb"><summary>10 · للذهب نمط جلسات — بس صار أضعف</summary><div class="kbb">
+      تاريخياً الذهب كان بيطلع أكتر بساعات آسيا وبيضعف بساعات لندن/نيويورك. الأثر موثّق، بس صار أضعف من قبل، وما في ضمانة يكمّل. المختبر بيفحصو على بيانات عقدك وبعد التكاليف — وإذا ما بيّن، ما تتداولو.<br>
+      <a href="https://research.cbs.dk/en/studentProjects/gold-price-dynamics-around-the-clock/" target="_blank" rel="noopener">Gold around the clock</a>
+      <a href="https://www.sprottmoney.com/blog/gold-manipulation-london-bias-1970-2024" target="_blank" rel="noopener">London bias 1970–2024</a>
+      <a href="https://www.fxstreet.com/analysis/a-strange-dichotomy-gold-up-on-the-year-in-asian-markets-down-big-in-the-west-202607131959" target="_blank" rel="noopener">FXStreet 2026</a></div></details>
+    <details class="kb"><summary>11 · اللي بيحرّك الذهب مش كلّو عالشارت</summary><div class="kbb">
+      الفايدة الحقيقية، الدولار، مشتريات البنوك المركزية، والأزمات. برنامج بلا سيرفر وبلا مفاتيح ما بيقدر يقراها — لهيك في رزنامة أحداث يدوية بالنظرة الأسبوعية، ولهيك خبر واحد قوي بيلغي أي إشارة فنية.<br>
+      <a href="https://www.gold.org/goldhub/research/gold-outlook-2026" target="_blank" rel="noopener">WGC Gold Outlook 2026</a>
+      <a href="https://www.gold.org/goldhub/research/gold-market-commentary-august-2026" target="_blank" rel="noopener">WGC commentary</a></div></details>
+    <details class="kb"><summary>12 · حتى المحترفين بيمرقوا بسنين صعبة</summary><div class="kbb">
+      مؤشر أكبر صناديق تتبّع الاتجاه (SG Trend) كان نازل حوالي 9% بأول أربع أشهر من 2025 وأكتر من 18% خلال سنة، قبل ما يرجع يتحسّن. الصبر والحجم الصغير جزء من الاستراتيجية مش تفصيل.<br>
+      <a href="https://www.toptradersunplugged.com/trend-following-performance-report-april-2025/" target="_blank" rel="noopener">Report Apr 2025</a>
+      <a href="https://www.toptradersunplugged.com/trend-following-performance-report-september-2026/" target="_blank" rel="noopener">Report Sep 2026</a></div></details>
+    <details class="kb"><summary>13 · من وين جايين القواعد اللي بالمختبر؟</summary><div class="kbb">
+      قناة 20/10 و55/20 مع ستوب 2×ATR = قواعد «السلاحف» المشهورة، بنسخة مبسّطة ومتحفّظة (الدخول بعد الإغلاق اليومي مش لحظة الاختراق، وبلا تعزيز للصفقات). تقاطع المتوسطات والزخم لسنة = القواعد اللي الأبحاث الأكاديمية فحصتها. ما في ولا رقم فيهن مفصّل على بيانات الذهب.<br>
+      <a href="https://therighttrader.com/learn/trading-strategies/turtle-trading" target="_blank" rel="noopener">Turtle rules</a>
+      <a href="https://www.scribd.com/doc/116881446/SSRN-id962461" target="_blank" rel="noopener">Faber: Tactical Asset Allocation</a>
+      <a href="https://www.luxalgo.com/library/concept/parameter-stability.md" target="_blank" rel="noopener">Parameter stability</a></div></details>
+    <div class="note">الخلاصة اللي انبنى عليها v1.4: قرار واحد باليوم · قواعد قليلة منشورة · كل قاعدة لازم تربح بقسمَي التاريخ وتتخطى عتبة إحصائية · التكاليف الحقيقية مخصومة · حجم صغير · والتجربة عالورق أول. <b>ولا برنامج بيضمن ربح.</b></div>
+  </div>
+
   <!-- ===== HEALTH ===== -->
   <div class="sec red">🩺 صحة البيانات <small>كل مصدر وحالتو</small></div>
   <div class="card" id="healthCard"><div class="empty">بانتظار أول تحديث…</div></div>
@@ -261,7 +368,7 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
   <div class="sec slate">⚙️ الإعدادات</div>
   <div class="card">
     <div class="field"><div class="lb">الرمز (Binance Futures)</div><input type="text" id="inSym" value="XAUUSDT"></div>
-    <div class="switchrow"><span>🔔 التنبيهات (منطقة دخول / اختراق / SL / TP)</span><input type="checkbox" id="ckAlerts" checked></div>
+    <div class="switchrow"><span>🔔 التنبيهات (إشارة الاتجاه / منطقة دخول / اختراق / SL / TP)</span><input type="checkbox" id="ckAlerts" checked></div>
     <div class="switchrow"><span>🔊 صوت مع التنبيه</span><input type="checkbox" id="ckSound" checked></div>
     <div class="switchrow"><span>🧪 وضع تجريبي (بيانات وهمية للفحص)</span><input type="checkbox" id="ckDemo"></div>
     <div class="btns">
@@ -274,15 +381,20 @@ input[type=checkbox]{transform:scale(1.2);accent-color:var(--gold)}
     <div class="note">التنبيهات بتشتغل بس تكون الصفحة مفتوحة — البرنامج مستقل 100%: بلا سيرفر، بلا مفاتيح، بلا حسابات. بياناتك كلها محفوظة محلياً على جهازك.</div>
   </div>
 
-  <div class="footer">FAM GOLD PRO v1.3 — أداة تحليل فني تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
-  التداول بالرافعة خطر عالي. جرّب paper trading قبل أي مصاري حقيقية.</div>
+  <div class="footer">FAM GOLD PRO v1.4 — أداة تحليل واختبار تعليمية، <b>مش نصيحة مالية</b> ولا ضمان ربح.<br>
+  التداول بالرافعة خطر عالي، وأغلب المتداولين الأفراد بيخسروا. جرّب paper trading قبل أي مصاري حقيقية.</div>
 </div>
 <div id="toasts"></div>
 
 <script>
 /* =====================================================================
-   FAM GOLD PRO v1.3 — standalone single-file gold trade assistant
-   Engine: top-down 4h (trend) / 1h (zone) / 15m (timing)
+   FAM GOLD PRO v1.4 — standalone single-file gold trade assistant
+   Engines: (1) daily trend rules + research lab (v1.4)  (2) top-down 4h (trend) / 1h (zone) / 15m (timing)
+   v1.4: - fixes found by mirror-symmetry tests in the short-term engine: Score direction for shorts, failed sweeps,
+           equal swing highs/lows counted as bearish, R:R bonus decided by float noise
+         - trend rules (Donchian 20/10 & 55/20, SMA 50/200, 1+3+12m momentum) + lab: costs, real funding, two-halves
+           stability, t-stat, robustness map, Monte-Carlo drawdown, session study — all pure and self-tested (?selftest=1)
+         - no percentages on tiny samples; PAXG proxy only for gold symbols; mirror data host fallback
    Data: Binance Futures REST (fallback: PAXGUSDT spot) — no keys, no server
    ===================================================================== */
 'use strict';
@@ -343,8 +455,10 @@ function swings(h,l,k){ k=k||2; var sh=[],sl=[];
 
 function structureOf(sw){ var sh=sw.sh, sl=sw.sl;
   if(sh.length<2||sl.length<2) return 0;
-  var hh=sh[sh.length-1].p>sh[sh.length-2].p, hl=sl[sl.length-1].p>sl[sl.length-2].p;
-  if(hh&&hl) return 1; if(!hh&&!hl) return -1; return 0; }
+  var h1=sh[sh.length-1].p, h0=sh[sh.length-2].p, l1=sl[sl.length-1].p, l0=sl[sl.length-2].p;
+  if(h1>h0&&l1>l0) return 1;                          /* HH + HL */
+  if(h1<h0&&l1<l0) return -1;                         /* LH + LL — v1.4: التساوي صار محايد (كان بينحسب هبوط) */
+  return 0; }
 
 function clusterLevels(sw,atrV,lastIdx,lookback){
   lookback=lookback||140;
@@ -395,6 +509,8 @@ function analyzeTF(tf,k){
     if(z.hi<px && (!nearS||z.hi>nearS.hi)) nearS=z; });
   var struct=structureOf(sw);
   var sweep=detectSweep(k,sw,18);
+  if(sweep.bull&&px<sweep.bull.p) sweep.bull=null;   /* v1.4: الارتداد فشل — السعر رجع تحت المستوى المسحوب */
+  if(sweep.bear&&px>sweep.bear.p) sweep.bear=null;
   var range=detectRange(k,atrV,24);
   var e7=e7a[last],e25=e25a[last],e99=e99a[last];
   var slope99=e99a[last]-(e99a[last-4]!==undefined?e99a[last-4]:e99a[0]);
@@ -545,8 +661,9 @@ function buildRec(A,price){
   if(t15.ob&&dir==='long') warnings.push('⚠️ 15m متشبّع شرائياً — لا تلحق السعر.');
   if(t15.os&&dir==='short') warnings.push('⚠️ 15m متشبّع بيعياً — لا تلحق النزلة.');
 
-  var score=clamp(Math.round(52+overall*0.45),5,95);
-  if(planA&&planA.rr2>=2) score+=5;
+  var sdir=(dir==='long')?1:-1;      /* v1.4: الـScore = قوة الإشارة باتجاه الصفقة (كان بيطلع واطي لكل Short) */
+  var score=clamp(Math.round(52+sdir*overall*0.45),5,95);
+  if(planA&&planA.rr2>=2-1e-9) score+=5;              /* v1.4: 1e-9 = هامش لأخطاء الفاصلة العشرية (كان 1.9999999 بيخسر الـ+5) */
   if(locked) score-=8;
   if(conflict) score-=10;
   score=clamp(score,5,95);
@@ -594,28 +711,29 @@ function demoSet(seed,drift){
 }
 
 /* ---------- weekly-outlook engine (pure) ---------- */
-function sigOf(e7,e25,e99,c,r){
+function sigOf(e7,e25,e99,c,r,coarse){
   var align=(e7>e25&&e25>e99)?2:((e7<e25&&e25<e99)?0:1);
   var ab=c>e99?1:0;
+  if(coarse) return align*2+ab;                         /* v1.4: توقيع مبسّط (6 حالات بدل 18) → عيّنة أكبر */
   var rz=(r===null||r===undefined)?1:(r>60?2:(r<40?0:1));
   return align*6+ab*3+rz;
 }
 /* يفتّش بالتاريخ عن كل الأيام اللي كانت بنفس وضعية اليوم، ويقيس شو صار بعد 3 و7 أيام */
-function horizonStats(k){
+function horizonStats(k,coarse){
   var n=k.length; if(n<140) return null;
   var c=k.map(function(x){return x.c;});
   var e7a=ema(c,7),e25a=ema(c,25),e99a=ema(c,99),ra=rsi(c,6);
   var li=n-1;
-  var sigNow=sigOf(e7a[li],e25a[li],e99a[li],c[li],ra[li]);
+  var sigNow=sigOf(e7a[li],e25a[li],e99a[li],c[li],ra[li],coarse);
   var m3=0,u3=0,m7=0,u7=0,sum7=0;
   for(var i=110;i<n-8;i++){
-    if(sigOf(e7a[i],e25a[i],e99a[i],c[i],ra[i])!==sigNow) continue;
+    if(sigOf(e7a[i],e25a[i],e99a[i],c[i],ra[i],coarse)!==sigNow) continue;
     m3++; if(c[i+3]>c[i])u3++;
     m7++; if(c[i+7]>c[i])u7++;
     sum7+=(c[i+7]-c[i])/c[i]*100;
   }
-  if(!m7) return {sig:sigNow,n:0};
-  return {sig:sigNow,n:m7,up3:Math.round(u3/Math.max(1,m3)*100),up7:Math.round(u7/m7*100),avg7:sum7/m7};
+  if(!m7) return {sig:sigNow,n:0,coarse:!!coarse};
+  return {sig:sigNow,n:m7,up3:Math.round(u3/Math.max(1,m3)*100),up7:Math.round(u7/m7*100),avg7:sum7/m7,coarse:!!coarse};
 }
 /* NFP = أول جمعة بالشهر (تقريبي) — بينولّد لحالو */
 function genAutoNFP(count){
@@ -767,7 +885,8 @@ function btSummary(st){
   var buckets=BT_BUCKETS.map(function(b){ var s=f(function(t){return t.score>=b[0]&&t.score<=b[1];}); s.lo=b[0]; s.hi=b[1]; return s; });
   var sess={}; ['asia','london','ny','late'].forEach(function(k){ sess[k]=f(function(t){return t.sess===k;}); });
   var out={}; ['sl','be','tp2','time'].forEach(function(k){ out[k]=T.filter(function(t){return t.outcome===k;}).length; });
-  return { all:btStats(T), A:f(function(t){return t.plan==='A';}), B:f(function(t){return t.plan==='B';}),
+  var all=btStats(T); all.t=tStatOf(T.map(function(x){return x.R;}));
+  return { all:all, A:f(function(t){return t.plan==='A';}), B:f(function(t){return t.plan==='B';}),
     gate:f(function(t){return t.gate;}), noGate:f(function(t){return !t.gate;}),
     long:f(function(t){return t.dir==='long';}), short:f(function(t){return t.dir==='short';}),
     buckets:buckets, sess:sess, outcomes:out, skip:st.skip, signals:st.signals, waits:st.waits,
@@ -777,6 +896,324 @@ function btSummary(st){
 function runBacktestSync(d,o){ var st=btInit(d,o); while(!st.done) btStep(st,500); return {st:st,sum:btSummary(st)}; }
 function calibBucket(sum,score){ if(!sum||!sum.buckets) return null;
   for(var i=0;i<sum.buckets.length;i++){ var b=sum.buckets[i]; if(score>=b.lo&&score<=b.hi) return b; } return null; }
+
+/* =====================================================================
+   TREND LAB (pure) — v1.4
+   قواعد اتجاه كلاسيكية (الوحيدة اللي الأبحاث لقتلها أفضلية صامدة عبر عقود وأسواق)، على شموع يومية/4h:
+   الإشارة على إغلاق الشمعة ← التنفيذ على فتح الشمعة الجاية. بلا أهداف ربح ثابتة:
+   «اقطع الخسارة واترك الربح يركض». كل شي هون pure ومفحوص بالـself-test.
+   ===================================================================== */
+var D1=86400000;
+var ENG_V=14;                                       /* نسخة المحرك — الفحوصات المحفوظة من نسخة أقدم بتنعلّم «قديمة» */
+var SLIP_PCT=0.01;                                  /* انزلاق سعري افتراضي لكل طرف (%) */
+var SLIP_STOP_PCT=0.03;                             /* انزلاق إضافي لما ينضرب الستوب (أمر Stop بيتعبّى عالسعر أو أسوأ) */
+function smaArr(v,p){ var out=new Array(v.length).fill(null);     /* جمع مباشر لكل نافذة — بلا تراكم أخطاء الفاصلة العشرية */
+  for(var i=p-1;i<v.length;i++){ var sm=0; for(var j=i-p+1;j<=i;j++) sm+=v[j]; out[i]=sm/p; }
+  return out; }
+function maxOf(a,from,to){ var m=-Infinity; for(var i=Math.max(0,from);i<to;i++){ if(a[i]>m)m=a[i]; } return m; }
+function minOf(a,from,to){ var m=Infinity; for(var i=Math.max(0,from);i<to;i++){ if(a[i]<m)m=a[i]; } return m; }
+/* أعلى/أدنى قيمة بآخر n شمعة «قبل» الشمعة الحالية (الحالية مش محسوبة) */
+function prevMaxArr(v,n){ var out=new Array(v.length).fill(null);
+  for(var i=n;i<v.length;i++) out[i]=maxOf(v,i-n,i);
+  return out; }
+function prevMinArr(v,n){ var out=new Array(v.length).fill(null);
+  for(var i=n;i<v.length;i++) out[i]=minOf(v,i-n,i);
+  return out; }
+/* إغلاق سوق الذهب بالويك-إند: تقريباً الجمعة 22:00 UTC → الأحد 22:00 UTC
+   (عقد Binance بيضل شغال 24/7 بس المؤشر مجمّد والحركة محصورة) */
+function wkClosures(a){ var d=new Date(a), dow=d.getUTCDay(), day0=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()), out=[];
+  for(var w=-1;w<=1;w++){ var fri=day0+(5-dow+7*w)*D1+22*H1; out.push([fri,fri+2*D1]); }
+  return out; }
+function inWeekend(a,b){ var cs=wkClosures(a); for(var i=0;i<cs.length;i++){ if(a>=cs[i][0]&&b<=cs[i][1]) return true; } return false; }
+function touchesWeekend(a,b){ var cs=wkClosures(a); for(var i=0;i<cs.length;i++){ if(a<cs[i][1]&&b>cs[i][0]) return true; } return false; }
+/* شموع «أيام تداول»: 5 شموع بالأسبوع متل تعريف الأبحاث (20 يوم = 4 أسابيع).
+   حركة الويك-إند ما منكبّها — مندمجها بأول شمعة تداول بعدها (السبت+الأحد+الإثنين = شمعة وحدة)،
+   هيك أي ستوب بينضرب بالويك-إند بينحسب، وإشارة إغلاق الجمعة بتتنفّذ على أول سعر بعدها.
+   te = وقت نهاية الشمعة · part = شمعة ويك-إند لسا ناطرة أول يوم تداول */
+function tradingBars(k,tfMs){
+  var out=[], acc=null;
+  for(var i=0;i<k.length;i++){ var c=k[i], wk;
+    if(tfMs>=D1){ var w=new Date(c.t).getUTCDay(); wk=(w===0||w===6); }
+    else wk=inWeekend(c.t,c.t+tfMs);
+    if(!acc) acc={t:c.t,o:c.o,h:c.h,l:c.l,c:c.c,v:c.v,te:0};
+    else { if(c.h>acc.h)acc.h=c.h; if(c.l<acc.l)acc.l=c.l; acc.c=c.c; acc.v+=c.v; }
+    acc.te=c.t+tfMs;
+    if(!wk){ out.push(acc); acc=null; } }
+  if(acc){ acc.part=true; out.push(acc); }
+  return out; }
+/* وصل تاريخ طويل (PAXG) بتاريخ العقد (XAU): منضرب القديم بنسبة ثابتة ليتطابق عند نقطة الوصل — العوائد ما بتتغير */
+function spliceSeries(longK,mainK){
+  if(!mainK||mainK.length<8) return {k:(longK||[]).slice(),ratio:1,joinT:null,nLong:(longK||[]).length,nMain:0};
+  if(!longK||!longK.length) return {k:mainK.slice(),ratio:1,joinT:mainK[0].t,nLong:0,nMain:mainK.length};
+  var map={},i; for(i=0;i<longK.length;i++) map[longK[i].t]=longK[i];
+  var rs=[];                                         /* أول شمعة بالعقد ممكن تكون ناقصة (يوم الإدراج) → منبلّش من التانية */
+  for(i=1;i<mainK.length&&rs.length<7;i++){ var q=map[mainK[i].t]; if(q&&q.c>0&&mainK[i].c>0) rs.push(mainK[i].c/q.c); }
+  if(!rs.length) return {k:mainK.slice(),ratio:1,joinT:mainK[0].t,nLong:0,nMain:mainK.length};
+  rs.sort(function(a,b){return a-b;});
+  var ratio=rs[Math.floor(rs.length/2)], joinT=mainK[1].t, out=[];
+  for(i=0;i<longK.length;i++){ var c=longK[i]; if(c.t<joinT) out.push({t:c.t,o:r2(c.o*ratio),h:r2(c.h*ratio),l:r2(c.l*ratio),c:r2(c.c*ratio),v:c.v}); }
+  var nLong=out.length;
+  for(i=1;i<mainK.length;i++) out.push(mainK[i]);
+  return {k:out,ratio:ratio,joinT:joinT,nLong:nLong,nMain:mainK.length-1};
+}
+function trendWarm(spec){ var atrP=spec.atrP||20;
+  if(spec.type==='donchian') return Math.max(spec.N,spec.M,atrP);
+  if(spec.type==='sma') return Math.max(spec.slow-1,atrP);
+  return Math.max(Math.max.apply(null,spec.looks),atrP); }
+/* ---- محاكي قواعد الاتجاه ----
+   spec: {type:'donchian',N,M}  اختراق قناة N شمعة، خروج بقناة M شمعة، + ستوب حماية ثابت stopK×ATR (أمر Stop فعلي)
+         {type:'sma',fast,slow} | {type:'tsmom',looks:[..]}  قواعد «حالة»: بالسوق طالما الإشارة قائمة والخروج بس عند انقلابها
+                                 (متل ما الأبحاث بتعرّفها — بلا ستوب ثابت؛ stopK×ATR هون وحدة قياس المخاطرة R بس)
+         side:'both'|'long'
+   cost: {fee, slip} % لكل طرف · stopSlip % انزلاق إضافي عند ضرب الستوب · fundDay % باليوم (موجب = الـLong بيدفع والـShort بيقبض)
+   opts: {tf: مدة الشمعة ms · lastComplete: آخر شمعة مسكّرة؟ · start: أول شمعة مسموح الإشارة منها (لتوحيد فترة المقارنة)
+          markOpen: احسب الصفقة اللي لسا مفتوحة بآخر البيانات كصفقة مقيّمة على آخر سعر (why='open').
+                    ضروري للتقييم العادل: الصفقات اللي بتضل مفتوحة للآخر هي بالغالب الرابحات الطويلة،
+                    وتجاهلها بيظلم قواعد الاتجاه (الـself-test بيبرهنها على سوق عشوائي)}
+   آخر شمعة دايماً للتنفيذ/الستوب بس — إشارتها بتطلع كـpending إذا كانت مسكّرة. بلا أي نظر للمستقبل. */
+function simTrend(k,spec,cost,opts){
+  opts=opts||{}; cost=cost||{};
+  var tf=opts.tf||D1, n=k.length, feeP=((cost.fee||0)+(cost.slip||0))/100, fundDay=(cost.fundDay||0)/100, stopSl=(cost.stopSlip||0)/100;
+  var hard=(spec.type==='donchian'), warm=trendWarm(spec);
+  var res={trades:[],pos:null,pending:null,levels:null,next:null,warm:warm,i0:null,n:n,atrRef:null,hard:hard,bars:null};
+  if(n<=warm+2) return res;
+  var o=new Array(n),h=new Array(n),l=new Array(n),c=new Array(n),i;
+  for(i=0;i<n;i++){ o[i]=k[i].o; h[i]=k[i].h; l[i]=k[i].l; c[i]=k[i].c; }
+  var atrP=spec.atrP||20, A=atr(h,l,c,atrP), stopK=spec.stopK||2, allowS=(spec.side!=='long'), sig;
+  if(spec.type==='donchian'){
+    var N=spec.N, M=spec.M;
+    var hiN=prevMaxArr(h,N), loN=prevMinArr(l,N), hiM=prevMaxArr(h,M), loM=prevMinArr(l,M);
+    sig=function(x){ return {eL:c[x]>hiN[x], eS:c[x]<loN[x], xL:c[x]<loM[x], xS:c[x]>hiM[x]}; };
+    res.levels={entryLong:hiN[n-1],entryShort:loN[n-1],exitLong:loM[n-1],exitShort:hiM[n-1]};   /* لإغلاق آخر شمعة بالسلسلة */
+    res.next={entryLong:maxOf(h,n-N,n),entryShort:minOf(l,n-N,n),exitLong:minOf(l,n-M,n),exitShort:maxOf(h,n-M,n)}; /* لإغلاق الشمعة اللي بعدها */
+  } else if(spec.type==='sma'){
+    var fa=smaArr(c,spec.fast), sl=smaArr(c,spec.slow);
+    var st=function(x){ if(x<0||fa[x]===null||sl[x]===null) return 0;
+      var df=fa[x]-sl[x], ep=1e-11*Math.abs(sl[x]);    /* تساوي المتوسطين (فرق أصغر من خطأ الفاصلة العشرية) = محايد، مش صدفة حسابية */
+      return df>ep?1:(df<-ep?-1:0); };
+    sig=function(x){ var a=st(x); return {eL:a===1, eS:a===-1, xL:a!==1, xS:a!==-1}; };
+    res.levels={fast:fa[n-1],slow:sl[n-1],state:st(n-1)};
+  } else {
+    var looks=spec.looks, maxL=Math.max.apply(null,looks);
+    var des=function(x){ if(x<maxL) return 0; var sc=0;
+      for(var q=0;q<looks.length;q++){ var dd=c[x]-c[x-looks[q]]; sc+=dd>0?1:(dd<0?-1:0); }
+      return sc>0?1:(sc<0?-1:0); };
+    sig=function(x){ var a=des(x); return {eL:a===1, eS:a===-1, xL:a!==1, xS:a!==-1}; };
+    res.levels={state:des(n-1),refs:looks.map(function(L){ return c[n-1-L]; }),
+      votes:looks.map(function(L){ var dd=c[n-1]-c[n-1-L]; return dd>0?1:(dd<0?-1:0); })};
+  }
+  var i0=Math.max(warm,opts.start||0); res.i0=i0;
+  if(n<=i0+2) return res;
+  var pos=null, pb=new Array(n).fill(0);            /* pb = ربح/خسارة كل شمعة كنسبة من قيمة الصفقة عند الدخول (للـSharpe) */
+  function endT(x){ return k[x].te||(k[x].t+tf); }
+  function closePos(px,why,tOut,idx){
+    if(why==='stop'&&stopSl>0) px=px-pos.dir*px*stopSl;       /* الستوب بيتعبّى أسوأ شوي من مستواه */
+    var days=Math.max(0,(tOut-pos.tIn)/D1);
+    var gross=pos.dir*(px-pos.pIn)/pos.risk;
+    var feeR=feeP*(pos.pIn+px)/pos.risk;
+    var fundR=pos.dir*fundDay*pos.pIn*days/pos.risk;
+    pb[idx]+=pos.dir*(px-pos.mark)/pos.pIn-feeP*px/pos.pIn-pos.dir*fundDay*Math.max(0,(tOut-pos.tMark)/D1);
+    res.trades.push({dir:pos.dir>0?'long':'short',tIn:pos.tIn,pIn:pos.pIn,stop0:pos.pIn-pos.dir*pos.risk,risk:pos.risk,
+      tOut:tOut,pOut:px,days:days,why:why,gross:gross,feeR:feeR,fundR:fundR,R0:gross-feeR,R:gross-feeR-fundR});
+    pos=null;
+  }
+  for(i=i0;i<n;i++){
+    /* 1) ستوب الحماية داخل الشمعة (فجوة → تعبئة عالفتح، أسوأ من الستوب) */
+    if(pos&&hard&&(pos.dir>0? l[i]<=pos.stop : h[i]>=pos.stop))
+      closePos(pos.dir>0? Math.min(o[i],pos.stop) : Math.max(o[i],pos.stop),'stop',(k[i].t+endT(i))/2,i);
+    /* 2) تقييم الصفقة المفتوحة على إغلاق الشمعة */
+    if(pos){ var te=endT(i);
+      pb[i]+=pos.dir*(c[i]-pos.mark)/pos.pIn-pos.dir*fundDay*Math.max(0,(te-pos.tMark)/D1);
+      pos.mark=c[i]; pos.tMark=te; }
+    if(i===n-1) break;                                /* آخر شمعة: تنفيذ/ستوب بس */
+    /* 3) إشارات إغلاق الشمعة i → تنفيذ على فتح i+1 */
+    var g=sig(i);
+    if(pos&&(pos.dir>0?g.xL:g.xS)) closePos(o[i+1],'signal',k[i+1].t,i+1);
+    if(!pos&&A[i]>0){
+      var d=g.eL?1:((g.eS&&allowS)?-1:0);
+      if(d){ var rk=stopK*A[i];
+        pos={dir:d,tIn:k[i+1].t,pIn:o[i+1],risk:rk,stop:o[i+1]-d*rk,mark:o[i+1],tMark:k[i+1].t};
+        pb[i+1]-=feeP; }
+    }
+  }
+  res.atrRef=opts.lastComplete? A[n-1] : A[n-2];
+  if(pos) res.pos={dir:pos.dir>0?'long':'short',tIn:pos.tIn,pIn:pos.pIn,stop:pos.stop,risk:pos.risk,
+    openR:pos.dir*(c[n-1]-pos.pIn)/pos.risk,days:Math.max(0,(endT(n-1)-pos.tIn)/D1)};
+  if(opts.lastComplete){                              /* إشارة آخر شمعة مسكّرة → بتتنفّذ على الفتح الجاي */
+    var g2=sig(n-1), pe={exit:false,enter:null,stopDist:null};
+    if(pos&&(pos.dir>0?g2.xL:g2.xS)) pe.exit=true;
+    if((!pos||pe.exit)&&A[n-1]>0){ if(g2.eL) pe.enter='long'; else if(g2.eS&&allowS) pe.enter='short'; }
+    if(pe.exit||pe.enter){ pe.stopDist=stopK*A[n-1]; res.pending=pe; }
+  }
+  if(pos&&opts.markOpen) closePos(c[n-1],'open',endT(n-1),n-1);     /* res.pos بيضل متل ما هو */
+  var nb=n-i0, sm=0, sq=0;
+  for(i=i0;i<n;i++) sm+=pb[i];
+  var mean=sm/nb; for(i=i0;i<n;i++) sq+=(pb[i]-mean)*(pb[i]-mean);
+  var sd=nb>1?Math.sqrt(sq/(nb-1)):0, yrs=(k[n-1].t-k[i0].t)/(365.25*D1), bpy=yrs>0?(nb-1)/yrs:0;
+  res.bars={n:nb,total:sm,mean:mean,sd:sd,years:yrs,
+    sharpe:(sd>0&&bpy>0)?mean/sd*Math.sqrt(bpy):null, t:sd>0?mean/sd*Math.sqrt(nb):null};
+  return res;
+}
+function tStatOf(arr){ var n=arr.length; if(n<3) return null;
+  var m=0,i; for(i=0;i<n;i++) m+=arr[i]; m/=n;
+  var v=0; for(i=0;i<n;i++) v+=(arr[i]-m)*(arr[i]-m); v/=(n-1);
+  if(!(v>0)) return null; return m/Math.sqrt(v/n); }
+/* تقييم: الكل + أول 60% من الفترة + آخر 40% — القاعدة لازم تكون موجبة بالقسمين (مش بس بفترة حظ) */
+function evalTrades(trades,t0,t1,split){
+  var cut=t0+(t1-t0)*(split||0.6), years=(t1-t0)/(365.25*D1);
+  var a=btStats(trades), sumD=0, sumR0=0, sumF=0, mn=null, mx=null, i;
+  for(i=0;i<trades.length;i++){ var tr=trades[i]; sumD+=tr.days; sumR0+=tr.R0; sumF+=tr.fundR;
+    if(mn===null||tr.R<mn) mn=tr.R; if(mx===null||tr.R>mx) mx=tr.R; }
+  a.t=tStatOf(trades.map(function(x){return x.R;}));
+  a.perYear=years>0?trades.length/years:0; a.rPerYear=years>0?a.sumR/years:0;
+  a.avgDays=trades.length?sumD/trades.length:0; a.avgR0=trades.length?sumR0/trades.length:0;
+  a.avgFund=trades.length?sumF/trades.length:0; a.worst=mn; a.best=mx;
+  a.inMkt=(t1>t0)?Math.min(1,sumD*D1/(t1-t0)):0;
+  return {all:a, is:btStats(trades.filter(function(x){return x.tIn<cut;})),
+          oos:btStats(trades.filter(function(x){return x.tIn>=cut;})), cut:cut, years:years, t0:t0, t1:t1};
+}
+/* الحكم: «ثابتة» = موجبة بالقسمين. قوة الدليل = t-stat — والعتبة المحترمة لما تجرّب أكتر من قاعدة ≈ 3 */
+function labVerdict(ev){ var a=ev.all;
+  if(a.n<15) return {code:'few',ok:false};
+  var both=ev.is.n>=5&&ev.oos.n>=5&&ev.is.avgR>0&&ev.oos.avgR>0;
+  if(a.avgR>0&&both){ if(a.t!==null&&a.t>=3) return {code:'strong',ok:true};
+    if(a.t!==null&&a.t>=2) return {code:'good',ok:true}; return {code:'weak',ok:false}; }
+  if(a.avgR>0) return {code:'unstable',ok:false};
+  return {code:'lose',ok:false};
+}
+/* مونت كارلو: منعيد سحب الصفقات عشوائياً مئات المرات لنعرف أسوأ تراجع محتمل (مش بس اللي صدف وصار) */
+function mcDrawdown(Rs,runs,seed){ var n=Rs.length; if(n<10) return null;
+  runs=runs||400; var rnd=lcg(seed||12345), dds=[], sts=[];
+  for(var r=0;r<runs;r++){ var eq=0,peak=0,dd=0,st=0,ms=0;
+    for(var i=0;i<n;i++){ var R=Rs[Math.floor(rnd()*n)]; eq+=R; if(eq>peak)peak=eq; if(peak-eq>dd)dd=peak-eq;
+      if(R>0) st=0; else { st++; if(st>ms)ms=st; } }
+    dds.push(dd); sts.push(ms); }
+  var num=function(a,b){return a-b;}; dds.sort(num); sts.sort(num);
+  return {dd50:dds[Math.floor(runs*0.5)],dd95:dds[Math.floor(runs*0.95)],streak95:sts[Math.floor(runs*0.95)]};
+}
+/* الشراء والاحتفاظ من الشمعة i0 — المرجع اللي أي قاعدة لازم تتقارن فيه (بنفس طريقة حساب الـSharpe) */
+function buyHold(k,i0,fundDayPct){ i0=i0||0; if(!k||k.length<i0+3) return null;
+  var n=k.length, c0=k[i0].c, peak=c0, dd=0, fd=(fundDayPct||0)/100, rs=[], sm=0, i;
+  var end=function(x){ return k[x].te||k[x].t; };
+  for(i=i0+1;i<n;i++){ var c=k[i].c; if(c>peak)peak=c; var d=(peak-c)/peak; if(d>dd)dd=d;
+    var r=(c-k[i-1].c)/c0-fd*Math.max(0,(end(i)-end(i-1))/D1); rs.push(r); sm+=r; }
+  var nb=rs.length, mean=sm/nb, sq=0; for(i=0;i<nb;i++) sq+=(rs[i]-mean)*(rs[i]-mean);
+  var sd=nb>1?Math.sqrt(sq/(nb-1)):0, years=(k[n-1].t-k[i0].t)/(365.25*D1), tot=k[n-1].c/c0-1, bpy=years>0?nb/years:0;
+  var fundPct=fd*Math.max(0,(end(n-1)-end(i0))/D1)*100;         /* مجموع التمويل المدفوع كنسبة من قيمة الشراء الأولى */
+  return {totalPct:tot*100,maxDDPct:dd*100,cagrPct:(years>0&&1+tot>0)?(Math.pow(1+tot,1/years)-1)*100:null,years:years,
+    fundPct:fundPct,netPct:sm*100,                               /* netPct = ربح السعر ناقص التمويل (كمية ثابتة) */
+    sharpe:(sd>0&&bpy>0)?mean/sd*Math.sqrt(bpy):null};
+}
+/* التمويل الفعلي للعقد من سجل Binance */
+function fundingStats(arr){
+  if(!arr||!arr.length||arr.length<3) return null;
+  var a=[],i; for(i=0;i<arr.length;i++){ var t=+arr[i].fundingTime, r=+arr[i].fundingRate; if(isFinite(t)&&isFinite(r)) a.push({t:t,r:r}); }
+  if(a.length<3) return null;
+  a.sort(function(x,y){return x.t-y.t;});
+  var df=[]; for(i=1;i<a.length;i++) df.push(a[i].t-a[i-1].t);
+  df.sort(function(x,y){return x-y;});
+  var intervalH=df[Math.floor(df.length/2)]/H1; if(!(intervalH>0)) return null;
+  var sm=0,pos=0; for(i=0;i<a.length;i++){ sm+=a[i].r; if(a[i].r>0)pos++; }
+  var perDay=(sm/a.length)*(24/intervalH)*100;
+  return {n:a.length,intervalH:Math.round(intervalH*100)/100,perDayPct:perDay,aprPct:perDay*365,
+          posShare:Math.round(pos/a.length*100),from:a[0].t,to:a[a.length-1].t,days:(a[a.length-1].t-a[0].t)/D1};
+}
+/* متوسط حركة السعر بكل ساعة من اليوم (UTC) — بلا ساعات إغلاق السوق */
+function hourProfile(k1h){ var b=[],hh; for(hh=0;hh<24;hh++) b.push([]);
+  for(var i=0;i<k1h.length;i++){ var c=k1h[i]; if(!(c.o>0)||touchesWeekend(c.t,c.t+H1)) continue;
+    b[new Date(c.t).getUTCHours()].push((c.c/c.o-1)*100); }
+  return b.map(function(arr,x){ var m=0; for(var j=0;j<arr.length;j++) m+=arr[j];
+    return {h:x,n:arr.length,mean:arr.length?m/arr.length:0,t:tStatOf(arr)}; });
+}
+/* نافذة يومية ثابتة: دخول على فتح ساعة startH UTC وخروج على فتح ساعة endH — كل يوم تداول */
+function sessionWindow(k1h,startH,endH,dir,cost){
+  cost=cost||{}; var idx={},i; for(i=0;i<k1h.length;i++) idx[k1h[i].t]=i;
+  var hrs=(endH-startH+24)%24; if(hrs===0) hrs=24;
+  var rt=2*((cost.fee||0)+(cost.slip||0)), gs=[], ns=[];
+  for(i=0;i<k1h.length;i++){ var c=k1h[i];
+    if(new Date(c.t).getUTCHours()!==startH||!(c.o>0)) continue;
+    var tEnd=c.t+hrs*H1, j=idx[tEnd]; if(j===undefined||touchesWeekend(c.t,tEnd)) continue;
+    var gr=dir*(k1h[j].o/c.o-1)*100;
+    gs.push(gr); ns.push(gr-rt-dir*(cost.fundDay||0)*hrs/24); }
+  var n=gs.length, mean=function(a){ var m=0; for(var q=0;q<a.length;q++) m+=a[q]; return a.length?m/a.length:0; };
+  var half=Math.floor(n/2), win=0; for(i=0;i<n;i++){ if(gs[i]>0)win++; }
+  return {n:n,hrs:hrs,grossMean:mean(gs),grossT:tStatOf(gs),netMean:mean(ns),netT:tStatOf(ns),
+          win:n?Math.round(win/n*100):0,netSum:mean(ns)*n,net1:mean(ns.slice(0,half)),net2:mean(ns.slice(half)),costRT:rt};
+}
+/* القواعد «مسجّلة سلفاً» بمعاييرها الكلاسيكية المنشورة — ما منفصّلها على البيانات */
+var LAB_SPECS=[
+  {id:'d55', tf:'1d',need:140,def:true,name:'قناة 55/20 يوم',short:'قناة 55/20',side:'اتجاهين',spec:{type:'donchian',N:55,M:20,stopK:2,side:'both'}},
+  {id:'d55L',tf:'1d',need:140,name:'قناة 55/20 يوم',short:'55/20 Long',side:'Long بس',spec:{type:'donchian',N:55,M:20,stopK:2,side:'long'}},
+  {id:'d20', tf:'1d',need:100,name:'قناة 20/10 يوم',short:'قناة 20/10',side:'اتجاهين',spec:{type:'donchian',N:20,M:10,stopK:2,side:'both'}},
+  {id:'d20L',tf:'1d',need:100,name:'قناة 20/10 يوم',short:'20/10 Long',side:'Long بس',spec:{type:'donchian',N:20,M:10,stopK:2,side:'long'}},
+  {id:'sma', tf:'1d',need:300,name:'تقاطع متوسط 50/200',short:'SMA 50/200',side:'اتجاهين',spec:{type:'sma',fast:50,slow:200,stopK:3,side:'both'}},
+  {id:'smaL',tf:'1d',need:300,name:'تقاطع متوسط 50/200',short:'SMA Long',side:'Long بس',spec:{type:'sma',fast:50,slow:200,stopK:3,side:'long'}},
+  {id:'ts',  tf:'1d',need:350,name:'زخم 1+3+12 شهر',short:'زخم 1/3/12',side:'اتجاهين',spec:{type:'tsmom',looks:[21,63,252],stopK:3,side:'both'}},
+  {id:'tsL', tf:'1d',need:350,name:'زخم 1+3+12 شهر',short:'زخم Long',side:'Long بس',spec:{type:'tsmom',looks:[21,63,252],stopK:3,side:'long'}},
+  {id:'h55', tf:'4h',need:200,name:'قناة 55/20 شمعة 4h',short:'4h 55/20',side:'اتجاهين',spec:{type:'donchian',N:55,M:20,stopK:2,side:'both'}},
+  {id:'h20', tf:'4h',need:150,name:'قناة 20/10 شمعة 4h',short:'4h 20/10',side:'اتجاهين',spec:{type:'donchian',N:20,M:10,stopK:2,side:'both'}}
+];
+var LAB_ROBUST=[[10,5],[15,7],[20,10],[30,13],[40,16],[55,20],[70,26],[90,33],[120,44]];
+function barEnd(b,tf){ return b.te||(b.t+tf); }
+function labSpec(id){ for(var i=0;i<LAB_SPECS.length;i++){ if(LAB_SPECS[i].id===id&&LAB_SPECS[i].tf==='1d') return LAB_SPECS[i]; } return LAB_SPECS[0]; }
+/* data: {d1,h4: شموع تداول مسكّرة (من tradingBars) · h1: شموع ساعة مسكّرة خام}
+   كل القواعد اليومية بتتقيّم على «نفس الفترة» (من أبعد تسخين مطلوب) لتكون المقارنة عادلة */
+function labRun(data,cost){
+  var out={rows:[],robust:[],bh:null,hours:null,sess:null,span:null,span4:null,h1span:null,cost:cost};
+  var start={'1d':0,'4h':0};
+  LAB_SPECS.forEach(function(S){ var k=S.tf==='1d'?data.d1:data.h4;
+    if(k&&k.length>=S.need) start[S.tf]=Math.max(start[S.tf],trendWarm(S.spec)); });
+  LAB_SPECS.forEach(function(S){
+    var k=S.tf==='1d'?data.d1:data.h4, row={id:S.id,tf:S.tf,name:S.name,short:S.short,side:S.side,def:!!S.def,hard:S.spec.type==='donchian'};
+    if(!k||k.length<S.need){ row.skip=true; out.rows.push(row); return; }
+    var r=simTrend(k,S.spec,cost,{tf:S.tf==='1d'?D1:H4,lastComplete:true,start:start[S.tf],markOpen:true});
+    var ev=evalTrades(r.trades,k[r.i0].t,k[k.length-1].t,0.6);
+    row.ev=ev; row.verdict=labVerdict(ev);
+    row.mc=mcDrawdown(r.trades.map(function(x){return x.R;}),400,7+S.id.length*31+S.id.charCodeAt(0));
+    row.pos=r.pos?{dir:r.pos.dir,openR:r.pos.openR}:null;
+    row.long=btStats(r.trades.filter(function(x){return x.dir==='long';}));
+    row.short=btStats(r.trades.filter(function(x){return x.dir==='short';}));
+    row.stops=r.trades.filter(function(x){return x.why==='stop';}).length;
+    row.openIncl=r.trades.some(function(x){return x.why==='open';});
+    row.sharpe=r.bars?r.bars.sharpe:null; row.totalPct=r.bars?r.bars.total*100:null;
+    out.rows.push(row);
+  });
+  if(data.d1&&data.d1.length>=200){
+    var s0=start['1d'];
+    LAB_ROBUST.forEach(function(p){
+      var r=simTrend(data.d1,{type:'donchian',N:p[0],M:p[1],stopK:2,side:'both'},cost,{tf:D1,lastComplete:true,start:Math.max(s0,120),markOpen:true});
+      var s=btStats(r.trades); out.robust.push({N:p[0],M:p[1],n:s.n,avgR:s.avgR,sumR:s.sumR}); });
+    out.bh=buyHold(data.d1,s0,cost?cost.fundDay:0);
+    out.span={from:data.d1[s0].t,to:barEnd(data.d1[data.d1.length-1],D1)-1,n:data.d1.length-s0,all:data.d1.length};
+  }
+  if(data.h4&&data.h4.length>start['4h']+3) out.span4={from:data.h4[start['4h']].t,to:barEnd(data.h4[data.h4.length-1],H4)-1,n:data.h4.length-start['4h']};
+  if(data.h1&&data.h1.length>=24*40){
+    out.hours=hourProfile(data.h1);
+    out.sess=[{id:'asia',name:'آسيا: شراء 00:00 وبيع 07:00',w:sessionWindow(data.h1,0,7,1,cost)},
+              {id:'on',name:'ليلي: شراء 15:00 وبيع 10:00 تاني يوم',w:sessionWindow(data.h1,15,10,1,cost)},
+              {id:'west',name:'لندن/نيويورك: شراء 10:00 وبيع 15:00',w:sessionWindow(data.h1,10,15,1,cost)}];
+    out.h1span={from:data.h1[0].t,to:data.h1[data.h1.length-1].t,n:data.h1.length};
+  }
+  return out;
+}
+/* بيانات تجريبية يومية بأنظمة سوق متغيّرة (للفحص والوضع التجريبي) — تذبذب يومي ≈1% وميل خفيف متل الأسواق الحقيقية */
+function demoDaily(seed,n,endT){
+  var rnd=lcg(seed), k=[], px=1800, t0=Math.floor((endT||Date.now())/D1)*D1-(n-1)*D1;
+  var drifts=[-1,-0.4,0,0.5,1,1.3], drift=0.5, left=0;
+  for(var i=0;i<n;i++){
+    if(left<=0){ drift=drifts[Math.floor(rnd()*drifts.length)]; left=60+Math.floor(rnd()*200); }
+    left--;
+    var vol=px*0.011*(0.5+rnd());
+    var o=px, c=o+drift*px*0.0007*(0.5+rnd())+(rnd()-0.5)*vol*3.2;
+    var hi=Math.max(o,c)+rnd()*vol*0.5, lo=Math.min(o,c)-rnd()*vol*0.5;
+    k.push({t:t0+i*D1,o:r2(o),h:r2(hi),l:r2(lo),c:r2(c),v:100});
+    px=c;
+  }
+  return k;
+}
+/* مرآة السوق حول سعر C: كل صعود بيصير هبوط — أي محرك سليم لازم يعطي نفس الصفقات معكوسة */
+function mirrorK(k,C){ return k.map(function(x){ var m={t:x.t,o:r2(C-x.o),h:r2(C-x.l),l:r2(C-x.h),c:r2(C-x.c),v:x.v};
+  if(x.te!==undefined) m.te=x.te; if(x.part) m.part=true; return m; }); }
 
 /* ---------- self test (pure, no DOM) ---------- */
 function __famgold_test(){
@@ -845,6 +1282,213 @@ function __famgold_test(){
     ok('إحصاءات: ربح 50% · محصلة +1R · أطول خسارة 2', s0.win===50&&Math.abs(s0.sumR-1)<1e-9&&s0.maxLose===2&&Math.abs(s0.maxDD-2)<1e-9);
     ok('الرسوم بالـR: 0.05% × طرفين على ستوب 16$', Math.abs(feeInR(4000,3984,0.05)-0.25)<1e-9);
     ok('الجلسات', sessionOf(Date.UTC(2026,0,5,3))==='asia'&&sessionOf(Date.UTC(2026,0,5,9))==='london'&&sessionOf(Date.UTC(2026,0,5,15))==='ny'&&sessionOf(Date.UTC(2026,0,5,22))==='late');
+    /* ================= v1.4: تصليحات المحرك القصير ================= */
+    var near=function(a,b,tol){ return Math.abs(a-b)<=(tol===undefined?1e-9:tol); };
+    ok('البنية: تساوي القمم أو القيعان = محايد (كان بينحسب هبوط)', structureOf({sh:[{p:10},{p:10}],sl:[{p:5},{p:4}]})===0&&structureOf({sh:[{p:10},{p:11}],sl:[{p:5},{p:5}]})===0&&
+      structureOf({sh:[{p:10},{p:11}],sl:[{p:5},{p:6}]})===1&&structureOf({sh:[{p:11},{p:10}],sl:[{p:6},{p:5}]})===-1);
+    var swk=[]; for(i=0;i<40;i++) swk.push({t:i*H1,o:100,h:101,l:99,c:100,v:1});
+    swk[20]={t:20*H1,o:100,h:101,l:95,c:100,v:1};             /* قاع واضح عند 95 */
+    swk[35]={t:35*H1,o:100,h:101,l:94,c:96,v:1};              /* شمعة نزلت تحتو وسكّرت فوقو = Sweep */
+    var swA=swk.slice(); swA[39]={t:39*H1,o:96,h:97,l:95.5,c:96,v:1};   /* السعر بعدو فوق 95 → الإشارة قائمة */
+    var swB=swk.slice(); swB[39]={t:39*H1,o:96,h:96,l:93,c:93,v:1};     /* السعر رجع تحت 95 → الارتداد فشل */
+    var aSA=analyzeTF('1h',swA), aSB=analyzeTF('1h',swB), aSAm=analyzeTF('1h',mirrorK(swA,200)), aSBm=analyzeTF('1h',mirrorK(swB,200));
+    ok('Sweep ناجح بيضل إشارة · Sweep فاشل بينلغى (كان بيضل يعطي نقاط صعود)', !!aSA.sweep.bull&&aSA.sweep.bull.p===95&&aSB.sweep.bull===null);
+    ok('نفس الشي معكوس للـSweep الهبوطي', !!aSAm.sweep.bear&&aSAm.sweep.bear.p===105&&aSBm.sweep.bear===null);
+    /* ---- مرآة المحرك القصير: السوق المعكوس لازم يعطي نفس القراءة معكوسة (هالفحص كان لقط غلطة الـScore) ---- */
+    var CM=8160;
+    [3,19,57,88].forEach(function(sd){
+      var S0=demoSet(sd,sd%2?1:-1), S1={m15:mirrorK(S0.m15,CM),h1:mirrorK(S0.h1,CM),h4:mirrorK(S0.h4,CM)};
+      var A0=analyzeAll3(S0), A1=analyzeAll3(S1);
+      ok('مرآة['+sd+']: تقييم كل فريم بينعكس بالضبط', A0['4h'].score===-A1['4h'].score&&A0['1h'].score===-A1['1h'].score&&A0['15m'].score===-A1['15m'].score);
+      var R0=buildRec(A0,A0['1h'].px), R1=buildRec(A1,A1['1h'].px);
+      ok('مرآة['+sd+']: الاتجاه بينعكس والـScore نفسو', R0.dir!==R1.dir&&((R0.verdict==='wait')===(R1.verdict==='wait'))&&R0.score===R1.score&&R0.gate===R1.gate);
+      ok('مرآة['+sd+']: مستويات الخطة A و B متناظرة', near(R0.planA.entry,CM-R1.planA.entry,0.021)&&near(R0.planA.sl,CM-R1.planA.sl,0.021)&&
+        near(R0.planA.tps[0],CM-R1.planA.tps[0],0.021)&&near(R0.planA.tps[1],CM-R1.planA.tps[1],0.021)&&near(R0.planA.tps[2],CM-R1.planA.tps[2],0.021)&&
+        near(R0.planB.trigger,CM-R1.planB.trigger,0.021)&&near(R0.planB.sl,CM-R1.planB.sl,0.021)&&near(R0.planA.rr2,R1.planA.rr2,0.02));
+    });
+    var mm=mirrorK(m,CM), btM=runBacktestSync({m15:mm,h1:aggregateK(mm,H1),h4:aggregateK(mm,H4)},{fee:0});
+    var bt0=runBacktestSync(dd,{fee:0});
+    ok('مرآة: الفحص التاريخي القديم بيطلّع نفس الصفقات معكوسة ('+bt0.st.trades.length+' صفقة)', bt0.st.trades.length===btM.st.trades.length&&bt0.st.trades.length>10&&
+      bt0.st.trades.every(function(t,ix){ var u=btM.st.trades[ix]; return t.dir!==u.dir&&t.plan===u.plan&&t.tIn===u.tIn&&t.tOut===u.tOut&&near(t.gross,u.gross,0.02)&&t.score===u.score&&t.gate===u.gate; }));
+    ok('الـScore للـShort بيوصل 70+ (قبل التصليح كان مستحيل يتخطى 59)', bt0.st.trades.concat(btM.st.trades).some(function(t){return t.dir==='short'&&t.score>=70;})&&
+      bt0.st.trades.concat(btM.st.trades).some(function(t){return t.dir==='long'&&t.score>=70;}));
+    ok('ملخص الفحص فيه t-stat', (function(){ var s=btSummary(bt0.st); return s.all.t!==undefined&&(s.all.t===null||isFinite(s.all.t)); })());
+
+    /* ================= v1.4: أدوات محرك الاتجاه ================= */
+    var sm5=smaArr([1,2,3,4,5],3);
+    ok('SMA', sm5[0]===null&&sm5[1]===null&&sm5[2]===2&&sm5[3]===3&&sm5[4]===4);
+    var pm=prevMaxArr([1,3,2,5,4],2), pn=prevMinArr([1,3,2,5,4],2);
+    ok('أعلى/أدنى الشموع السابقة (بلا الحالية)', pm[1]===null&&pm[2]===3&&pm[3]===3&&pm[4]===5&&pn[2]===1&&pn[3]===2&&pn[4]===2);
+    var mon=Date.UTC(2026,0,5), fri=mon+4*D1, sat=mon+5*D1, sun=mon+6*D1, mon2=mon+7*D1;   /* 5 كانون التاني 2026 = إثنين */
+    ok('التقويم: 5/1/2026 إثنين', new Date(mon).getUTCDay()===1&&new Date(sat).getUTCDay()===6);
+    var two=[]; for(i=0;i<14;i++) two.push({t:mon+i*D1,o:100+i,h:102+i,l:98+i,c:101+i,v:1});
+    var tb=tradingBars(two,D1);
+    ok('شموع التداول اليومية: 14 يوم → 11 شمعة (السبت+الأحد مدموجين بالإثنين)', tb.length===11&&tb[4].t===fri&&tb[4].te===sat&&!tb[4].part&&
+      tb[5].t===sat&&tb[5].te===mon2+D1&&tb[5].o===105&&tb[5].h===109&&tb[5].l===103&&tb[5].c===108&&tb[5].v===3&&
+      tb[6].t===mon2+D1&&tb[10].part===true&&tb[10].t===mon+12*D1&&tb[10].c===114&&two.length===14&&two[5].h===107);
+    var four=[]; for(i=0;i<24;i++) four.push({t:fri+i*H4,o:50,h:50+i,l:50-i,c:50,v:1});
+    var tb4=tradingBars(four,H4);
+    ok('شموع 4h: ويك-إند كامل = شمعة وحدة مدموجة', tb4.length===13&&tb4[5].t===fri+5*H4&&tb4[6].t===sat&&tb4[6].te===mon2&&tb4[6].h===50+17&&tb4[6].l===50-17&&tb4[6].v===12&&tb4[7].t===mon2&&!tb4[12].part);
+    ok('إغلاق الويك-إند (شموع 4h)', inWeekend(sat+12*H1,sat+16*H1)&&!inWeekend(fri+20*H1,fri+24*H1)&&inWeekend(sun+16*H1,sun+20*H1)&&!inWeekend(sun+20*H1,sun+24*H1)&&!inWeekend(mon+8*H1,mon+12*H1)&&inWeekend(fri+22*H1,fri+26*H1));
+    ok('تقاطع مع الويك-إند', touchesWeekend(fri+21*H1,sat+3*H1)&&!touchesWeekend(mon+15*H1,mon+34*H1)&&touchesWeekend(fri+15*H1,sat+10*H1)&&!touchesWeekend(sun+22*H1,mon2+7*H1)&&touchesWeekend(sun+15*H1,mon2+10*H1)&&!touchesWeekend(fri+15*H1,fri+22*H1));
+    var lg=[]; for(i=0;i<100;i++) lg.push({t:mon+i*D1,o:100+i,h:101+i,l:99+i,c:100.5+i,v:1});
+    var mn=lg.slice(60).map(function(x){ return {t:x.t,o:x.o*2,h:x.h*2,l:x.l*2,c:x.c*2,v:1}; }); mn[0].c=999;
+    var sp=spliceSeries(lg,mn);
+    ok('الوصل: نسبة 2 واستمرارية عند نقطة الوصل', near(sp.ratio,2,1e-9)&&sp.k.length===100&&sp.nLong===61&&sp.nMain===39&&near(sp.k[60].c,lg[60].c*2,0.011)&&sp.k[61]===mn[1]&&sp.k.every(function(x,ix){return ix===0||x.t>sp.k[ix-1].t;}));
+    ok('الوصل: بلا تاريخ طويل بيرجّع العقد متل ما هو، وبلا عقد بيرجّع الطويل', spliceSeries([],mn).k.length===mn.length&&spliceSeries(lg,[]).k.length===100&&spliceSeries(null,mn).nLong===0);
+
+    /* ---- صفقة قناة محسوبة باليد ----
+       60 شمعة هادية (المدى 2 → ATR=2). الشمعة 60 بتسكّر 105 فوق أعلى 20 شمعة قبلها (101) → دخول على فتح 61 = 105.
+       ATR[60]=(2×19+6)/20=2.2 → المخاطرة 2×2.2=4.4 → الستوب 100.6 */
+    var zc={fee:0,slip:0,fundDay:0}, dSpec={type:'donchian',N:20,M:10,stopK:2,side:'long'};
+    var hk=[]; for(i=0;i<60;i++) hk.push({t:mon+i*D1,o:100,h:101,l:99,c:100,v:1});
+    hk.push({t:mon+60*D1,o:100,h:106,l:100,c:105,v:1});
+    [[105,108,104,107],[107,111,106,110],[110,114,109,113],[113,117,112,116],[116,120,115,119],[119,123,118,122],[122,126,121,125],[125,128,124,127],[127,128,124,125]]
+      .forEach(function(b,ix){ hk.push({t:mon+(61+ix)*D1,o:b[0],h:b[1],l:b[2],c:b[3],v:1}); });          /* شموع 61..69 */
+    function bar(ix,o,h,l,c){ return {t:mon+ix*D1,o:o,h:h,l:l,c:c,v:1}; }
+    /* (أ) نزلة عنيفة بالشمعة 70 بتضرب الستوب 100.6 داخل الشمعة → -1R بالضبط */
+    var hkA=hk.concat([bar(70,125,125,98,99),bar(71,98,99,97,98),bar(72,98,99,97,98)]);
+    var hr=simTrend(hkA,dSpec,zc,{tf:D1,lastComplete:true});
+    ok('قناة باليد: دخول 105 على فتح الشمعة الجاية', hr.trades.length===1&&hr.trades[0].pIn===105&&hr.trades[0].tIn===mon+61*D1&&hr.trades[0].dir==='long');
+    ok('قناة باليد: ATR=2.2 → الستوب 100.6', near(hr.trades[0].risk,4.4)&&near(hr.trades[0].stop0,100.6));
+    ok('قناة باليد: ضرب الستوب داخل الشمعة = -1R بالضبط', hr.trades[0].why==='stop'&&near(hr.trades[0].pOut,100.6)&&near(hr.trades[0].gross,-1)&&near(hr.trades[0].days,9.5));
+    var hrSl=simTrend(hkA,dSpec,{fee:0,slip:0,stopSlip:0.05,fundDay:0},{tf:D1,lastComplete:true});
+    ok('انزلاق الستوب: التعبئة أسوأ من مستوى الستوب بـ0.05%', hrSl.trades.length===1&&near(hrSl.trades[0].pOut,100.6*(1-0.0005))&&near(hrSl.trades[0].gross,(100.6*(1-0.0005)-105)/4.4)&&hrSl.trades[0].gross<-1);
+    /* (ب) تجميع فوق ثم إغلاق 123 تحت أدنى 10 شموع (124) بلا ما ينضرب الستوب → خروج بالإشارة على فتح الشمعة الجاية 122.5 */
+    var hkB=hk.slice(); for(i=70;i<=80;i++) hkB.push(bar(i,125,126,124,125));
+    hkB.push(bar(81,125,125,122,123)); hkB.push(bar(82,122.5,123,122,122.5)); hkB.push(bar(83,122.5,123,122,122.5)); hkB.push(bar(84,122.5,123,122,122.5));
+    var hr2=simTrend(hkB,dSpec,zc,{tf:D1,lastComplete:true});
+    ok('قناة باليد: خروج بإشارة القناة على فتح الشمعة الجاية', hr2.trades.length===1&&hr2.trades[0].why==='signal'&&hr2.trades[0].pOut===122.5&&hr2.trades[0].tOut===mon+82*D1&&near(hr2.trades[0].gross,17.5/4.4)&&near(hr2.trades[0].days,21)&&!hr2.pos&&!hr2.pending);
+    /* (ج) فجوة: الشمعة 62 بتفتح 95 تحت الستوب → التعبئة عالفتح مش عالستوب */
+    var hkC=hk.slice(0,62).concat([bar(62,95,96,94,95),bar(63,95,96,94,95)]);
+    var hr3=simTrend(hkC,dSpec,zc,{tf:D1,lastComplete:true});
+    ok('فجوة تحت الستوب: التعبئة عالفتح (أسوأ من -1R)', hr3.trades.length===1&&hr3.trades[0].why==='stop'&&hr3.trades[0].pOut===95&&near(hr3.trades[0].gross,-10/4.4));
+    var hrF=simTrend(hkC,dSpec,{fee:0.05,slip:0.01,fundDay:0.03},{tf:D1,lastComplete:true}), tf0=hrF.trades[0];
+    ok('الرسوم والتمويل بالـR محسوبين صح', near(tf0.feeR,0.06/100*(105+95)/4.4)&&near(tf0.days,1.5)&&near(tf0.fundR,0.03/100*105*1.5/4.4)&&near(tf0.R,tf0.gross-tf0.feeR-tf0.fundR,1e-12)&&near(tf0.R0,tf0.gross-tf0.feeR,1e-12)&&tf0.R<tf0.gross);
+    var hrS=simTrend(mirrorK(hkC,200),{type:'donchian',N:20,M:10,stopK:2,side:'both'},{fee:0,slip:0,fundDay:0.03},{tf:D1,lastComplete:true});
+    ok('Short: نفس الصفقة معكوسة، والتمويل الموجب بينقبض', hrS.trades.length===1&&hrS.trades[0].dir==='short'&&hrS.trades[0].pIn===95&&near(hrS.trades[0].gross,hr3.trades[0].gross)&&hrS.trades[0].fundR<0&&hrS.trades[0].R>hrS.trades[0].R0);
+    var hrLm=simTrend(mirrorK(hkC,200),dSpec,zc,{tf:D1,lastComplete:true});
+    ok('Long بس: بالسوق المعكوس ما في ولا Short', hrLm.trades.length===0&&(hrLm.pos===null||hrLm.pos.dir==='long'));
+    var pend=simTrend(hk.slice(0,61),dSpec,zc,{tf:D1,lastComplete:true});
+    ok('إشارة معلّقة: آخر شمعة مسكّرة سكّرت فوق القناة', pend.trades.length===0&&!pend.pos&&!!pend.pending&&pend.pending.enter==='long'&&near(pend.pending.stopDist,4.4)&&near(pend.atrRef,2.2));
+    ok('آخر شمعة مش مسكّرة → ولا إشارة معلّقة', simTrend(hk.slice(0,61),dSpec,zc,{tf:D1,lastComplete:false}).pending===null);
+    var opn=simTrend(hk.slice(0,66),dSpec,zc,{tf:D1,lastComplete:false});
+    ok('صفقة مفتوحة: الربح المفتوح والمستويات الحالية والجاية', !!opn.pos&&opn.pos.dir==='long'&&near(opn.pos.openR,(119-105)/4.4)&&near(opn.pos.stop,100.6)&&
+      opn.levels.exitLong===99&&opn.levels.entryLong===117&&opn.next.exitLong===99&&opn.next.entryLong===120&&opn.hard===true&&opn.trades.length===0);
+    var opm=simTrend(hk.slice(0,66),dSpec,zc,{tf:D1,lastComplete:true,markOpen:true});
+    ok('markOpen: الصفقة المفتوحة بتنحسب على آخر سعر وبتضل ظاهرة كمفتوحة', opm.trades.length===1&&opm.trades[0].why==='open'&&opm.trades[0].pOut===119&&near(opm.trades[0].gross,14/4.4)&&near(opm.trades[0].days,5)&&!!opm.pos&&opm.pos.dir==='long');
+    /* ---- قواعد «الحالة» باليد: 30 شمعة عند 100، صعود +2 لـ120، ثم هبوط -4 لـ88 ----
+       SMA(3,6): بيصير 3>6 عند الشمعة 30 → Long على فتح 31 = 102 · بيتساووا (116=116) عند 41 → خروج على فتح 42 = 112
+                 بيصير 3<6 عند 42 → Short على فتح 43 = 108 · ATR[30]=(2×19+4)/20=2.1 → R = 3×2.1 = 6.3 */
+    var cl=[]; for(i=0;i<30;i++) cl.push(100); for(i=1;i<=10;i++) cl.push(100+2*i); [116,112,108,104,100,96,92,88,88,88,88].forEach(function(x){cl.push(x);});
+    var sk=cl.map(function(x,ix){ var op=ix?cl[ix-1]:100; return {t:mon+ix*D1,o:op,h:Math.max(op,x)+1,l:Math.min(op,x)-1,c:x,v:1}; });
+    var rs1=simTrend(sk,{type:'sma',fast:3,slow:6,stopK:3,side:'both'},zc,{tf:D1,lastComplete:false});
+    ok('متوسطات باليد: Long 102 → خروج 112 عند التساوي = +10/6.3R، بلا ستوب ثابت', sk.length===51&&rs1.trades.length===1&&rs1.trades[0].dir==='long'&&rs1.trades[0].pIn===102&&rs1.trades[0].tIn===mon+31*D1&&
+      rs1.trades[0].pOut===112&&rs1.trades[0].tOut===mon+42*D1&&rs1.trades[0].why==='signal'&&near(rs1.trades[0].risk,6.3)&&near(rs1.trades[0].gross,10/6.3)&&rs1.hard===false);
+    ok('متوسطات باليد: بعدها Short من 108 على فتح 43 ولسا مفتوح', !!rs1.pos&&rs1.pos.dir==='short'&&rs1.pos.pIn===108&&rs1.pos.tIn===mon+43*D1&&rs1.pos.openR>0&&rs1.levels.state===-1);
+    /* تساوي حقيقي بين المتوسطين لازم ينقرا «محايد» حتى لو أخطاء الفاصلة العشرية عطت فرق 1e-13:
+       نفس 5 أسعار مكرّرة 8 مرات → متوسط آخر 5 = متوسط آخر 20 بالضبط. سنت واحد زيادة/نقصان لازم يقلب الحالة. */
+    var tieP=[3915.11,3915.92,3914.87,3916.03,3915.45], tieK=[];
+    for(i=0;i<40;i++){ var tv=tieP[i%5]; tieK.push({t:mon+i*D1,o:tv,h:tv+1,l:tv-1,c:tv,v:1}); }
+    var tieS={type:'sma',fast:5,slow:20,stopK:3,side:'both'};
+    var tieU=tieK.slice(); tieU[39]={t:tieK[39].t,o:tieK[39].o,h:tieK[39].h,l:tieK[39].l,c:r2(tieK[39].c+0.01),v:1};
+    var tieD=tieK.slice(); tieD[39]={t:tieK[39].t,o:tieK[39].o,h:tieK[39].h,l:tieK[39].l,c:r2(tieK[39].c-0.01),v:1};
+    ok('تساوي المتوسطين بالضبط = محايد · وسنت واحد بيقلب الحالة', simTrend(tieK,tieS,zc,{tf:D1,lastComplete:true}).levels.state===0&&
+      simTrend(tieU,tieS,zc,{tf:D1,lastComplete:true}).levels.state===1&&simTrend(tieD,tieS,zc,{tf:D1,lastComplete:true}).levels.state===-1);
+    var rs1L=simTrend(sk,{type:'sma',fast:3,slow:6,stopK:3,side:'long'},zc,{tf:D1,lastComplete:false});
+    ok('متوسطات Long بس: نفس صفقة الشراء وبعدها خارج السوق', rs1L.trades.length===1&&rs1L.trades[0].pOut===112&&rs1L.pos===null);
+    /* زخم (2,4,6): الأغلبية بتصير موجبة عند 30 → Long 102 · عند 41 (112 مقابل 120/116/112) بتصير سالبة → قلب على فتح 42 = 112 */
+    var rs2=simTrend(sk,{type:'tsmom',looks:[2,4,6],stopK:3,side:'both'},zc,{tf:D1,lastComplete:false});
+    ok('زخم باليد: Long 102 → قلب لـShort عند 112 بنفس الفتح', rs2.trades.length===1&&rs2.trades[0].pIn===102&&rs2.trades[0].pOut===112&&rs2.trades[0].tOut===mon+42*D1&&
+      !!rs2.pos&&rs2.pos.dir==='short'&&rs2.pos.pIn===112&&rs2.pos.tIn===mon+42*D1&&rs2.levels.state===-1&&rs2.levels.votes.join(',')==='0,-1,-1'&&rs2.levels.refs.join(',')==='88,92,100');
+
+    /* ---- خصائص عامة لكل الأنواع: تناظر · سلامة · بلا نظر للمستقبل · تطابق طريقتَي الحساب ---- */
+    var dly=tradingBars(demoDaily(4242,2600,Date.UTC(2026,9,1)),D1); if(dly[dly.length-1].part) dly.pop();
+    var CD=maxOf(dly.map(function(x){return x.h;}),0,dly.length)+minOf(dly.map(function(x){return x.l;}),0,dly.length), dlyM=mirrorK(dly,CD);
+    var costT={fee:0.04,slip:0.01,stopSlip:0.03,fundDay:0.02};
+    [['قناة 20/10',{type:'donchian',N:20,M:10,stopK:2,side:'both'},15],['قناة 55/20',{type:'donchian',N:55,M:20,stopK:2,side:'both'},10],
+     ['متوسطات 50/200',{type:'sma',fast:50,slow:200,stopK:3,side:'both'},4],['زخم 1/3/12',{type:'tsmom',looks:[21,63,252],stopK:3,side:'both'},6]].forEach(function(pr){
+      var a0=simTrend(dly,pr[1],zc,{tf:D1,lastComplete:true}), a1=simTrend(dlyM,pr[1],zc,{tf:D1,lastComplete:true});
+      ok(pr[0]+': صفقات كافية للفحص ('+a0.trades.length+')', a0.trades.length>=pr[2]);
+      ok(pr[0]+': تناظر كامل (السوق المعكوس = نفس الصفقات معكوسة)', a0.trades.length===a1.trades.length&&a0.trades.every(function(t,ix){ var u=a1.trades[ix];
+        return t.dir!==u.dir&&t.tIn===u.tIn&&t.tOut===u.tOut&&t.why===u.why&&near(t.gross,u.gross,0.01); })&&(!!a0.pos===!!a1.pos)&&(!a0.pos||a0.pos.dir!==a1.pos.dir));
+      ok(pr[0]+': كل صفقة سليمة (خروج بعد الدخول · مخاطرة موجبة · خسارة الستوب ≤ -1R)', a0.trades.every(function(t){
+        return t.tOut>t.tIn&&t.risk>0&&(t.dir==='long'?t.stop0<t.pIn:t.stop0>t.pIn)&&isFinite(t.R)&&(t.why!=='stop'||t.gross<=-1+1e-9); }));
+      ok(pr[0]+': '+(a0.hard?'في خروج بالستوب وخروج بالإشارة':'كل الخروج بالإشارة (بلا ستوب ثابت)'), a0.hard? (a0.trades.some(function(t){return t.why==='stop';})&&a0.trades.some(function(t){return t.why==='signal';})) : a0.trades.every(function(t){return t.why==='signal';}));
+      ok(pr[0]+': بلا تداخل بين الصفقات', a0.trades.every(function(t,ix){ return ix===0||t.tIn>=a0.trades[ix-1].tOut; }));
+      var cutI=Math.floor(dly.length*0.7), cT=dly[cutI].t, b0=simTrend(dly.slice(0,cutI),pr[1],zc,{tf:D1,lastComplete:true});
+      var kf=function(t){ return t.dir+'|'+t.tIn+'|'+t.tOut+'|'+t.gross.toFixed(8); };
+      var e1=a0.trades.filter(function(t){return t.tOut<cT-4*D1;}).map(kf).join(';'), e2=b0.trades.filter(function(t){return t.tOut<cT-4*D1;}).map(kf).join(';');
+      ok(pr[0]+': بلا نظر للمستقبل (قصّ البيانات ما بيغيّر الصفقات القديمة)', e1.length>0&&e1===e2);
+      var lo=simTrend(dly,{type:pr[1].type,N:pr[1].N,M:pr[1].M,fast:pr[1].fast,slow:pr[1].slow,looks:pr[1].looks,stopK:pr[1].stopK,side:'long'},zc,{tf:D1,lastComplete:true});
+      var aL=a0.trades.filter(function(t){return t.dir==='long';});
+      ok(pr[0]+': وضع Long بس = نفس صفقات الشراء بالضبط', lo.trades.length===aL.length&&lo.trades.every(function(t,ix){ return t.dir==='long'&&t.tIn===aL[ix].tIn&&t.tOut===aL[ix].tOut&&near(t.gross,aL[ix].gross); }));
+      /* طريقتين مستقلتين للحساب لازم يتطابقوا: مجموع ربح الشموع = مجموع ربح الصفقات (مع الرسوم والتمويل) */
+      var ac=simTrend(dly,pr[1],costT,{tf:D1,lastComplete:true}), sumT=0;
+      ac.trades.forEach(function(t){ sumT+=t.R*t.risk/t.pIn; });
+      if(ac.pos){ var dS=ac.pos.dir==='long'?1:-1, lastB=dly[dly.length-1];
+        sumT+=dS*(lastB.c-ac.pos.pIn)/ac.pos.pIn-0.05/100-dS*0.02/100*(lastB.te-ac.pos.tIn)/D1; }
+      ok(pr[0]+': مجموع ربح الشموع = مجموع ربح الصفقات (تطابق لحدّ 1e-9)', near(ac.bars.total,sumT,1e-9)&&isFinite(ac.bars.sharpe)&&ac.trades.length===a0.trades.length);
+      var st2=simTrend(dly,pr[1],zc,{tf:D1,lastComplete:true,start:400});
+      ok(pr[0]+': بداية موحّدة — ولا صفقة قبل الشمعة 400', st2.i0===400&&st2.trades.length>0&&st2.trades.every(function(t){return t.tIn>dly[400].t;}));
+    });
+    /* ---- سوق عشوائي بلا اتجاه (Random Walk): المحاكي ما لازم يخترع أفضلية ولا خسارة — المتوسط الخام لازم ≈ 0 ----
+       120 مسار مستقل × 800 شمعة × 48 خطوة صغيرة بالشمعة. الإحصاء على «مجموع كل مسار» (المسارات مستقلة،
+       بعكس الصفقات اللي توزيعها مايل: خسارات صغيرة كتير وربحات كبيرة قليلة). */
+    var rws=[];
+    for(var sd2=1;sd2<=120;sd2++){ var rn=lcg(Math.imul(sd2,2654435761)>>>0), rw=[], pxr=4000;
+      for(i=0;i<800;i++){ var oo=pxr, hi2=pxr, lo2=pxr; for(var q2=0;q2<48;q2++){ pxr+=(rn()<0.5?-1:1)*0.6; if(pxr>hi2)hi2=pxr; if(pxr<lo2)lo2=pxr; }
+        rw.push({t:mon+i*D1,o:oo,h:hi2,l:lo2,c:pxr,v:1}); }
+      rws.push(rw); }
+    [['قناة 20/10',{type:'donchian',N:20,M:10,stopK:2,side:'both'},2000],['قناة 55/20',{type:'donchian',N:55,M:20,stopK:2,side:'both'},900],
+     ['متوسطات 50/200',{type:'sma',fast:50,slow:200,stopK:3,side:'both'},300],['زخم 1/3/12',{type:'tsmom',looks:[21,63,252],stopK:3,side:'both'},2000]].forEach(function(pr){
+      var tot=[], totC=[], nT=0;
+      rws.forEach(function(rw){ var a=0, b=0;
+        simTrend(rw,pr[1],zc,{tf:D1,lastComplete:true,markOpen:true}).trades.forEach(function(t){ a+=t.gross; nT++; });
+        simTrend(rw,pr[1],zc,{tf:D1,lastComplete:true}).trades.forEach(function(t){ b+=t.gross; });
+        tot.push(a); totC.push(b); });
+      var mA=0, mC=0; tot.forEach(function(x){mA+=x;}); totC.forEach(function(x){mC+=x;}); mA/=tot.length; mC/=totC.length; var pt=tStatOf(tot);
+      ok('سوق عشوائي · '+pr[0]+': '+nT+' صفقة، '+(mA>=0?'+':'')+mA.toFixed(2)+'R للمسار (t='+pt.toFixed(2)+') — بلا أفضلية وهمية', nT>=pr[2]&&Math.abs(pt)<3);
+      ok('سوق عشوائي · '+pr[0]+': تجاهل الصفقة المفتوحة بيظلم القاعدة ('+mC.toFixed(2)+'R للمسار بدل '+mA.toFixed(2)+'R)', mC<mA);
+    });
+    /* ---- إحصاءات ---- */
+    ok('t-stat: [1,2,3] = 3.464', near(tStatOf([1,2,3]),2*Math.sqrt(3))&&tStatOf([1,1])===null&&tStatOf([2,2,2])===null);
+    var evT=evalTrades([{R:1,R0:1,fundR:0,days:10,tIn:mon},{R:-1,R0:-1,fundR:0,days:5,tIn:mon+50*D1},{R:2,R0:2.1,fundR:0.1,days:20,tIn:mon+90*D1}],mon,mon+100*D1,0.6);
+    ok('التقييم: قسمة 60/40 وأرقام المجمل', evT.is.n===2&&evT.oos.n===1&&near(evT.all.sumR,2)&&near(evT.all.avgDays,35/3)&&near(evT.all.inMkt,0.35)&&near(evT.all.avgR0,2.1/3)&&evT.all.worst===-1&&evT.all.best===2&&near(evT.all.t,tStatOf([1,-1,2])));
+    var mcA=[1,-1,2,-1,-1,3,-1,1,-1,2,-1,-1], mc1=mcDrawdown(mcA,300,5), mc2=mcDrawdown(mcA,300,5);
+    ok('مونت كارلو: ثابت بنفس البذرة ومنطقي', mc1.dd95===mc2.dd95&&mc1.dd95>=mc1.dd50&&mc1.dd50>0&&mc1.streak95>=2&&mcDrawdown([1,2],100,1)===null);
+    var lv=function(n,avg,t,a1,a2){ return labVerdict({all:{n:n,avgR:avg,t:t},is:{n:Math.floor(n/2),avgR:a1},oos:{n:Math.floor(n/2),avgR:a2}}); };
+    ok('الحكم: خاسرة / قليلة / قوية / جيدة / ضعيفة / مش ثابتة', lv(40,-0.1,-1,-0.1,-0.1).code==='lose'&&lv(8,1,5,1,1).code==='few'&&lv(40,0.3,3.4,0.2,0.4).code==='strong'&&lv(40,0.3,3.4,0.2,0.4).ok===true&&
+      lv(40,0.3,2.4,0.2,0.4).code==='good'&&lv(40,0.1,0.8,0.05,0.15).code==='weak'&&lv(40,0.1,0.8,0.05,0.15).ok===false&&lv(40,0.1,0.8,-0.2,0.4).code==='unstable'&&lv(40,0.5,3.5,-0.2,1.2).code==='unstable');
+    var bhv=buyHold([{t:mon,c:100},{t:mon+100*D1,c:150},{t:mon+200*D1,c:120},{t:mon+365.25*D1,c:144}],0,0);
+    ok('شراء واحتفاظ: +44% بسنة وأقصى هبوط 20%', near(bhv.totalPct,44)&&near(bhv.maxDDPct,20)&&near(bhv.cagrPct,44,1e-6)&&isFinite(bhv.sharpe)&&bhv.sharpe>0&&near(bhv.netPct,44)&&bhv.fundPct===0&&buyHold([{t:1,c:1}],0,0)===null);
+    var bhf=buyHold([{t:mon,c:100},{t:mon+100*D1,c:150},{t:mon+200*D1,c:120},{t:mon+365.25*D1,c:144}],0,0.02);
+    ok('شراء واحتفاظ على العقد: التمويل 0.02% باليوم بياكل 7.3% بالسنة', near(bhf.fundPct,0.02*365.25)&&near(bhf.netPct,44-0.02*365.25)&&near(bhf.totalPct,44)&&bhf.sharpe<bhv.sharpe);
+    var fr=[]; for(i=0;i<60;i++) fr.push({fundingTime:mon+i*4*H1,fundingRate:(i%3===0?'-0.0001':'0.0002')});
+    var fs=fundingStats(fr);
+    ok('التمويل: فاصل 4 ساعات ومتوسط يومي صح', fs.intervalH===4&&near(fs.perDayPct,0.0001*6*100)&&near(fs.aprPct,fs.perDayPct*365)&&fs.posShare===67&&fs.n===60&&fundingStats([])===null&&fundingStats(null)===null&&fundingStats({code:-1})===null);
+    /* ---- الجلسات: أثر مزروع بساعة 3 UTC بس ---- */
+    var hh1=[], pz=4000; for(i=0;i<24*70;i++){ var t1h=mon+i*H1, op=pz; if(new Date(t1h).getUTCHours()===3&&!touchesWeekend(t1h,t1h+H1)) pz=pz*1.001; hh1.push({t:t1h,o:op,h:Math.max(op,pz),l:Math.min(op,pz),c:pz,v:1}); }
+    var hp=hourProfile(hh1), sw7=sessionWindow(hh1,0,7,1,{fee:0.02,slip:0,fundDay:0.024}), sw2=sessionWindow(hh1,10,15,1,zc), sw3=sessionWindow(hh1,15,10,1,zc);
+    ok('بروفايل الساعات لقط الساعة 3 بس', near(hp[3].mean,0.1,1e-6)&&hp[2].mean===0&&hp[4].mean===0&&hp[3].n===50);
+    ok('نافذة آسيا: +0.1% خام، ناقص الرسوم والتمويل', sw7.n===50&&near(sw7.grossMean,0.1,1e-6)&&near(sw7.netMean,0.1-0.04-0.024*7/24,1e-6)&&sw7.win===100&&near(sw2.grossMean,0,1e-12)&&sw2.n===50);
+    ok('النافذة الليلية 15→10: 19 ساعة، بتتخطى الويك-إند (4 ليالي بالأسبوع)', sw3.hrs===19&&sw3.n===40&&near(sw3.grossMean,0.1,1e-6));
+    /* ---- المختبر كامل ---- */
+    var h4d=tradingBars(aggregateK(demoRegimes(77,24000,Date.UTC(2026,9,1)),H4),H4); if(h4d[h4d.length-1].part) h4d.pop();
+    var lab=labRun({d1:dly,h4:h4d,h1:hh1},costT);
+    ok('المختبر: 10 قواعد، ولا وحدة ناقصة', lab.rows.length===10&&lab.rows.every(function(r){return !r.skip&&r.ev&&r.verdict&&isFinite(r.ev.all.avgR)&&isFinite(r.sharpe);})&&lab.rows[0].id==='d55'&&lab.rows[0].def);
+    ok('المختبر: نفس فترة التقييم لكل القواعد اليومية (من الشمعة 252)', lab.rows.filter(function(r){return r.tf==='1d';}).every(function(r){ return r.ev.t0===dly[252].t&&r.ev.t1===dly[dly.length-1].t; })&&lab.span.from===dly[252].t&&lab.span.n===dly.length-252&&lab.span.to===dly[dly.length-1].te-1);
+    ok('المختبر: خريطة المتانة + شراء واحتفاظ + الجلسات', lab.robust.length===9&&lab.robust.every(function(r){return r.n>0&&isFinite(r.avgR);})&&!!lab.bh&&isFinite(lab.bh.totalPct)&&isFinite(lab.bh.sharpe)&&lab.hours.length===24&&lab.sess.length===3&&!!lab.span4);
+    ok('المختبر: Long بس = صفقات الشراء من نسخة الاتجاهين', [[0,1],[2,3],[4,5],[6,7]].every(function(p){ var a=lab.rows[p[0]], b=lab.rows[p[1]];
+      return a.long.n===b.ev.all.n&&near(a.long.sumR,b.ev.all.sumR,1e-9)&&b.short.n===0&&a.long.n+a.short.n===a.ev.all.n; }));
+    ok('المختبر: التمويل الموجب بيكلّف الـLong وبيفيد الـShort', lab.rows[1].ev.all.avgFund>0&&lab.rows[1].ev.all.avgR0>lab.rows[1].ev.all.avgR);
+    var labS=labRun({d1:dly.slice(0,90),h4:null,h1:null},costT);
+    ok('المختبر: بيانات قليلة → بيتخطّى القواعد بلا ما ينهار', labS.rows.every(function(r){return r.skip;})&&labS.robust.length===0&&labS.hours===null&&labS.bh===null);
+    var labP=labRun({d1:dly.slice(0,200),h4:null,h1:null},costT);
+    ok('المختبر: تاريخ قصير (200 شمعة) → القنوات بس، والباقي بيتخطّى', !labP.rows[0].skip&&!labP.rows[2].skip&&labP.rows[4].skip&&labP.rows[6].skip&&labP.rows[8].skip&&labP.rows[0].ev.t0===dly[55].t);
+    ok('اختيار القاعدة: يومي بس، والغلط بيرجع للافتراضي', labSpec('d20L').id==='d20L'&&labSpec('h55').id==='d55'&&labSpec('xx').id==='d55'&&labSpec(undefined).id==='d55');
+    var cw=horizonStats(kd,true), fw=horizonStats(kd);
+    ok('إحصاء الأفق المبسّط عيّنتو أكبر أو تساوي', cw.coarse===true&&fw.coarse===false&&cw.n>=fw.n);
   }catch(e){ res.pass=false; res.checks.push('❌ خطأ: '+(e&&e.message?e.message:e)); }
   return res;
 }
@@ -860,9 +1504,10 @@ var state={ data:null, A:null, rec:null, price:null, chg:null, mark:null,
   src:'—', health:{}, chartTF:'1h', busy:false, cd:0,
   htf:{k1d:null,k1w:null,at:0,src:null,statsK:null,statsK1w:null,statsSrc:null},
   htfBusy:false, weekly:null, htfHealth:{}, lastOk:0,
-  bt:null, btRun:{busy:false,msg:'',pct:0,err:''} };
+  bt:null, btRun:{busy:false,msg:'',pct:0,err:''},
+  trend:null, lab:null, labRun:{busy:false,msg:'',pct:0,err:''} };
 
-var DEF={cap:1000,risk:1,lev:10,intv:30,alerts:true,sound:true,demo:false,sym:'XAUUSDT',fee:0.04};
+var DEF={cap:1000,risk:1,lev:10,intv:30,alerts:true,sound:true,demo:false,sym:'XAUUSDT',fee:0.04,trendId:'d55'};
 function withDefaults(o){ var out={};
   Object.keys(DEF).forEach(function(k){ out[k]=(o&&o[k]!==undefined&&o[k]!==null)?o[k]:DEF[k]; });
   return out; }
@@ -872,6 +1517,7 @@ var alertLog=loadJSON('famgold_alerts',{});
 var manualEvents=loadJSON('famgold_events',[]);
 var errLog=loadJSON('famgold_errors',[]);
 state.bt=loadJSON('famgold_bt',null);
+state.lab=loadJSON('famgold_lab',null);
 
 /* ---------- error visibility: ولا خطأ بيضيع بصمت ---------- */
 function logErr(src,msg){
@@ -960,8 +1606,8 @@ function fetchPrimary(sym){
       t24:v[3], prem:v[4], oi:v[5], health:H, src:'Binance Futures · '+sym };
   });
 }
-function fetchFallback(){
-  var S='https://api.binance.com/api/v3/', sym='PAXGUSDT', H={};
+function fetchFallback(base){
+  var S=base||'https://api.binance.com/api/v3/', sym='PAXGUSDT', H={};
   function mark(name,p){ return p.then(function(r){ H[name]={ok:true,ms:r.ms}; return r.j; })
     .catch(function(e){ H[name]={ok:false,err:String(e&&e.message||e)}; throw e; }); }
   var pk4=mark('شموع 4h',fJSON(S+'klines?symbol='+sym+'&interval=4h&limit=220'));
@@ -990,17 +1636,24 @@ function refresh(){
     applyData({sets:sets,t24:null,prem:null,oi:null,health:{'وضع تجريبي':{ok:true,ms:0}},src:'🧪 بيانات تجريبية'});
     state.htf={k1d:demoKlines(sd+3,420,1440,4080,1),k1w:demoKlines(sd+4,180,10080,4000,1),
       at:Date.now(),src:'🧪 تجريبي',statsK:null,statsK1w:null,statsSrc:null};
+    safe('trend-demo',function(){ var dk=demoDaily(Math.floor(Date.now()/D1),1500), f=(state.price||4080)/dk[dk.length-1].c;
+      state.htf.trendK=dk.map(function(x){ return {t:x.t,o:r2(x.o*f),h:r2(x.h*f),l:r2(x.l*f),c:r2(x.c*f),v:x.v}; }); });
     safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly);
+    safe('trend-compute',computeTrend); safe('trend-render',renderTrend);
     done(); return;
   }
   function afterMain(){
     ensureHTF().then(function(){
-      safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly); safe('health',renderHealth); });
+      safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly);
+      safe('trend-compute',computeTrend); safe('trend-render',renderTrend); safe('health',renderHealth); });
   }
   fetchPrimary((settings.sym||'XAUUSDT').toUpperCase().trim())
     .then(function(d){ applyData(d); afterMain(); done(); })
     .catch(function(){
-      fetchFallback()
+      if(!isGoldSym(curSym())){                         /* v1.4: PAXG بديل للذهب بس — مش لأي رمز تاني */
+        state.health={'الشبكة':{ok:false,err:'Binance Futures ما ردّ على '+curSym()}};
+        renderHealth(); toast('❌ ما قدرت وصل لبيانات '+curSym()+' — شيّك الرمز أو النت'); done(false); return; }
+      fetchFallback().catch(function(){ return fetchFallback(SPOT2); })
         .then(function(d){ applyData(d); afterMain(); toast('⚠️ Binance Futures ما ردّ — كمّلنا على PAXG سبوت'); done(); })
         .catch(function(){ state.health={'الشبكة':{ok:false,err:'كل المصادر فشلت'}};
           renderHealth(); toast('❌ ما قدرت وصل للبيانات — التوصية المعروضة قديمة، لا تعتمد عليها'); done(false); });
@@ -1030,22 +1683,30 @@ function applyData(d){
   decorateRec();
   safe('journal-engine',journalEngine);
   safe('alerts',alertsEngine);
+  safe('trend-compute',computeTrend);
   renderAll();
 }
 
 /* ---------- calibration: الفحص التاريخي بيرجع يأثّر عالتوصية الحيّة ---------- */
 function btFresh(){ var b=state.bt; return !!(b&&b.sum&&b.sym===settings.sym&&(!!b.demo)===(!!settings.demo)); }
+function btCurrent(){ return btFresh()&&state.bt.eng===ENG_V; }      /* v1.4: الفحص معمول على نفس نسخة المحرك؟ */
 function applyCalibration(){
   var rec=state.rec; if(!rec) return;
   rec.sess=sessionOf(Date.now()); rec.calib=null; rec.sessStat=null;
   if(!btFresh()) return;
-  var sum=state.bt.sum, b=calibBucket(sum,rec.score);
-  rec.calib=b; rec.sessStat=sum.sess[rec.sess]||null;
-  if(b&&b.n>=15&&b.avgR<0&&rec.gate){ rec.gate=false; rec.gateWhy.push('الفحص التاريخي سلبي لفئة هالـScore'); }
-  if(rec.sessStat&&rec.sessStat.n>=15&&rec.sessStat.avgR<0)
-    rec.warnings.push('🕐 جلسة '+SESSION_AR[rec.sess]+' كانت خاسرة بالفحص التاريخي ('+fmtR(rec.sessStat.avgR)+' للصفقة، عيّنة '+rec.sessStat.n+') — الأفضل تستنى جلسة أقوى.');
-  if(sum.all.n>=30&&sum.all.avgR<0)
-    rec.warnings.push('❌ آخر فحص تاريخي طلّع النظام خاسر بهالفترة ('+fmtR(sum.all.avgR)+' للصفقة) — paper trading بس لحدّ ما نراجع الأرقام.');
+  var sum=state.bt.sum, cur=btCurrent();
+  if(cur){                                              /* معايرة الـScore والجلسة بس إذا الفحص على المحرك الحالي */
+    var b=calibBucket(sum,rec.score);
+    rec.calib=b; rec.sessStat=sum.sess[rec.sess]||null;
+    if(b&&b.n>=15&&b.avgR<0&&rec.gate){ rec.gate=false; rec.gateWhy.push('الفحص التاريخي سلبي لفئة هالـScore'); }
+    if(rec.sessStat&&rec.sessStat.n>=15&&rec.sessStat.avgR<0)
+      rec.warnings.push('🕐 جلسة '+SESSION_AR[rec.sess]+' كانت خاسرة بالفحص التاريخي ('+fmtR(rec.sessStat.avgR)+' للصفقة، عيّنة '+rec.sessStat.n+') — الأفضل تستنى جلسة أقوى.');
+  }
+  if(sum.all.n>=30&&sum.all.avgR<0){
+    if(rec.gate){ rec.gate=false; rec.gateWhy.push('المحرك القصير خاسر بآخر فحص تاريخي'); }
+    rec.warnings.push('❌ آخر فحص تاريخي طلّع المحرك القصير خاسر بهالفترة ('+fmtR(sum.all.avgR)+' للصفقة)'+
+      (cur?'':' — وهيدا قبل تصليحات v1.4، جدّد الفحص من قسم 🧪 لتشوف أثرها')+'. paper trading بس — وشوف 🧭 إشارة الاتجاه فوق.');
+  }
 }
 function decorateRec(){
   var rec=state.rec; if(!rec) return;
@@ -1056,6 +1717,7 @@ function decorateRec(){
 function calibHTML(rec){
   if(!btFresh()) return '<div class="calib">📐 <b>المعايرة:</b> ما في فحص تاريخي '+(state.bt?'لهالرمز/الوضع':'بعد')+
     ' — شغّلو من قسم 🧪 تحت لتعرف قديش هالـScore بيسوى فعلياً.</div>';
+  if(!btCurrent()) return '<div class="calib">📐 <b>المعايرة:</b> الفحص المحفوظ معمول على نسخة أقدم من المحرك (قبل تصليح الـScore والـSweep) — <b>جدّدو من قسم 🧪</b> لترجع المعايرة تشتغل.</div>';
   var b=rec.calib, age=Math.floor((Date.now()-state.bt.ts)/86400000);
   var h='<div class="calib">📐 <b>المعايرة</b> (فحص '+state.bt.sum.days+' يوم'+(age>=1?' · عمرو '+age+' يوم':'')+'): ';
   if(b&&b.n>0) h+='Score <span class="num">'+b.lo+'–'+b.hi+'</span> تاريخياً → ربح <b class="num">'+b.win+'%</b> · <span class="num '+(b.avgR>=0?'pos':'neg')+'">'+fmtR(b.avgR)+'</span> للصفقة · عيّنة <span class="num">'+b.n+'</span>'+
@@ -1088,26 +1750,30 @@ function htfFetch(base,sym,tag){
   var H={};
   function mk(name,p){ return p.then(function(r){ H[name]={ok:true,ms:r.ms}; return r.j; })
     .catch(function(e){ H[name]={ok:false,err:String(e&&e.message||e)}; throw e; }); }
-  var p1=mk('شموع 1D'+(tag||''),fJSON(base+'klines?symbol='+sym+'&interval=1d&limit=600',20000));
+  var p1=mk('شموع 1D'+(tag||''),fJSON(base+'klines?symbol='+sym+'&interval=1d&limit=1000',20000));
   var p2=mk('شموع 1W'+(tag||''),fJSON(base+'klines?symbol='+sym+'&interval=1w&limit=200',20000));
   return Promise.all([p1,p2]).then(function(v){
     return {k1d:parseK(v[0]),k1w:parseK(v[1]),H:H,src:sym}; });
 }
+function htfSpot(tag){                                /* PAXG سبوت — مع سيرفر بيانات بديل إذا الأساسي محجوب */
+  return htfFetch(SPOT,'PAXGUSDT',tag).catch(function(){ return htfFetch(SPOT2,'PAXGUSDT',tag); }); }
+function htfStale(){ var k=state.htf&&state.htf.k1d;  /* دخلنا بيوم جديد (UTC) والكاش لسا واقف على شمعة مبارح */
+  return !!(k&&k.length&&Date.now()>=k[k.length-1].t+D1); }
 function ensureHTF(){
   if(settings.demo) return Promise.resolve();
-  if(state.htf&&state.htf.k1d&&(Date.now()-state.htf.at<10*60000)) return Promise.resolve();
-  var sym=(settings.sym||'XAUUSDT').toUpperCase().trim();
-  var useSpot=state.src&&state.src.indexOf('PAXG')>-1;
-  state.htfBusy=true; state.htfHealth={}; safe('weekly-render',renderWeekly);
-  var first=useSpot? htfFetch('https://api.binance.com/api/v3/','PAXGUSDT')
-                   : htfFetch('https://fapi.binance.com/fapi/v1/',sym);
-  return first.catch(function(){ return htfFetch('https://api.binance.com/api/v3/','PAXGUSDT',' (بديل)'); })
+  var age=Date.now()-((state.htf&&state.htf.at)||0);
+  if(state.htf&&state.htf.k1d&&age<10*60000&&(!htfStale()||age<60000)) return Promise.resolve();
+  var sym=curSym(), gold=isGoldSym(sym);
+  var useSpot=gold&&!!state.src&&state.src.indexOf('PAXG')>-1;
+  state.htfBusy=true; state.htfHealth={}; safe('weekly-render',renderWeekly); safe('trend-render',renderTrend);
+  var first=useSpot? htfSpot() : htfFetch(FUT,sym);
+  return first.catch(function(e){ if(!gold) throw e; return htfSpot(' (بديل)'); })
   .then(function(r){
     state.htf={k1d:r.k1d,k1w:r.k1w,at:Date.now(),src:r.src,statsK:null,statsK1w:null,statsSrc:null};
     Object.assign(state.htfHealth,r.H); Object.assign(state.health,r.H);
-    /* عقد XAUUSDT جديد وتاريخو قصير؟ منجيب PAXG (نفس الذهب، تاريخ أطول) */
-    if(r.k1d.length<300 && r.src.indexOf('PAXG')===-1){
-      return htfFetch('https://api.binance.com/api/v3/','PAXGUSDT',' للعيّنة').then(function(r2){
+    /* عقد XAUUSDT جديد وتاريخو قصير → منجيب PAXG (نفس الذهب، تاريخ أطول): للإحصاء ولإشارة الاتجاه */
+    if(gold && r.k1d.length<900 && r.src.indexOf('PAXG')===-1){
+      return htfSpot(' للعيّنة').then(function(r2){
         state.htf.statsK=r2.k1d; state.htf.statsK1w=r2.k1w; state.htf.statsSrc='PAXG (تاريخ أطول)';
         Object.assign(state.htfHealth,r2.H); Object.assign(state.health,r2.H);
       }).catch(function(){});
@@ -1124,7 +1790,8 @@ window.retryHTF=function(){
   state.htf={k1d:null,k1w:null,at:0,src:null,statsK:null,statsK1w:null,statsSrc:null};
   state.weekly=null;
   ensureHTF().then(function(){
-    safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly); safe('health',renderHealth); });
+    safe('weekly-compute',computeWeekly); safe('weekly-render',renderWeekly);
+    safe('trend-compute',computeTrend); safe('trend-render',renderTrend); safe('health',renderHealth); });
 };
 function allEvents(){
   var a=manualEvents.slice();
@@ -1153,6 +1820,7 @@ function computeWeekly(){
   var a1w=(k1w&&k1w.length>=40)?analyzeTF('1w',k1w):null;
   var statsK=state.htf.statsK||k1d;
   var st=horizonStats(statsK);
+  if(st&&st.n<15){ var stc=horizonStats(statsK,true); if(stc&&stc.n>st.n) st=stc; }   /* v1.4: عيّنة صغيرة → توقيع مبسّط */
   var evs=upcomingEvents(5);
   var s1=a1d.score, s2=a1w?a1w.score:0;
   var dir=(s1>=22&&s2>=-10)?'long':((s1<=-22&&s2<=10)?'short':'neutral');
@@ -1212,20 +1880,26 @@ function renderWeekly(){
   h+='</div>';
   if(w.altSrc) h+='<div class="note">ℹ️ القراءة من <b>'+w.altSrc+'</b> لأن تاريخ عقد XAUUSDT لسا قصير — سعر الذهب نفسو.</div>';
   else if(w.altW) h+='<div class="note">ℹ️ قراءة 1W من PAXG (تاريخ العقد الأسبوعي قصير).</div>';
-  if(w.st&&w.st.n>0){
+  if(w.st&&w.st.n>0&&w.st.n<10){
+    h+='<div class="warn">📊 <b>عيّنة غير كافية:</b> بس <span class="num">'+w.st.n+'</span> '+(w.st.n===1?'حالة تاريخية مشابهة':'حالات تاريخية مشابهة')+' لوضعية اليوم — ما منعرض نسب مئوية على عيّنة هالقد صغيرة لأنها بتطلع أرقام مضللة (متل 100%).</div>';
+  } else if(w.st&&w.st.n>0){
     h+='<div class="plan"><div class="head"><span class="tag g">📊 التاريخ بيحكي</span> أيام مشابهة لوضعية اليوم</div>';
     h+='<div class="kv"><span class="k">بعد 3 أيام كان السعر أعلى</span><span class="v num '+(w.st.up3>=50?'up':'dn')+'">'+w.st.up3+'%</span></div>';
     h+='<div class="kv"><span class="k">بعد 7 أيام كان السعر أعلى</span><span class="v num '+(w.st.up7>=50?'up':'dn')+'">'+w.st.up7+'%</span></div>';
     h+='<div class="kv"><span class="k">متوسط حركة 7 أيام</span><span class="v num '+(w.st.avg7>=0?'up':'dn')+'">'+(w.st.avg7>=0?'+':'')+fmt(w.st.avg7,2)+'%</span></div>';
     h+='<div class="note">العيّنة: '+(w.st.n)+' حالة من '+(w.statsSrc?w.statsSrc:(w.src||'نفس الرمز'))+
+       (w.st.coarse?' · بتوقيع مبسّط (ترتيب المتوسطات + موقع السعر)':'')+
        (w.st.n<30?' — <span class="wt">عيّنة صغيرة، خفف الثقة</span>':'')+'.</div></div>';
   } else {
     h+='<div class="warn">ما لقيت حالات تاريخية كافية بنفس الوضعية — الإحصاء مش متوفر هالمرة.</div>';
   }
   h+='<div class="plan"><div class="head"><span class="tag a">🧭 شروط البقاء</span> متى الميل بيضل قائم؟</div><div class="note">';
-  if(w.dir==='long') h+='الميل الصاعد قائم <b>طالما اليومي بيسكّر فوق '+fmt(w.e25d)+'</b> (EMA25). إغلاق يومي تحت <b>'+fmt(w.e99d)+'</b> (EMA99) بيقلب الصورة الكبيرة.';
-  else if(w.dir==='short') h+='الميل الهابط قائم <b>طالما اليومي بيسكّر تحت '+fmt(w.e25d)+'</b> (EMA25). إغلاق يومي فوق <b>'+fmt(w.e99d)+'</b> (EMA99) بيقلب الصورة الكبيرة.';
-  else h+='استنى اليومي يحسم: إغلاق فوق <b>'+fmt(w.e25d)+'</b> بيرجّح الصعود، وتحت <b>'+fmt(w.e99d)+'</b> بيرجّح الهبوط.';
+  var eHi=Math.max(w.e25d,w.e99d), eLo=Math.min(w.e25d,w.e99d);       /* v1.4: المستويين بترتيبن الصح دايماً */
+  if(w.dir==='long') h+='الميل الصاعد قائم <b>طالما اليومي بيسكّر فوق '+fmt(w.e25d)+'</b> (EMA25).'+
+    (w.e99d<w.e25d?' إغلاق يومي تحت <b>'+fmt(w.e99d)+'</b> (EMA99) بيقلب الصورة الكبيرة.':'');
+  else if(w.dir==='short') h+='الميل الهابط قائم <b>طالما اليومي بيسكّر تحت '+fmt(w.e25d)+'</b> (EMA25).'+
+    (w.e99d>w.e25d?' إغلاق يومي فوق <b>'+fmt(w.e99d)+'</b> (EMA99) بيقلب الصورة الكبيرة.':'');
+  else h+='استنى اليومي يحسم: إغلاق فوق <b>'+fmt(eHi)+'</b> بيرجّح الصعود، وتحت <b>'+fmt(eLo)+'</b> بيرجّح الهبوط. بيناتن = منطقة تردد.';
   h+='</div></div>';
   var P=state.price||0;
   h+='<div class="plan"><div class="head"><span class="tag g">📏 المدى المتوقع</span> حركة طبيعية (إحصائياً)</div>';
@@ -1262,8 +1936,9 @@ function jClose(tr,status,grossR){ tr.status=status;
 window.saveRec=function(which){
   var rec=state.rec; if(!rec){ toast('ما في توصية بعد'); return; }
   var p=which==='B'?rec.planB:rec.planA; if(!p){ toast('الخطة مش موجودة'); return; }
-  var now=Date.now();
-  journal.unshift({ id:now, created:now, sym:settings.sym, dir:p.dir, plan:which,
+  var now=Date.now(), jid=now;
+  while(journal.some(function(x){return x.id===jid;})) jid++;       /* v1.4: معرّف فريد حتى لو انحفظوا خطتين بنفس اللحظة */
+  journal.unshift({ id:jid, created:now, sym:settings.sym, dir:p.dir, plan:which,
     entry:(which==='B'?p.trigger:p.entry), trigger:(which==='B'?p.trigger:null),
     sl:p.sl, tps:p.tps.slice(), filled:false, status:'pending', hits:[], lastT:now,
     resultR:null, fee:settings.fee, fillT:null, halfT:null,
@@ -1332,6 +2007,7 @@ function renderAll(){
   safe('hero',renderHero); safe('rec',renderRec); safe('tf-table',renderTFTable);
   safe('levels',renderLevels); safe('chart',drawChart); safe('calc',renderCalc);
   safe('journal',renderJournal); safe('health',renderHealth); safe('weekly',renderWeekly);
+  safe('trend',renderTrend);
 }
 
 function renderHero(){
@@ -1646,9 +2322,11 @@ window.runBT=function(){
   if(demo){ var m=demoRegimes(Math.floor(Date.now()/86400000),9000);
     p=Promise.resolve({m15:m,h1:aggregateK(m,H1),h4:aggregateK(m,H4),src:'🧪 بيانات تجريبية'}); }
   else p=fetchBT('https://fapi.binance.com/fapi/v1/',sym,'Binance Futures · '+sym)
-    .then(function(d){ if(d.h1.length<500||d.h4.length<260||d.m15.length<1500) throw new Error('short history'); return d; })
-    .catch(function(){ state.btRun.msg='↪️ تاريخ العقد قصير أو ما ردّ — عم جرّب PAXG (نفس الذهب)…'; safe('bt',renderBT);
-      return fetchBT('https://api.binance.com/api/v3/','PAXGUSDT','PAXG سبوت (تاريخ أطول)'); });
+    .then(function(d){ if(d.h1.length<500||d.h4.length<260||d.m15.length<1500) throw new Error('تاريخ الرمز قصير'); return d; })
+    .catch(function(e){ if(!isGoldSym(sym)) throw e;
+      state.btRun.msg='↪️ تاريخ العقد قصير أو ما ردّ — عم جرّب PAXG (نفس الذهب)…'; safe('bt',renderBT);
+      return fetchBT(SPOT,'PAXGUSDT','PAXG سبوت (تاريخ أطول)')
+        .catch(function(){ return fetchBT(SPOT2,'PAXGUSDT','PAXG سبوت (تاريخ أطول)'); }); });
   p.then(function(d){
     if(d.h1.length<300||d.h4.length<230||d.m15.length<600)
       throw new Error('البيانات التاريخية قليلة ('+d.h1.length+' شمعة ساعة)');
@@ -1663,11 +2341,11 @@ window.runBT=function(){
     });
   }).then(function(r){
     var sum=btSummary(r.st);
-    state.bt={ts:Date.now(),sym:settings.sym,demo:demo,src:r.src,sum:sum};
+    state.bt={ts:Date.now(),sym:settings.sym,demo:demo,src:r.src,sum:sum,eng:ENG_V};
     saveJSON('famgold_bt',state.bt);
     state.btRun={busy:false,msg:'',pct:0,err:''};
     if(state.A&&state.price){ state.rec=buildRec(state.A,state.price); decorateRec(); safe('rec',renderRec); }
-    safe('bt',renderBT); toast('🧪 خلص الفحص: '+sum.all.n+' صفقة على '+sum.days+' يوم');
+    safe('bt',renderBT); safe('lab',renderLab); toast('🧪 خلص الفحص: '+sum.all.n+' صفقة على '+sum.days+' يوم');
   }).catch(function(e){
     state.btRun={busy:false,msg:'',pct:0,err:String((e&&e.message)||e)};
     logErr('backtest',(e&&e.message)||e); safe('bt',renderBT);
@@ -1701,12 +2379,14 @@ function renderBT(){
   }
   var s=b.sum, a=s.all, dt=new Date(b.ts);
   h+='<div class="note">آخر فحص: <span class="num">'+('0'+dt.getDate()).slice(-2)+'/'+('0'+(dt.getMonth()+1)).slice(-2)+' '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2)+'</span> · المصدر: <b>'+esc(b.src)+'</b> · الفترة: <span class="num">'+s.days+'</span> يوم · <span class="num">'+s.signals+'</span> ساعة مفحوصة (<span class="num">'+s.waits+'</span> منها «انتظار»).'+
-     (btFresh()?'':' <span class="wt">هالفحص لرمز/وضع غير الحالي — ما عم ينطبّق عالتوصية.</span>')+'</div>';
+     (btFresh()?'':' <span class="wt">هالفحص لرمز/وضع غير الحالي — ما عم ينطبّق عالتوصية.</span>')+
+     (btFresh()&&!btCurrent()?' <span class="wt">⚠️ هالفحص معمول على محرك v1.3 (قبل تصليح الـScore والـSweep والبنية) — جدّدو.</span>':'')+'</div>';
   h+='<div class="plan" style="margin-top:8px"><div class="note" style="margin-top:0;color:var(--txt);font-size:13px">'+btVerdict(s)+'</div></div>';
   function tile(k,v,cls){ return '<div class="stat"><div class="k">'+k+'</div><div class="v num '+(cls||'')+'">'+v+'</div></div>'; }
   h+='<div class="stats" style="margin-top:10px">'+tile('صفقات',a.n)+tile('نسبة الربح',a.n?a.win+'%':'—')+
     tile('متوسط الصفقة',a.n?fmtR(a.avgR):'—',a.avgR>=0?'up':'dn')+tile('المحصلة',a.n?fmtR(a.sumR):'—',a.sumR>=0?'up':'dn')+
-    tile('Profit Factor',a.n?(a.pf>=99?'∞':fmt(a.pf,2)):'—')+tile('أطول خسارة متتالية',a.maxLose)+tile('أقصى تراجع',a.n?fmt(a.maxDD,1)+'R':'—','dn')+'</div>';
+    tile('Profit Factor',a.n?(a.pf>=99?'∞':fmt(a.pf,2)):'—')+tile('أطول خسارة متتالية',a.maxLose)+tile('أقصى تراجع',a.n?fmt(a.maxDD,1)+'R':'—','dn')+
+    (a.t!==undefined&&a.t!==null?tile('t-stat',fmt(a.t,1),a.t>=2?'up':(a.t<=-2?'dn':'')):'')+'</div>';
   var th='<thead><tr><th>الفئة</th><th>صفقات</th><th>ربح</th><th>متوسط</th><th>محصلة</th></tr></thead>';
   h+='<h3 style="margin-top:6px">📋 حسب الخطة والاتجاه</h3><div style="overflow-x:auto"><table>'+th+'<tbody>'+
     btRow('الكل',a,true)+btRow('خطة A (limit)',s.A)+btRow('خطة B (اختراق)',s.B)+
@@ -1719,6 +2399,353 @@ function renderBT(){
   h+='<div class="note">* عيّنة أقل من 15 صفقة — مؤشر بس. · النهايات: ستوب <span class="num">'+s.outcomes.sl+'</span> · TP1 ثم خروج عالدخول <span class="num">'+s.outcomes.be+'</span> · TP1+TP2 <span class="num">'+s.outcomes.tp2+'</span> · خروج بالوقت <span class="num">'+s.outcomes.time+'</span>'+
      ' · خطط ما تفعّلت <span class="num">'+(s.skip.nofill||0)+'</span> · انلغت بالإبطال <span class="num">'+(s.skip.inv||0)+'</span> · اختراق متأخر <span class="num">'+(s.skip.late||0)+'</span>.</div>';
   h+='<div class="note"><b>فرضيات النموذج (متحفّظة):</b> الخطة صالحة '+s.expiryH+' ساعات · 50% على TP1 ثم الستوب عالدخول والباقي على TP2 · أقصى مدة للصفقة '+s.holdH+' ساعة · رسوم '+fmt(s.fee,2)+'% لكل طرف · إذا الستوب والهدف بنفس الشمعة منحسبها ستوب · صفقة وحدة بنفس الوقت لكل خطة · بلا انزلاق سعري (بالواقع النتيجة أسوأ شوي). <b>الماضي مش ضمانة للمستقبل</b> — وهالفترة قصيرة، فالأرقام بتتغير مع تغيّر السوق.</div>';
+  c.innerHTML=h;
+}
+
+/* =====================================================================
+   v1.4 — إشارة الاتجاه + المختبر
+   ===================================================================== */
+var SPOT='https://api.binance.com/api/v3/', SPOT2='https://data-api.binance.vision/api/v3/', FUT='https://fapi.binance.com/fapi/v1/';
+function isGoldSym(s){ return /^(XAU|PAXG)/.test(String(s||'').toUpperCase().trim()); }
+function curSym(){ return (settings.sym||'XAUUSDT').toUpperCase().trim(); }
+function dstr(ts){ var d=new Date(ts); return ('0'+d.getUTCDate()).slice(-2)+'/'+('0'+(d.getUTCMonth()+1)).slice(-2)+'/'+String(d.getUTCFullYear()).slice(-2); }
+function sgn(x,d){ return (x>=0?'+':'')+fmt(x,d===undefined?2:d); }
+function lvl(cls,k,v){ return '<div class="lvl '+cls+'"><div class="k">'+k+'</div><div class="v num">'+v+'</div></div>'; }
+function kvr(k,v,cls){ return '<div class="kv"><span class="k">'+k+'</span><span class="v num '+(cls||'')+'">'+v+'</span></div>'; }
+function kvt(k,v,cls){ return '<div class="kv"><span class="k">'+k+'</span><span class="v '+(cls||'')+'">'+v+'</span></div>'; }   /* قيمة فيها عربي + أرقام */
+function ltr(x){ return '<span class="num">'+x+'</span>'; }
+function tileH(k,v,cls){ return '<div class="stat"><div class="k">'+k+'</div><div class="v num '+(cls||'')+'">'+v+'</div></div>'; }
+function labFresh(){ var L=state.lab; return !!(L&&L.res&&L.eng===ENG_V&&L.sym===curSym()&&(!!L.demo)===(!!settings.demo)); }
+function labRow(id){ if(!labFresh()) return null; var rows=state.lab.res.rows||[];
+  for(var i=0;i<rows.length;i++){ if(rows[i].id===id) return rows[i]; } return null; }
+var LAB_VERDICT={
+  strong:{t:'✅ قوية',d:'موجبة بقسمَي الفترة ودليلها الإحصائي قوي (<span class="num">t ≥ 3</span>).'},
+  good:{t:'✅ جيدة',d:'موجبة بقسمَي الفترة (<span class="num">t ≥ 2</span>) — بس تحت عتبة الـ3 اللي الباحثين بيطلبوها لما نجرّب أكتر من قاعدة.'},
+  weak:{t:'➖ دليل ضعيف',d:'موجبة بالقسمين بس الفرق عن الصفر ممكن يكون حظ (t أقل من 2) — ما بتكفي لمصاري حقيقية.'},
+  unstable:{t:'⚠️ مش ثابتة',d:'ربحت بقسم من الفترة وخسرت بالتاني — يعني الربح الإجمالي جاي من فترة وحدة.'},
+  lose:{t:'❌ خاسرة',d:'خسرت بعد الرسوم والتمويل على هالتاريخ — ما تتبعها.'},
+  few:{t:'… عيّنة قليلة',d:'أقل من 15 صفقة — ما فينا نحكم إحصائياً.'}
+};
+
+/* ---------- trend signal ---------- */
+function trendSeries(){
+  var h=state.htf; if(!h) return null;
+  if(h.trendK&&h.trendK.length) return {k:h.trendK,ratio:1,joinT:null,nLong:0,nMain:h.trendK.length,demo:true};
+  var main=h.k1d; if(!main||!main.length) return null;
+  if(h.statsK&&h.statsK.length&&h.src&&h.src.indexOf('PAXG')===-1&&isGoldSym(curSym())) return spliceSeries(h.statsK,main);
+  return {k:main.slice(),ratio:1,joinT:null,nLong:0,nMain:main.length};
+}
+function computeTrend(){
+  var sp=trendSeries();
+  if(!sp||!sp.k||sp.k.length<60){ state.trend=null; return; }
+  var raw=sp.k.slice(), now=Date.now(), lr=raw[raw.length-1], P=state.price, h=state.htf, live=false;
+  var same=!!sp.demo||(!!h.src&&!!state.src&&(state.src.indexOf(h.src)>-1||(h.src.indexOf('PAXG')>-1&&state.src.indexOf('PAXG')>-1)));
+  /* شمعة اليوم لسا عم تتكوّن والكاش بيتجدد كل 10 دقايق بس → منحدّثها بآخر سعر (من نفس المصدر حصراً) */
+  if(same&&P&&isFinite(P)&&now>=lr.t&&now<lr.t+D1&&Math.abs(P/lr.c-1)<0.1){
+    raw[raw.length-1]={t:lr.t,o:lr.o,h:Math.max(lr.h,P),l:Math.min(lr.l,P),c:P,v:lr.v}; live=true; }
+  var tb=tradingBars(raw,D1), n=tb.length, last=tb[n-1];
+  var complete=!last.part&&now>=last.te;
+  var S=labSpec(settings.trendId), fs=(labFresh()&&state.lab.fs)?state.lab.fs:null, fd=fs?fs.perDayPct:0;
+  var r=simTrend(tb,S.spec,{fee:settings.fee,slip:SLIP_PCT,stopSlip:SLIP_STOP_PCT,fundDay:fd},{tf:D1,lastComplete:complete});
+  var c=tb.map(function(x){return x.c;});
+  function ret(L){ return (n-1-L>=0&&c[n-1-L]>0)? (c[n-1]/c[n-1-L]-1)*100 : null; }
+  state.trend={id:S.id,name:S.name,short:S.short,side:S.side,spec:S.spec,hard:r.hard,ok:(r.i0!==null&&n>r.i0+2),
+    pos:r.pos,pending:r.pending,levels:complete?(r.next||r.levels):r.levels,complete:complete,live:live,
+    atr:r.atrRef,trades:r.trades.slice(-5),nTrades:r.trades.length,lastT:last.t,lastC:last.c,n:n,warm:r.warm,
+    ctx:{m1:ret(21),m3:ret(63),m12:ret(252),s50:n>=50?smaArr(c,50)[n-1]:null,s200:n>=200?smaArr(c,200)[n-1]:null},
+    src:{nLong:sp.nLong,nMain:sp.nMain,joinT:sp.joinT,demo:!!sp.demo,paxg:!sp.demo&&!!h.src&&h.src.indexOf('PAXG')>-1,sym:h.src},
+    fundDay:fd,at:now};
+  safe('trend-alerts',trendAlerts);
+}
+function trendAlerts(){
+  var T=state.trend; if(!T||!T.ok||settings.demo) return;
+  var key='tr_'+T.id+'_', P=state.price, L=T.levels, lt=T.trades.length?T.trades[T.trades.length-1]:null;
+  if(T.pos&&T.pos.tIn===T.lastT)
+    notify('🧭 إشارة اتجاه جديدة',(T.pos.dir==='long'?'Long':'Short')+' ('+T.short+') — دخول على فتح الشمعة اليومية '+fmt(T.pos.pIn)+(T.hard?' · ستوب '+fmt(T.pos.stop):''),key+'in_'+T.pos.tIn,4000);
+  if(lt&&lt.tOut>=T.lastT)
+    notify('🧭 خروج من صفقة الاتجاه',(lt.why==='stop'?'انضرب ستوب الحماية':'إشارة خروج')+' عند '+fmt(lt.pOut)+' · النتيجة '+fmtR(lt.R),key+'out_'+lt.tOut,4000);
+  if(T.pending&&(T.pending.enter||T.pending.exit))
+    notify('🧭 إشارة عالفتح الجاي',(T.pending.exit?'خروج من الصفقة':'')+(T.pending.exit&&T.pending.enter?' ثم ':'')+(T.pending.enter?('دخول '+(T.pending.enter==='long'?'Long':'Short')):'')+' — على فتح الشمعة اليومية الجاية',key+'pe_'+T.lastT,4000);
+  if(!T.pos&&L&&P&&T.spec.type==='donchian'){
+    if(P>L.entryLong) notify('🧭 اختراق قيد التأكيد','السعر فوق '+fmt(L.entryLong)+' — بتصير إشارة Long بس إذا الشمعة اليومية سكّرت فوقو',key+'nl_'+Math.round(L.entryLong),720);
+    if(T.spec.side!=='long'&&P<L.entryShort) notify('🧭 كسر قيد التأكيد','السعر تحت '+fmt(L.entryShort)+' — بتصير إشارة Short بس إذا الشمعة اليومية سكّرت تحتو',key+'ns_'+Math.round(L.entryShort),720);
+  }
+}
+window.setTrend=function(id){ settings.trendId=labSpec(id).id; saveJSON('famgold_settings',settings);
+  safe('trend-compute',computeTrend); safe('trend-render',renderTrend); safe('lab',renderLab); };
+function trendSize(price,dist,unit){
+  var cap=settings.cap, riskAmt=cap*settings.risk/100; if(!(dist>0)||!(price>0)||!(cap>0)) return '';
+  var qty=riskAmt/dist, notional=qty*price, effLev=notional/cap, margin=notional/(settings.lev||1), w='';
+  if(isGoldSym(curSym())&&qty<0.001) w=' <span class="dn">⚠️ الحجم أصغر من أقل كمية بالعقد (0.001 أونصة) — رأس المال أو نسبة المخاطرة صغار على هالستوب.</span>';
+  else if(margin>cap) w=' <span class="dn">⚠️ الهامش المطلوب أكبر من رأس المال — علّي الرافعة بالإعدادات أو صغّر المخاطرة.</span>';
+  return '<div class="note">💰 مخاطرة <b class="num">'+fmt(settings.risk,1)+'%</b> = <b class="num">'+fmt(riskAmt)+'</b> USDT على '+(unit||'مسافة ستوب')+' <b class="num">'+fmt(dist)+'</b> ← حجم <b class="num">'+fmt(qty,3)+'</b> أونصة · قيمة الصفقة <b class="num">'+fmt(notional)+'</b> · رافعة فعلية <b class="num">'+fmt(effLev,2)+'×</b>'+w+'</div>';
+}
+function trendLabLine(T){
+  var row=labRow(T.id);
+  if(!row) return '<div class="calib">🔬 <b>المختبر:</b> '+(state.lab&&state.lab.res?'الفحص الموجود لرمز/وضع تاني أو لنسخة أقدم':'ما تشغّل بعد')+
+    ' — شغّلو من قسم 🔬 تحت لتعرف إذا هالقاعدة أثبتت حالها على تاريخ الذهب <b>قبل</b> ما تتبعها.</div>';
+  if(row.skip) return '<div class="calib">🔬 <b>المختبر:</b> التاريخ المتوفر ما كفّى لفحص هالقاعدة.</div>';
+  var a=row.ev.all, v=LAB_VERDICT[row.verdict.code], h='<div class="calib">🔬 <b>المختبر</b> (<span class="num">'+fmt(row.ev.years,1)+'</span> سنة): <b>'+v.t+'</b> · <span class="num">'+a.n+'</span> صفقة · ربح <span class="num">'+a.win+'%</span> · <span class="num '+(a.avgR>=0?'pos':'neg')+'">'+fmtR(a.avgR)+'</span> للصفقة · <span class="num">t = '+(a.t===null||a.t===undefined?'—':fmt(a.t,1))+'</span>';
+  if(!row.verdict.ok) h+='<br><span class="wt">'+v.d+'</span>';
+  if(row.mc&&row.mc.dd95>0){ var sug=clamp(20/row.mc.dd95,0.25,1);
+    h+='<br>أسوأ تراجع محتمل (95%): <span class="num">'+fmt(row.mc.dd95,1)+'R</span>'+
+      (row.verdict.ok?' ← مخاطرة الصفقة ما لازم تتخطى <b class="num">'+fmt(sug,2)+'%</b>'+(settings.risk>sug+1e-9?' <span class="dn">(إعدادك '+fmt(settings.risk,1)+'% أعلى — نزّلو)</span>':''):
+        ' — يعني حتى على الورق، توقّع سلسلة خسارات طويلة.'); }
+  return h+'</div>';
+}
+function renderTrend(){
+  var c=el('trendCard'); if(!c) return;
+  var T=state.trend, h='';
+  if(!T){
+    var first=state.lastOk===0&&!(state.health&&state.health['الشبكة']);      /* أول فتحة: لسا ما وصل شي */
+    if(state.htfBusy||first){ c.innerHTML='<div class="empty">⏳ عم جيب الشموع اليومية…</div>'; return; }
+    c.innerHTML='<div class="empty">ما وصلت بيانات يومية كافية بعد لإشارة الاتجاه.</div>'+
+      '<div class="btns"><button class="btn ghost" onclick="retryHTF()">🔄 جرّب الجلب هلّق</button></div>';
+    return;
+  }
+  var picker='<div class="pick">';
+  LAB_SPECS.forEach(function(S){ if(S.tf!=='1d') return;
+    picker+='<button class="'+(S.id===T.id?'on':'')+'" onclick="setTrend(\''+S.id+'\')">'+S.short+(S.def?' ⭐':'')+'</button>'; });
+  picker+='</div><div class="note" style="margin-top:4px">⭐ = القاعدة المحدّدة سلفاً قبل أي فحص. غيّر بس إذا المختبر عطاك سبب.</div>';
+  if(!T.ok){
+    c.innerHTML='<div class="verdict wait"><div style="flex:1"><div class="big">البيانات قليلة لهالقاعدة</div><div class="sub">'+T.name+' بدها أكتر من <span class="num">'+(T.warm+2)+'</span> شمعة تداول والمتوفر <span class="num">'+T.n+'</span> — اختار قاعدة أقصر.</div></div></div>'+picker;
+    return;
+  }
+  var P=state.price||T.lastC, L=T.levels||{}, don=T.spec.type==='donchian', pos=T.pos, lng=!!pos&&pos.dir==='long', both=T.spec.side!=='long';
+  var cls=pos?(lng?'long':'short'):'wait';
+  var big=pos?(lng?'🟢 Long — مع الاتجاه الصاعد':'🔴 Short — مع الاتجاه الهابط'):'⚪ خارج السوق — بانتظار إشارة';
+  var sub='القاعدة: <b>'+T.name+'</b> ('+T.side+')';
+  if(pos) sub+=' · من <span class="num">'+dstr(pos.tIn)+'</span> (<span class="num">'+fmt(Math.max(0,(Date.now()-pos.tIn)/D1),0)+'</span> يوم)';
+  h+='<div class="verdict '+cls+'">'+
+    (pos?'<div class="ring" style="--p:'+clamp(Math.round(50+pos.openR*10),3,100)+';--c:'+(pos.openR>=0?'var(--green)':'var(--red)')+'"><div class="num" style="font-size:12px">'+fmtR(pos.openR)+'</div></div>':'')+
+    '<div style="flex:1"><div class="big">'+big+'</div><div class="sub">'+sub+'</div></div></div>';
+  if(T.pending&&(T.pending.enter||T.pending.exit))                 /* آخر شمعة يومية سكّرت وعطت إشارة — التنفيذ على أول سعر بالشمعة الجاية */
+    h+='<div class="warn">⏭️ <b>الشمعة اليومية سكّرت وعطت إشارة — عالفتح الجاي:</b> '+(T.pending.exit?'خروج من الصفقة الحالية':'')+(T.pending.exit&&T.pending.enter?' ثم ':'')+
+      (T.pending.enter?('دخول <b>'+(T.pending.enter==='long'?'Long':'Short')+'</b>'+(T.hard&&T.pending.stopDist?' بستوب على مسافة <b class="num">'+fmt(T.pending.stopDist)+'</b> من سعر الدخول':'')):'')+'.</div>';
+  var lrow=labRow(T.id);
+  if(lrow&&!lrow.skip&&(lrow.verdict.code==='lose'||lrow.verdict.code==='unstable'))
+    h+='<div class="warn">⛔ <b>المختبر: هالقاعدة '+(lrow.verdict.code==='lose'?'خاسرة':'مش ثابتة')+' على تاريخ هالرمز</b> ('+fmtR(lrow.ev.all.avgR)+' للصفقة على <span class="num">'+lrow.ev.all.n+'</span> صفقة). الإشارة تحت للمراقبة بس — ما تتداولها.</div>';
+
+  if(don&&pos){
+    var exitLv=lng?L.exitLong:L.exitShort, pct=(P/pos.pIn-1)*100*(lng?1:-1), isNew=(pos.tIn===T.lastT);
+    h+='<div class="plan"><div class="head"><span class="tag '+(lng?'g':'r')+'">الصفقة</span> '+(isNew?'🆕 إشارة جديدة — الدخول النظري على فتح الشمعة الحالية':'مفتوحة — ضلّك فيها')+'</div><div class="lvls">'+
+      lvl('en','دخول',fmt(pos.pIn))+lvl('sl','ستوب الحماية',fmt(pos.stop))+
+      lvl('tr','خروج: إغلاق يومي '+(lng?'تحت':'فوق'),fmt(exitLv))+lvl(pct>=0?'tp':'sl','الربح المفتوح',sgn(pct,2)+'%')+'</div>';
+    h+='<div class="note"><b>شو بعمل؟</b> ولا شي — ما في هدف ربح. بتطلع بحالتين بس: ① السعر ضرب ستوب الحماية <b class="num">'+fmt(pos.stop)+'</b> (حطّو أمر Stop فعلي عالمنصة)، أو ② شمعة يومية <b>سكّرت</b> '+(lng?'تحت':'فوق')+' <b class="num">'+fmt(exitLv)+'</b> ('+(lng?'أدنى':'أعلى')+' <span class="num">'+T.spec.M+'</span> شمعة) — ساعتها بتطلع على فتح الشمعة اللي بعدها. مستوى الخروج بيلحق السعر لحالو.</div>';
+    var dR=Math.abs(P-pos.pIn)/pos.risk;
+    if(isNew) h+='<div class="'+(dR>0.5?'warn':'note')+'">السعر هلّق <b class="num">'+fmt(P)+'</b> — بعيد <b class="num">'+fmt(dR,2)+'R</b> عن سعر الدخول النظري.'+
+        (dR>0.5?' ⚠️ أبعد من نص R: الدخول المتأخر بيخرّب حساب المخاطرة — يا بتفوّتها، يا بتدخل بحجم أصغر على نفس الستوب.':' الدخول هلّق بعدو قريب من النظري.')+'</div>';
+    else h+='<div class="note"><b>إذا مش داخل من الأول:</b> '+(dR<=0.5?'السعر بعدو ضمن <span class="num">'+fmt(dR,2)+'R</span> من سعر الدخول — الدخول المتأخر مقبول بنفس الستوب.':'ما تلحقها — السعر صار بعيد <span class="num">'+fmt(dR,2)+'R</span> عن الدخول. استنى الإشارة الجاية.')+'</div>';
+    h+=trendSize(pos.pIn,pos.risk)+'</div>';
+  }
+  if(don&&!pos){
+    var dist=T.atr?T.spec.stopK*T.atr:null, up=(L.entryLong/P-1)*100, dn=(1-L.entryShort/P)*100;
+    h+='<div class="plan"><div class="head"><span class="tag a">الشرط</span> شو لازم يصير لتطلع إشارة؟</div><div class="lvls">'+
+      lvl('tp','شراء: إغلاق يومي فوق',fmt(L.entryLong))+(both?lvl('sl','بيع: إغلاق يومي تحت',fmt(L.entryShort)):'')+
+      lvl('en','مسافة الستوب ('+T.spec.stopK+'×ATR)',dist?fmt(dist):'—')+lvl('tr','السعر هلّق',fmt(P))+'</div>';
+    h+='<div class="note">بعيد عن إشارة الشراء <b class="num">'+fmt(Math.max(0,up),2)+'%</b>'+(both?' وعن إشارة البيع <b class="num">'+fmt(Math.max(0,dn),2)+'%</b>':'')+
+      '. الإشارة بتتأكد <b>بس عند إغلاق الشمعة اليومية</b> — اختراق خلال النهار مش إشارة.</div>';
+    if(P>L.entryLong) h+='<div class="warn">👀 السعر هلّق <b>فوق</b> مستوى الشراء. إذا الشمعة اليومية سكّرت فوقو بتطلع إشارة Long، والدخول على فتح الشمعة اللي بعدها.</div>';
+    if(both&&P<L.entryShort) h+='<div class="warn">👀 السعر هلّق <b>تحت</b> مستوى البيع. إذا الشمعة اليومية سكّرت تحتو بتطلع إشارة Short، والدخول على فتح الشمعة اللي بعدها.</div>';
+    if(dist) h+=trendSize(P,dist);
+    h+='</div>';
+  }
+  if(!don){
+    h+='<div class="plan"><div class="head"><span class="tag '+(pos?(lng?'g':'r'):'a')+'">الحالة</span> '+(pos?'بالسوق طالما الإشارة قائمة':'الإشارة مش لصالح الدخول هلّق')+'</div>';
+    if(T.spec.type==='sma'){
+      h+=kvr('متوسط '+T.spec.fast+' يوم',fmt(L.fast))+kvr('متوسط '+T.spec.slow+' يوم',fmt(L.slow))+
+        '<div class="note">Long طالما متوسط <span class="num">'+T.spec.fast+'</span> فوق متوسط <span class="num">'+T.spec.slow+'</span>'+(both?'، وShort لما ينقلبوا.':'، وخارج السوق لما ينقلبوا.')+' الفحص مرة وحدة باليوم عند الإغلاق.</div>';
+    } else {
+      var nm=['شهر','3 أشهر','سنة'];
+      T.spec.looks.forEach(function(Lk,ix){ var v=L.votes?L.votes[ix]:0;
+        h+=kvt('زخم '+(nm[ix]||(Lk+' يوم'))+' (<span class="num">'+Lk+'</span> شمعة)',(v>0?'🟢 موجب':(v<0?'🔴 سالب':'⚪ صفر'))+' · السعر وقتها '+ltr(fmt(L.refs?L.refs[ix]:null)),v>0?'up':(v<0?'dn':'')); });
+      h+='<div class="note">الإشارة = أغلبية التلاتة: Long إذا تنين عالأقل موجبين'+(both?'، وShort إذا تنين عالأقل سالبين.':'، وخارج السوق غير هيك.')+' الفحص مرة وحدة باليوم عند الإغلاق.</div>';
+    }
+    if(pos) h+='<div class="lvls">'+lvl('en','دخول',fmt(pos.pIn))+lvl(pos.openR>=0?'tp':'sl','الربح المفتوح',sgn((P/pos.pIn-1)*100*(lng?1:-1),2)+'%')+lvl('tr','وحدة المخاطرة (R)',fmt(pos.risk))+'</div>';
+    h+='<div class="warn">⚠️ هالقاعدة <b>بلا ستوب ثابت</b> (متل ما الأبحاث بتعرّفها): الخروج بس لما الإشارة تنقلب، فالخسارة ممكن تتخطى 1R. يعني الحجم لازم يكون صغير والرافعة الفعلية تحت 1×.</div>';
+    if(T.atr) h+=trendSize(P,T.spec.stopK*T.atr,'وحدة مخاطرة ('+T.spec.stopK+'×ATR)');
+    h+='</div>';
+  }
+  var cx=T.ctx;
+  function chip(lbl,v){ if(v===null||v===undefined||!isFinite(v)) return '<div class="tfchip neu"><div class="t">'+lbl+'</div><div class="s num">—</div></div>';
+    return '<div class="tfchip '+(v>0?'pos':(v<0?'neg':'neu'))+'"><div class="t">'+lbl+'</div><div class="s num">'+sgn(v,1)+'%</div></div>'; }
+  h+='<div class="tfrow" style="margin-top:10px">'+chip('زخم شهر',cx.m1)+chip('زخم 3 أشهر',cx.m3)+chip('زخم سنة',cx.m12)+'</div>';
+  if(cx.s50&&cx.s200) h+='<div class="note" style="margin-top:0">متوسط 50 يوم <b class="num">'+fmt(cx.s50)+'</b> '+(cx.s50>cx.s200?'فوق':'تحت')+' متوسط 200 يوم <b class="num">'+fmt(cx.s200)+'</b> ← الاتجاه الكبير '+(cx.s50>cx.s200?'<b class="up">صاعد</b>':'<b class="dn">هابط</b>')+
+    (T.atr?' · ATR(20) = <b class="num">'+fmt(T.atr,1)+'</b> (<span class="num">'+fmt(T.atr/P*100,2)+'%</span> من السعر باليوم)':'')+'.</div>';
+
+  h+=trendLabLine(T);
+  var fs=labFresh()?state.lab.fs:null;
+  if(fs){ var pay=fs.perDayPct>0;
+    h+='<div class="note">💸 <b>التمويل</b> (متوسط آخر <span class="num">'+fmt(fs.days,0)+'</span> يوم، كل <span class="num">'+fmt(fs.intervalH,0)+'</span> ساعات): <b class="num">'+sgn(fs.perDayPct,4)+'%</b> باليوم ≈ <span class="num">'+sgn(fs.aprPct,1)+'%</span> بالسنة ← '+
+      (pay?'الـLong <b>بيدفع</b>':'الـLong <b>بيقبض</b>')+' ≈ <b class="num">'+fmt(Math.abs(fs.perDayPct)*30,2)+'%</b> من قيمة الصفقة كل شهر'+(pay?' — تكلفة حقيقية للصفقات الطويلة، ومخصومة بأرقام المختبر.':'.')+'</div>';
+  } else if(state.funding!==null&&isFinite(state.funding)){
+    h+='<div class="note">💸 التمويل الحالي: <b class="num">'+sgn(state.funding,4)+'%</b> للفترة — شغّل المختبر ليحسب المتوسط الفعلي وأثرو على الصفقات الطويلة.</div>'; }
+
+  if(T.trades.length){
+    h+='<h3 style="margin-top:12px">🗂️ آخر صفقات القاعدة (نظرية، بعد التكاليف)</h3><div style="overflow-x:auto"><table class="mini"><thead><tr><th>الاتجاه</th><th>دخول</th><th>خروج</th><th>أيام</th><th>النتيجة</th></tr></thead><tbody>';
+    T.trades.slice().reverse().forEach(function(t){
+      h+='<tr><td>'+(t.dir==='long'?'🟢 Long':'🔴 Short')+'</td><td class="num">'+dstr(t.tIn)+'<br>'+fmt(t.pIn)+'</td><td class="num">'+dstr(t.tOut)+'<br>'+fmt(t.pOut)+(t.why==='stop'?' 🛑':'')+'</td>'+
+        '<td class="num">'+fmt(t.days,0)+'</td><td class="num '+(t.R>=0?'pos':'neg')+'">'+fmtR(t.R)+'</td></tr>'; });
+    h+='</tbody></table></div>';
+  }
+  h+=picker;
+  var srcTxt=T.src.demo?'🧪 بيانات تجريبية وهمية':(T.src.nLong?(esc(T.src.sym||'')+' (<span class="num">'+T.src.nMain+'</span> يوم) موصول بتاريخ PAXG (<span class="num">'+T.src.nLong+'</span> يوم) قبل <span class="num">'+dstr(T.src.joinT)+'</span>')
+    :(T.src.paxg?'PAXG سبوت — المستويات بأسعار PAXG (قريبة من العقد مش مطابقة)':esc(T.src.sym||'')+' (<span class="num">'+T.src.nMain+'</span> يوم)'));
+  var nc=new Date(Math.floor(Date.now()/D1)*D1+D1);
+  h+='<div class="note">🕛 إغلاق الشمعة اليومية: <b class="num">'+('0'+nc.getHours()).slice(-2)+':'+('0'+nc.getMinutes()).slice(-2)+'</b> بتوقيتك (00:00 UTC) — هيدا الوقت الوحيد اللي بتتغير فيه الإشارة. البيانات: <span class="num">'+T.n+'</span> شمعة تداول (السبت والأحد مدموجين بالإثنين)'+(T.live?' · شمعة اليوم محدّثة بآخر سعر':'')+' · '+srcTxt+'.</div>';
+  h+='<div class="note">⚠️ إشارة ميكانيكية من قاعدة منشورة — <b>مش نصيحة مالية ولا ضمانة</b>. هالنوع بيخسر أغلب صفقاتو (خسارات صغيرة) وبيربح من القليل الكبير، وبيمرق بفترات تراجع طويلة. الحكم للمختبر، والتجربة عالورق أول.</div>';
+  c.innerHTML=h;
+}
+
+/* ---------- lab ---------- */
+function spotPaged(sym,iv,pages,onPage){
+  return fetchPaged(SPOT,sym,iv,pages,onPage).catch(function(){ return fetchPaged(SPOT2,sym,iv,pages,onPage); }); }
+function labBuild(D,sym,demo){
+  var sd=spliceSeries(D.pd,D.xd);
+  if(!sd.k.length) throw new Error('ما وصل تاريخ يومي — شيّك النت');
+  var d1=tradingBars(trimForming(sd.k.slice(),D1),D1); if(d1.length&&d1[d1.length-1].part) d1.pop();
+  if(d1.length<100) throw new Error('التاريخ اليومي قصير ('+d1.length+' شمعة تداول)');
+  var s4=spliceSeries(D.p4,D.x4), h4=tradingBars(trimForming(s4.k.slice(),H4),H4); if(h4.length&&h4[h4.length-1].part) h4.pop();
+  var useX1=!!(D.x1&&D.x1.length>=24*40), h1=trimForming((useX1?D.x1:(D.p1||[])).slice(),H1);
+  var fs=fundingStats(D.fr);
+  var cost={fee:settings.fee,slip:SLIP_PCT,stopSlip:SLIP_STOP_PCT,fundDay:fs?fs.perDayPct:0};
+  var res=labRun({d1:d1,h4:h4,h1:h1},cost);
+  return {ts:Date.now(),sym:sym,demo:demo,eng:ENG_V,fs:fs,res:res,
+    meta:{years:res.span?(res.span.to-res.span.from)/(365.25*D1):0,
+      d1:{n:d1.length,nLong:sd.nLong,nMain:sd.nMain,joinT:sd.joinT,ratio:sd.ratio,from:d1[0].t,to:d1[d1.length-1].t},
+      h4:{n:h4.length,nLong:s4.nLong,nMain:s4.nMain},
+      h1:{n:h1.length,src:useX1?sym:(h1.length?'PAXG سبوت':'—')},
+      src:D.src||((sd.nMain?sym:'')+(sd.nLong?((sd.nMain?' + ':'')+'PAXG سبوت'):''))}};
+}
+window.runLab=function(){
+  if(state.labRun.busy) return;
+  state.labRun={busy:true,msg:'⏳ عم حضّر…',pct:1,err:''}; safe('lab',renderLab);
+  var sym=curSym(), demo=!!settings.demo, gold=isGoldSym(sym), done=0, total=gold?19:12, p;
+  function onPage(){ done++; state.labRun.msg='⏳ عم جيب التاريخ من Binance… '+Math.min(done,total)+'/'+total;
+    state.labRun.pct=Math.min(85,Math.round(done/total*85)); safe('lab',renderLab); }
+  function soft(pr){ return pr.catch(function(){ return []; }); }
+  if(demo){
+    var sd0=Math.floor(Date.now()/D1), m=demoRegimes(sd0,24000);
+    p=Promise.resolve({pd:[],xd:demoDaily(sd0,2600),p4:[],x4:aggregateK(m,H4),x1:aggregateK(m,H1),p1:[],fr:null,src:'🧪 بيانات تجريبية وهمية'});
+  } else {
+    var D={};
+    p=(gold?soft(spotPaged('PAXGUSDT','1d',3,onPage)):Promise.resolve([]))
+      .then(function(x){ D.pd=x; return soft(fetchPaged(FUT,sym,'1d',2,onPage)); })
+      .then(function(x){ D.xd=x; return gold?soft(spotPaged('PAXGUSDT','4h',5,onPage)):[]; })
+      .then(function(x){ D.p4=x; return soft(fetchPaged(FUT,sym,'4h',2,onPage)); })
+      .then(function(x){ D.x4=x; return soft(fetchPaged(FUT,sym,'1h',8,onPage)); })
+      .then(function(x){ D.x1=x; return (gold&&x.length<24*40)?soft(spotPaged('PAXGUSDT','1h',8,onPage)):[]; })
+      .then(function(x){ D.p1=x; return fJSON(FUT+'fundingRate?symbol='+sym+'&limit=1000',20000).then(function(r){ return r.j; }).catch(function(){ return null; }); })
+      .then(function(fr){ D.fr=fr; return D; });
+  }
+  p.then(function(D){
+    state.labRun.msg='🧮 عم شغّل القواعد على التاريخ…'; state.labRun.pct=92; safe('lab',renderLab);
+    return new Promise(function(resolve,reject){
+      setTimeout(function(){ try{ resolve(labBuild(D,sym,demo)); }catch(e){ reject(e); } },30); });
+  }).then(function(L){
+    state.lab=L; saveJSON('famgold_lab',L);
+    state.labRun={busy:false,msg:'',pct:0,err:''};
+    safe('trend-compute',computeTrend); safe('trend-render',renderTrend); safe('lab',renderLab);
+    toast('🔬 خلص المختبر: '+L.res.rows.filter(function(r){return !r.skip;}).length+' قواعد على '+fmt(L.meta.years,1)+' سنة');
+  }).catch(function(e){
+    state.labRun={busy:false,msg:'',pct:0,err:String((e&&e.message)||e)};
+    logErr('lab',(e&&e.message)||e); safe('lab',renderLab);
+  });
+};
+function renderLab(){
+  var c=el('labCard'); if(!c) return;
+  var r=state.labRun, L=state.lab, h='';
+  if(r.busy) h+='<div class="note" style="font-weight:800;color:var(--txt);margin-top:0">'+r.msg+'</div><div class="bar"><i style="width:'+r.pct+'%"></i></div>';
+  else h+='<div class="btns" style="margin-top:0"><button class="btn" onclick="runLab()">▶️ '+(L&&L.res?'جدّد المختبر':'شغّل المختبر')+'</button></div>';
+  if(r.err) h+='<div class="warn">❌ ما كمّل المختبر: <span class="num">'+esc(r.err)+'</span> — جرّب مرة تانية أو شيّك النت.</div>';
+  if(!L||!L.res){
+    c.innerHTML=h+'<div class="note">المختبر بيجيب أطول تاريخ متوفر للذهب (PAXG من 2020 موصول بعقد XAUUSDT) وبيشغّل عليه <b>10 قواعد اتجاه كلاسيكية منشورة</b> — بمعاييرها الأصلية، بلا أي تفصيل عالبيانات — بعد الرسوم والانزلاق و<b>التمويل الفعلي</b> للعقد. كل قاعدة لازم تربح بقسمَي الفترة وتتخطى عتبة إحصائية. وبيفحص كمان نمط جلسات الذهب.<br>ممكن يطلع الجواب «ولا قاعدة أثبتت حالها» — وهيدا جواب صادق ومفيد، أحسن من وهم. بياخد 20–60 ثانية.</div>';
+    return;
+  }
+  var R=L.res, rows=R.rows||[], dt=new Date(L.ts), M=L.meta||{}, fresh=labFresh();
+  h+='<div class="note">آخر تشغيل: <span class="num">'+('0'+dt.getDate()).slice(-2)+'/'+('0'+(dt.getMonth()+1)).slice(-2)+' '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2)+'</span> · المصدر: <b>'+esc(M.src||'—')+'</b>'+
+    (R.span?' · فترة التقييم: <span class="num">'+dstr(R.span.from)+' → '+dstr(R.span.to)+'</span> (<span class="num">'+fmt(M.years,1)+'</span> سنة، <span class="num">'+R.span.n+'</span> شمعة تداول)':'')+
+    (M.d1&&M.d1.nLong&&M.d1.nMain?' · PAXG قبل <span class="num">'+dstr(M.d1.joinT)+'</span> والعقد بعدها':'')+'.'+
+    (fresh?'':' <span class="wt">⚠️ هالنتيجة لرمز/وضع تاني أو لنسخة أقدم — جدّد المختبر.</span>')+
+    (fresh&&Date.now()-L.ts>30*D1?' <span class="wt">عمرو أكتر من شهر — جدّدو.</span>':'')+'</div>';
+  if(L.demo) h+='<div class="warn">🧪 <b>بيانات تجريبية وهمية</b> — الأرقام تحت لتجربة الشاشة بس، ما إلها علاقة بالذهب الحقيقي.</div>';
+  var act=rows.filter(function(x){return !x.skip;}), okR=act.filter(function(x){return x.verdict.ok;}), strong=act.filter(function(x){return x.verdict.code==='strong';});
+  var def=rows[0], sel=null, i;
+  for(i=0;i<rows.length;i++){ if(rows[i].id===settings.trendId) sel=rows[i]; }
+  if(!sel||sel.skip) sel=(def&&!def.skip)?def:(act[0]||null);
+  var sm;
+  if(!act.length) sm='ما انفحصت ولا قاعدة — التاريخ المتوفر قصير.';
+  else if(!okR.length){ var weakN=act.filter(function(x){return x.verdict.code==='weak';}).length;
+    sm='❌ <b>ولا قاعدة</b> من <span class="num">'+act.length+'</span> أثبتت أفضلية على هالتاريخ بعد التكاليف'+
+      (weakN?' — <span class="num">'+weakN+'</span> منها موجبة بقسمَي الفترة بس دليلها الإحصائي ضعيف (t أقل من 2)، يعني ممكن تكون حظ':'')+
+      '. الاستنتاج الصادق: ما في سبب إحصائي كافي لتداول آلي بمصاري حقيقية على هالرمز هلّق — خلّيك عالورق.'; }
+  else sm='من <span class="num">'+act.length+'</span> قواعد: <b class="num">'+okR.length+'</b> طلعت موجبة بقسمَي الفترة مع '+ltr('t ≥ 2')+
+    (strong.length?'، منها <b class="num">'+strong.length+'</b> فوق عتبة الـ3.':'، بس <b>ولا وحدة فوق عتبة الـ3</b> اللي بتحمي من الصدفة لما نجرّب أكتر من قاعدة — يعني الدليل موجود بس مش قاطع.');
+  if(def&&!def.skip) sm+='<br>القاعدة المحدّدة سلفاً ⭐ ('+def.name+' · '+def.side+'): <b>'+LAB_VERDICT[def.verdict.code].t+'</b> — <span class="num '+(def.ev.all.avgR>=0?'pos':'neg')+'">'+fmtR(def.ev.all.avgR)+'</span> للصفقة على <span class="num">'+def.ev.all.n+'</span> صفقة.';
+  h+='<div class="plan" style="margin-top:8px"><div class="note" style="margin-top:0;color:var(--txt);font-size:13px">'+sm+'</div>'+
+    '<div class="note">⚠️ لا تختار «الأحسن» من الجدول بعد ما شفت النتيجة — هيك بتكون عم تفصّل عالماضي، والرقم الحلو بيكون صدفة. لهيك في قاعدة ⭐ محدّدة قبل الفحص، ولهيك العتبة 3 مش 2.</div></div>';
+
+  function cellH(k,v,cls){ return '<div><div class="k">'+k+'</div><div class="v num '+(cls||'')+'">'+v+'</div></div>'; }
+  function halfH(x){ return x&&x.n? '<span class="num '+(x.avgR>=0?'pos':'neg')+'">'+fmtR(x.avgR)+'</span>' : '<span class="num">—</span>'; }
+  h+='<h3 style="margin-top:12px">📋 القواعد العشرة (بعد كل التكاليف)</h3>';
+  rows.forEach(function(row){
+    var head='<div class="top"><span>'+row.name+(row.def?' ⭐':'')+' <span class="muted" style="font-weight:700;font-size:10.5px">'+row.side+(row.hard?'':' · بلا ستوب')+'</span></span>';
+    if(row.skip){ h+='<div class="jrow">'+head+'<span class="pill pend">التاريخ ما بيكفي</span></div></div>'; return; }
+    var a=row.ev.all, v=LAB_VERDICT[row.verdict.code], pc=row.verdict.ok?'win':((row.verdict.code==='lose'||row.verdict.code==='unstable')?'loss':'pend');
+    h+='<div class="jrow"'+(sel&&row.id===sel.id?' style="border-color:var(--gold)"':'')+'>'+head+'<span class="pill '+pc+'" style="white-space:nowrap">'+v.t+'</span></div>'+
+      '<div class="lrow">'+cellH('صفقات',a.n)+cellH('ربح',a.n?a.win+'%':'—')+cellH('متوسط',a.n?fmtR(a.avgR):'—',a.n?(a.avgR>=0?'pos':'neg'):'')+
+        cellH('t',a.t===null||a.t===undefined?'—':fmt(a.t,1))+cellH('Sharpe',row.sharpe===null||row.sharpe===undefined?'—':fmt(row.sharpe,2))+'</div>'+
+      '<div class="muted" style="font-size:11px;margin-top:5px">أول 60% من الفترة: '+halfH(row.ev.is)+' · آخر 40%: '+halfH(row.ev.oos)+'</div></div>';
+  });
+  h+='<div class="note">«متوسط» = ربح الصفقة بالـR (1R = مسافة الستوب عند الدخول). «t» = قوة الدليل الإحصائي (المطلوب 3 وما فوق). القاعدة لازم تكون خضرا بقسمَي الفترة مش بواحد. وانتبه: أرباح هالنوع مايلة (خسارات صغيرة كتير + ربحات كبيرة قليلة) فالـt تقريبي — لهيك في كمان شرط القسمين وخريطة المتانة. القواعد اليومية كلها على نفس الفترة بالضبط'+(R.span4?'؛ قواعد 4h على فترة أقصر (<span class="num">'+dstr(R.span4.from)+' → '+dstr(R.span4.to)+'</span>)':'')+'. الإطار الذهبي = القاعدة المختارة بإشارة الاتجاه.</div>';
+
+  if(sel){
+    var a2=sel.ev.all, v2=LAB_VERDICT[sel.verdict.code];
+    h+='<h3 style="margin-top:14px">🔎 تفاصيل: '+sel.name+' ('+sel.side+')</h3>';
+    h+='<div class="plan" style="margin-top:0"><div class="note" style="margin-top:0;color:var(--txt)"><b>'+v2.t+'</b> — '+v2.d+'</div></div>';
+    h+='<div class="stats" style="margin-top:8px">'+tileH('صفقات بالسنة',fmt(a2.perYear,1))+tileH('مدة الصفقة (يوم)',fmt(a2.avgDays,0))+tileH('الوقت بالسوق',fmt(a2.inMkt*100,0)+'%')+
+      tileH('محصلة بالسنة',a2.n?fmtR(a2.rPerYear):'—',a2.rPerYear>=0?'up':'dn')+tileH('Profit Factor',a2.n?(a2.pf>=99?'∞':fmt(a2.pf,2)):'—')+tileH('أطول خسارة متتالية',a2.maxLose)+
+      tileH('أقصى تراجع صار',a2.n?fmt(a2.maxDD,1)+'R':'—','dn')+tileH('أسوأ صفقة',a2.worst===null||a2.worst===undefined?'—':fmtR(a2.worst),'dn')+tileH('أحسن صفقة',a2.best===null||a2.best===undefined?'—':fmtR(a2.best),'up')+'</div>';
+    var sideTxt=function(x){ return x.n? ltr(x.n)+' صفقة · ربح '+ltr(x.win+'%')+' · <span class="num '+(x.avgR>=0?'pos':'neg')+'">'+fmtR(x.avgR)+'</span>' : '—'; };
+    h+=kvt('🟢 صفقات الشراء',sideTxt(sel.long))+kvt('🔴 صفقات البيع',sideTxt(sel.short))+
+       kvr('المتوسط: قبل التمويل ثم بعدو',a2.n?(fmtR(a2.avgR0)+' → '+fmtR(a2.avgR)):'—')+
+       (sel.hard?kvt('صفقات سكّرت بالستوب',ltr(sel.stops)+' من '+ltr(a2.n)):'');
+    if(sel.mc){ var sug2=clamp(20/sel.mc.dd95,0.25,1);
+      h+='<div class="note">🎲 <b>مونت كارلو</b> (إعادة سحب الصفقات 400 مرة): التراجع الوسطي <b class="num">'+fmt(sel.mc.dd50,1)+'R</b> · بأسوأ 5% من الحالات <b class="num">'+fmt(sel.mc.dd95,1)+'R</b> مع <b class="num">'+sel.mc.streak95+'</b> خسارة ورا بعض.'+
+        (sel.verdict.ok?' ليضل أسوأ تراجع تحت 20% من رأس المال ← مخاطرة الصفقة ما لازم تتخطى <b class="num">'+fmt(sug2,2)+'%</b> (والسقف 1% مهما كان).':' القاعدة ما أثبتت حالها، فهالأرقام للعلم بس — مش دعوة للتداول.')+'</div>'; }
+    if(sel.openIncl) h+='<div class="note">ℹ️ الأرقام بتتضمّن الصفقة اللي بعدها مفتوحة، مقيّمة على آخر سعر'+(sel.pos?' (<span class="num">'+fmtR(sel.pos.openR)+'</span> لهلّق)':'')+' — تجاهلها بيظلم قواعد الاتجاه لأن الرابحات الطويلة هنّي اللي بيضلّوا مفتوحين.</div>';
+  }
+  if(R.robust&&R.robust.length){
+    h+='<h3 style="margin-top:14px">🧱 خريطة المتانة — قناة بأطوال مختلفة</h3><div class="rgrid">';
+    R.robust.forEach(function(x){ h+='<div class="hcell '+(x.n?(x.avgR>0?'p':'n'):'z')+'"><div class="hh">'+x.N+'/'+x.M+'</div>'+(x.n?fmtR(x.avgR):'—')+'<div class="hh" dir="rtl">'+x.n+' صفقة</div></div>'; });
+    h+='</div><div class="note">قاعدة سليمة بتربح على <b>منطقة واسعة</b> من الإعدادات. إذا خانة وحدة خضرا والباقي أحمر = صدفة مش أفضلية.</div>';
+  }
+  if(R.bh) h+='<div class="note">📦 <b>للمقارنة — شراء واحتفاظ</b> بنفس الفترة: السعر <b class="num">'+sgn(R.bh.totalPct,0)+'%</b>'+(R.bh.cagrPct!==null?' (<span class="num">'+sgn(R.bh.cagrPct,1)+'%</span> بالسنة)':'')+' · أقصى هبوط <span class="num">'+fmt(R.bh.maxDDPct,0)+'%</span>'+
+    (R.bh.fundPct?' · بس على العقد كنت دفعت تمويل ≈ <span class="num">'+fmt(R.bh.fundPct,0)+'%</span> ← الصافي <b class="num">'+sgn(R.bh.netPct,0)+'%</b>':'')+
+    ' · Sharpe'+(R.bh.fundPct?' (بعد التمويل)':'')+' <span class="num">'+(R.bh.sharpe===null?'—':fmt(R.bh.sharpe,2))+'</span>. قواعد «Long بس» بتستفيد من صعود الذهب العام — قارن الـSharpe تبعها بهالرقم قبل ما تنسب الربح لذكاء القاعدة.</div>';
+  if(btFresh()&&state.bt.sum&&state.bt.sum.all){ var ba=state.bt.sum.all;
+    h+='<div class="note">⚡ <b>المحرك القصير</b> (4h/1h/15m، فحص <span class="num">'+state.bt.sum.days+'</span> يوم): <span class="num">'+ba.n+'</span> صفقة · ربح <span class="num">'+ba.win+'%</span> · <span class="num '+(ba.avgR>=0?'pos':'neg')+'">'+fmtR(ba.avgR)+'</span> للصفقة'+(ba.t!==undefined&&ba.t!==null?' · <span class="num">t = '+fmt(ba.t,1)+'</span>':'')+(btCurrent()?'':' <span class="wt">(محرك قديم — جدّد 🧪)</span>')+'.</div>'; }
+
+  if(R.sess&&R.sess.length){
+    var off=-new Date().getTimezoneOffset()/60;
+    h+='<h3 style="margin-top:14px">🕐 نمط الجلسات (الأوقات UTC · توقيتك = UTC'+(off>=0?'+':'')+off+')</h3>';
+    R.sess.forEach(function(x){ var w=x.w, okW=w.n>=40&&w.netMean>0&&w.netT!==null&&w.netT>=2&&w.net1>0&&w.net2>0;
+      h+='<div class="jrow"><div class="top"><span>'+x.name+'</span><span class="pill '+(okW?'win':(w.netMean>0?'pend':'loss'))+'" style="white-space:nowrap">'+(okW?'✅ بيّنت':(w.netMean>0?'➖ ضعيفة':'❌ ما بتربح'))+'</span></div>'+
+        '<div class="lrow">'+cellH('أيام',w.n)+cellH('خام',sgn(w.grossMean,3)+'%',w.grossMean>=0?'pos':'neg')+cellH('صافي',sgn(w.netMean,3)+'%',w.netMean>=0?'pos':'neg')+
+          cellH('t',w.netT===null?'—':fmt(w.netT,1))+cellH('ربح',w.win+'%')+'</div>'+
+        '<div class="muted" style="font-size:11px;margin-top:5px">الصافي بالنص الأول: <span class="num '+(w.net1>=0?'pos':'neg')+'">'+sgn(w.net1,3)+'%</span> · بالنص التاني: <span class="num '+(w.net2>=0?'pos':'neg')+'">'+sgn(w.net2,3)+'%</span></div></div>'; });
+    h+='<div class="note">«خام» = متوسط حركة السعر بالنافذة كل يوم تداول. «صافي» = بعد رسوم الدخول والخروج والتمويل. ✅ بس إذا الصافي موجب، '+ltr('t ≥ 2')+'، وموجب بنصَّي الفترة. المصدر: شموع ساعة <b>'+esc((M.h1&&M.h1.src)||'—')+'</b> (<span class="num">'+(R.h1span?fmt((R.h1span.to-R.h1span.from)/D1,0):'0')+'</span> يوم).</div>';
+  }
+  if(R.hours&&R.hours.length===24){
+    h+='<h3 style="margin-top:12px">⏱️ متوسط حركة كل ساعة (UTC) — بالنقاط الأساسية (0.01%)</h3><div class="hgrid">';
+    R.hours.forEach(function(x){ var sig2=x.t!==null&&Math.abs(x.t)>=2;
+      h+='<div class="hcell '+(sig2?(x.mean>0?'p':'n'):'z')+'"><div class="hh">'+('0'+x.h).slice(-2)+':00</div>'+sgn(x.mean*100,1)+'</div>'; });
+    h+='</div><div class="note">الملوّن بس = الساعات اللي حركتها مختلفة عن الصفر إحصائياً ('+ltr('|t| ≥ 2')+'). من 24 ساعة، وحدة أو تنتين بيطلعوا ملوّنين بالصدفة لحالن — ما تبني عليهن صفقة.</div>';
+  }
+  var fs=L.fs;
+  if(fs) h+='<div class="note">💸 <b>التمويل الفعلي</b> (<span class="num">'+fs.n+'</span> تسوية = <span class="num">'+fmt(fs.days,0)+'</span> يوم): كل <span class="num">'+fmt(fs.intervalH,0)+'</span> ساعات · المتوسط <b class="num">'+sgn(fs.perDayPct,4)+'%</b> باليوم (≈ <span class="num">'+sgn(fs.aprPct,1)+'%</span> بالسنة) · موجب بـ<span class="num">'+fs.posShare+'%</span> من المرات ← '+(fs.perDayPct>0?'الـLong هو اللي بيدفع بالغالب.':'الـShort هو اللي بيدفع بالغالب.')+'</div>';
+  else if(!L.demo) h+='<div class="warn">💸 ما قدرت اقرا سجل التمويل — الأرقام محسوبة <b>بلا تمويل</b>، يعني النتيجة الحقيقية للصفقات الطويلة أسوأ شوي.</div>';
+  h+='<div class="note"><b>الفرضيات (متحفّظة):</b> الإشارة على إغلاق الشمعة والتنفيذ على فتح اللي بعدها · رسوم <span class="num">'+fmt(R.cost?R.cost.fee:settings.fee,2)+'%</span> + انزلاق <span class="num">'+fmt(SLIP_PCT,2)+'%</span> لكل طرف · انزلاق إضافي <span class="num">'+fmt(SLIP_STOP_PCT,2)+'%</span> لما ينضرب الستوب · فتح بفجوة ورا الستوب = تعبئة عالفتح · التمويل = متوسط السجل الفعلي ومطبّق على كل التاريخ (تقريب: العقد عمرو أقل من سنة) · ما قبل 2026 من PAXG (ذهب مرمّز — قريب من سعر الذهب مش مطابق) · حركة الويك-إند مدموجة بشمعة الإثنين · بلا تعزيز ولا رافعة. <b>الماضي مش ضمانة للمستقبل.</b></div>';
   c.innerHTML=h;
 }
 
@@ -1740,7 +2767,12 @@ window.copyRec=function(){
   if(state.weekly){ var ww=state.weekly;
     lines.splice(lines.length-1,0,'',
       '📅 النظرة الأسبوعية: '+(ww.dir==='long'?'صاعدة':(ww.dir==='short'?'هابطة':'مش محسومة'))+' · '+ww.level+
-      (ww.st&&ww.st.n?' · نسبة الصعود تاريخياً بعد 7 أيام: '+ww.st.up7+'% (عيّنة '+ww.st.n+')':'')); }
+      (ww.st&&ww.st.n>=10?' · نسبة الصعود تاريخياً بعد 7 أيام: '+ww.st.up7+'% (عيّنة '+ww.st.n+')':'')); }
+  if(state.trend&&state.trend.ok){ var TT=state.trend, tp=TT.pos, tl=TT.levels||{}, tline='🧭 إشارة الاتجاه ('+TT.name+' · '+TT.side+'): ';
+    if(tp) tline+=(tp.dir==='long'?'Long':'Short')+' من '+dstr(tp.tIn)+' · دخول '+fmt(tp.pIn)+
+      (TT.hard?' · ستوب '+fmt(tp.stop)+' · خروج بإغلاق يومي '+(tp.dir==='long'?'تحت '+fmt(tl.exitLong):'فوق '+fmt(tl.exitShort)):' · الخروج عند انقلاب الإشارة');
+    else tline+='خارج السوق'+(TT.spec.type==='donchian'?' · شراء بإغلاق يومي فوق '+fmt(tl.entryLong)+(TT.spec.side!=='long'?' · بيع بإغلاق يومي تحت '+fmt(tl.entryShort):''):'');
+    lines.splice(3,0,'',tline); }
   var txt=lines.join('\n');
   function ok(){ toast('📋 انتسخت التوصية — ابعتها عالواتساب'); }
   if(navigator.clipboard&&navigator.clipboard.writeText)
@@ -1752,7 +2784,7 @@ function fallbackCopy(t){ var ta=document.createElement('textarea'); ta.value=t;
 
 /* ---------- backup ---------- */
 window.exportBackup=function(){
-  var data={v:2,settings:settings,journal:journal,events:manualEvents,bt:state.bt,ts:Date.now()};
+  var data={v:3,settings:settings,journal:journal,events:manualEvents,bt:state.bt,lab:state.lab,ts:Date.now()};
   var blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
   var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
   a.download='famgold_backup.json'; a.click();
@@ -1767,7 +2799,8 @@ window.importBackup=function(inp){
       if(Array.isArray(d.journal)){ journal=d.journal; saveJSON('famgold_journal',journal); }
       if(Array.isArray(d.events)){ manualEvents=d.events; saveJSON('famgold_events',manualEvents); }
       if(d.bt&&d.bt.sum){ state.bt=d.bt; saveJSON('famgold_bt',state.bt); }
-      toast('✅ رجعت البيانات'); bindSettings(); renderJournal(); safe('bt',renderBT); refresh();
+      if(d.lab&&d.lab.res&&Array.isArray(d.lab.res.rows)){ state.lab=d.lab; saveJSON('famgold_lab',state.lab); }
+      toast('✅ رجعت البيانات'); bindSettings(); renderJournal(); safe('bt',renderBT); safe('lab',renderLab); refresh();
     }catch(e){ toast('❌ الملف مش صالح'); } inp.value=''; };
   rd.readAsText(f);
 };
@@ -1775,7 +2808,7 @@ window.wipeAll=function(){
   var b=el('btnWipe');
   if(b.getAttribute('data-arm')!=='1'){ b.setAttribute('data-arm','1');
     b.textContent='متأكد؟ اضغط مرة تانية'; setTimeout(function(){ b.setAttribute('data-arm','0'); b.textContent='🗑️ مسح كل البيانات'; },4000); return; }
-  ['settings','journal','alerts','events','errors','bt'].forEach(function(k){ store.removeItem('famgold_'+k); });
+  ['settings','journal','alerts','events','errors','bt','lab'].forEach(function(k){ store.removeItem('famgold_'+k); });
   location.reload();
 };
 
@@ -1798,9 +2831,10 @@ function hookSettings(){
     settings.alerts=el('ckAlerts').checked; settings.sound=el('ckSound').checked;
     var wasDemo=settings.demo; settings.demo=el('ckDemo').checked;
     saveJSON('famgold_settings',settings); safe('calc',renderCalc); safe('rec',renderRec); safe('bt',renderBT);
+    safe('trend-compute',computeTrend); safe('trend',renderTrend); safe('lab',renderLab);     /* الرسوم/رأس المال بيأثروا عالحجم والتكاليف */
     if(wasDemo!==settings.demo||prevSym!==settings.sym){
       state.htf={k1d:null,k1w:null,at:0,src:null,statsK:null,statsK1w:null,statsSrc:null};
-      state.weekly=null; refresh(); } }
+      state.weekly=null; state.trend=null; safe('trend',renderTrend); refresh(); } }
   ['inCap','inRisk','inLev','inIntv','inSym','inFee'].forEach(function(id){ el(id).addEventListener('change',upd); });
   ['ckAlerts','ckSound','ckDemo'].forEach(function(id){ el(id).addEventListener('change',upd); });
 }
@@ -1822,7 +2856,7 @@ function init(){
     toast((t.pass?'🧪 self-test ✅ ':'🧪 self-test ❌ ')+t.checks.length+' فحص');
     console.log(t.checks.join('\n'));
   }
-  safe('journal',renderJournal); safe('bt',renderBT);
+  safe('journal',renderJournal); safe('bt',renderBT); safe('lab',renderLab); safe('trend',renderTrend);
   refresh();
   setInterval(tick,1000);
 }
